@@ -1,0 +1,9 @@
+node_modules
+bower_components
+*.iml
+.idea
+*.log*
+.nuxt
+.DS_Store
+coverage
+dist

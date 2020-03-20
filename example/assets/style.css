@@ -1,0 +1,90 @@
+:root {
+
+    font-size: 16px;
+
+}
+
+
+html,
+body,
+body > div,
+body > div > div,
+.canvas-container {
+
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+
+}
+
+body {
+
+    color: #333;
+
+    line-height: 1.5;
+
+}
+
+.container {
+
+    display: flex;
+    flex: 1 1 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+
+}
+
+.readme {
+
+    min-height: 100vh;
+
+}
+
+.markdown-body {
+
+    position: relative;
+    z-index: 1;
+
+}
+
+h1 {
+
+    font-size: 2em;
+
+}
+
+blockquote {
+
+    margin-left: 0;
+    padding: 0 1rem;
+    color: #819198;
+    border-left: .3rem solid #dce6f0;
+
+}
+
+.absolute {
+
+    position: absolute;
+    z-index: 1;
+
+}
+
+.text--center {
+
+    text-align: center;
+
+}
+
+.text--red {
+
+    color: #ff1e00;
+
+}
+
+.no-pointer-event {
+
+    pointer-events: none;
+
+}

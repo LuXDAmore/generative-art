@@ -8,10 +8,12 @@ const moduleFile = resolve(
     )
     , base = (
         process.env.NODE_ENV === 'production'
-        ? PACKAGE.homepage.replace(
-            'https://luxdamore.github.io',
-            ''
-        )
+        ? `${
+            PACKAGE.homepage.replace(
+                'https://luxdamore.github.io',
+                ''
+            )
+        }/`
         : '/'
     )
     , meta = [

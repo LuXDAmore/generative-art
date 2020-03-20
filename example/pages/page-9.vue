@@ -84,7 +84,7 @@
                 const { OrbitControls } = require(
                           'three/examples/jsm/controls/OrbitControls'
                       )
-                      , imageUrlLuna = '/luna.jpg'
+                      , imageUrlLuna = `${ process.env.base }luna.jpg`
                 ;
 
                 // Create a renderer

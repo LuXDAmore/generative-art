@@ -6,6 +6,14 @@ const moduleFile = resolve(
         __dirname,
         '../lib/module'
     )
+    , base = (
+        process.env.NODE_ENV === 'production'
+        ? PACKAGE.homepage.replace(
+            'https://luxdamore.github.io',
+            ''
+        )
+        : '/'
+    )
     , meta = [
         {
             once: true,
@@ -47,7 +55,6 @@ export default {
         '@nuxtjs/markdownit',
         moduleFile,
     ],
-    generativeArt: {},
     /*
      * Watch module
      */
@@ -56,14 +63,7 @@ export default {
      * Router
      */
     router: {
-        base: (
-            process.env.NODE_ENV === 'production'
-            ? PACKAGE.homepage.replace(
-                'https://luxdamore.github.io',
-                ''
-            )
-            : '/'
-        ),
+        base,
     },
     /*
      * Build
@@ -183,5 +183,6 @@ export default {
      */
     env: {
         package: PACKAGE,
+        base,
     },
 };

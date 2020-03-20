@@ -9,6 +9,11 @@
     # Deps
     npm install --save @luxdamore/nuxt-canvas-sketch
 
+    # Add it into your modules
+    {
+        modules: [ '@luxdamore/nuxt-canvas-sketch' ],
+    }
+
 ```
 
 ## Usage

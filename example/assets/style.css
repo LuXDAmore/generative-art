@@ -25,6 +25,12 @@ body {
 
 }
 
+.dg.ac {
+
+    z-index: -1 !important;
+
+}
+
 .container {
 
     display: flex;
@@ -46,6 +52,9 @@ body {
 
     position: relative;
     z-index: 1;
+    width: 700px;
+    max-width: 100%;
+    padding: 0 36px;
 
 }
 
@@ -68,6 +77,12 @@ blockquote {
 
     position: absolute;
     z-index: 1;
+
+}
+
+a {
+
+    color: #00bfff;
 
 }
 

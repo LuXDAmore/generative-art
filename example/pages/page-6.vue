@@ -90,8 +90,8 @@
                       )
                 ;
 
-                const imageUrlLuna = '/luna.jpg'
-                      , imageUrlLuna2 = '/luna-2.jpg'
+                const imageUrlLuna = `${ process.env.base }luna.jpg`
+                      , imageUrlLuna2 = `${ process.env.base }luna-2.jpg`
                       , image = await load(
                           imageUrlLuna
                       )

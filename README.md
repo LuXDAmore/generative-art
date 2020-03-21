@@ -33,8 +33,6 @@ I'm introducing myself to the **generative-art** world, so, why not doing this w
 
 So, this is also a module for Nuxt, it simply inject the [canvas-sketch](https://github.com/mattdesl/canvas-sketch) library (there are more packages you can use installing this, for example `canvas-sketch-utils`).
 
-*All my thanks goes to Matt DesLauriers for these beautiful and easy to use libraries*.
-
 After installing this, you have access in Nuxt (client-side) at two things, `$canvasSketch` (the main module, used internally) and at the method `$draw` (it start the sketch).
 
 Check the `example/` folder and take a look at `page-*.vue` for some examples.
@@ -171,6 +169,10 @@ Do you want to share a beer? We can be good friends.. __[Paypal](https://www.pay
 [![Contacts](https://img.shields.io/badge/email-Contact%20me-success)](https://lucaiaconelli.it)
 
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/luxdamore)
+
+#### 💘 Inspired by
+
+> **All my thanks goes to Matt DesLauriers for these beautiful and easy to use libraries**.
 
 ___
 

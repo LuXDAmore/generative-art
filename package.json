@@ -24,7 +24,7 @@
     "main": "lib/module.js",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/LuXDAmore/generative-art.git"
+        "url": "https://github.com/LuXDAmore/generative-art.git"
     },
     "bugs": {
         "url": "https://github.com/LuXDAmore/generative-art/issues"

@@ -27,10 +27,17 @@ const moduleFile = resolve(
     , links = [
         {
             once: true,
+            hid: 'favicon',
+            rel: 'shortcut icon',
+            type: 'image/x-icon',
+            href: `${ base }favicon.ico`,
+        },
+        {
+            once: true,
             hid: 'humans',
             rel: 'author',
             type: 'text/plain',
-            href: '/humans.txt',
+            href: `${ base }humans.txt`,
         },
     ]
 ;

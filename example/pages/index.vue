@@ -90,7 +90,7 @@
                         links[ i ].textContent,
                     );
 
-                    const REDIRECT_TO_GITHUB = links[ i ].href.startWith(
+                    const REDIRECT_TO_GITHUB = links[ i ].href.startsWith(
                         '/.'
                     );
 

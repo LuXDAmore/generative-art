@@ -144,11 +144,11 @@ ___
 
 ## 🐞 Issues
 
-Please make sure to read the [Issue Reporting Checklist](/.github/ISSUE_TEMPLATE/bug_report.md) before opening an issue. Issues not conforming to the guidelines may be closed immediately.
+Please make sure to read the [Issue Reporting Checklist](./.github/ISSUE_TEMPLATE/bug_report.md) before opening an issue. Issues not conforming to the guidelines may be closed immediately.
 
 ## 👥 Contribution
 
-Please make sure to read the [Contributing Guide](/.github/ISSUE_TEMPLATE/feature_request.md) before making a pull request.
+Please make sure to read the [Contributing Guide](./.github/ISSUE_TEMPLATE/feature_request.md) before making a pull request.
 
 ## 📖 Changelog
 

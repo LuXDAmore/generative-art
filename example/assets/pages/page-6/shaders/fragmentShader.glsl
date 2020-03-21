@@ -1,3 +1,5 @@
+#pragma vscode_glsllint_stage : frag
+
 uniform float time;
 uniform float progress;
 uniform vec3 mouse;

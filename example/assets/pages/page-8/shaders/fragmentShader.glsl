@@ -1,3 +1,5 @@
+#pragma vscode_glsllint_stage : frag
+
 uniform vec3 color;
 uniform vec3 bottomColor;
 uniform float time;

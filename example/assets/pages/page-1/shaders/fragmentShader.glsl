@@ -1,3 +1,5 @@
+#pragma vscode_glsllint_stage : frag
+
 varying vec2 vUv;
 uniform float playhead;
 

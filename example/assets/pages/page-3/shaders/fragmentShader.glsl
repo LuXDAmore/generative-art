@@ -1,3 +1,5 @@
+#pragma vscode_glsllint_stage : frag
+
 precision highp float;
 
 uniform float time;

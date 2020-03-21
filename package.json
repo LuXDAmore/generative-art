@@ -87,6 +87,7 @@
         "eslint-plugin-unicorn": "^17.1.0",
         "eslint-plugin-vue": "^6.1.2",
         "get-port": "^5.1.0",
+        "glslify": "^7.0.0",
         "highlight.js": "^9.18.1",
         "husky": "^4.0.1",
         "jest": "^25.1.0",

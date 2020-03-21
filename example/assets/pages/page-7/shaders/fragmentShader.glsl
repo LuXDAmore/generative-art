@@ -1,3 +1,5 @@
+#pragma vscode_glsllint_stage : frag
+
 uniform sampler2D microphone;
 uniform sampler2D video;
 

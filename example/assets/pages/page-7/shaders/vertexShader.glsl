@@ -1,3 +1,5 @@
+#pragma vscode_glsllint_stage : vert
+
 varying vec2 vUv;
 varying vec3 vPosition;
 

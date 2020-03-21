@@ -1,3 +1,5 @@
+#pragma vscode_glsllint_stage : vert
+
 precision mediump float;
 
 varying vec2 vUv;

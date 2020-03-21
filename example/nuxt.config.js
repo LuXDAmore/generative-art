@@ -213,4 +213,10 @@ export default {
         package: PACKAGE,
         base,
     },
+    /*
+     * Server
+     */
+    server: {
+        host: '0.0.0.0',
+    },
 };

@@ -64,14 +64,19 @@
             initReadmeLinks() {
 
                 const links = [
-                    ... document.querySelectorAll(
-                        '.readme > article a, .readme > article pre',
-                    ),
-                ].filter(
-                    (
-                        { tagName }
-                    ) => tagName === 'A'
-                );
+                          ... document.querySelectorAll(
+                              '.readme > article a, .readme > article pre',
+                          ),
+                      ].filter(
+                          (
+                              { tagName }
+                          ) => tagName === 'A'
+                      )
+                      , BASE_URL = process.env.package.repository.url.replace(
+                          '.git',
+                          '/tree/master/'
+                      )
+                ;
 
                 for( let i = 0; i < links.length; i ++ ) {
 
@@ -90,21 +95,22 @@
                         links[ i ].textContent,
                     );
 
-                    const REDIRECT_TO_GITHUB = links[ i ].href.startsWith(
-                        '/.'
+                    const HREF = links[ i ].getAttribute(
+                        'href'
                     );
 
-                    if( REDIRECT_TO_GITHUB ) {
+                    if(
+                        HREF.startsWith(
+                            './'
+                        )
+                    ) {
 
                         links[ i ].setAttribute(
                             'href',
-                            links[ i ].href.replace(
-                                '/.',
-                                process.env.package.repository.url.replace(
-                                    '.git',
-                                    '/'
-                                ),
-                            ),
+                            HREF.replace(
+                                './',
+                                BASE_URL
+                            )
                         );
 
                     }

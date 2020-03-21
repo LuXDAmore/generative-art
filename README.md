@@ -82,7 +82,7 @@ Every page correspond to an example in the [main website](https://luxdamore.gith
     export default {
         data: () => (
             {
-                drawManager: null,
+                sketchManager: null,
             }
         ),
         mounted() {
@@ -90,7 +90,7 @@ Every page correspond to an example in the [main website](https://luxdamore.gith
             // Suggested way
             try {
 
-                this.drawManager = await this.$sketch(
+                this.sketchManager = await this.$sketch(
                     // Settings of the sketch
                     {
                         animate: true,
@@ -113,7 +113,7 @@ Every page correspond to an example in the [main website](https://luxdamore.gith
         },
         beforeDestroy() {
 
-            this.drawManager && this.drawManager.unload();
+            this.sketchManager && this.sketchManager.unload();
 
         },
         methods: {
@@ -133,7 +133,7 @@ Every page correspond to an example in the [main website](https://luxdamore.gith
 
 ```
 
-**_N.B. : You don't really need the `drawManager`, but i think with Vue it's a better way to remove an clean handlers onBeforeDestroy.._**
+> N.B. : You don't really need the [sketchManager](https://github.com/mattdesl/canvas-sketch/blob/master/docs/api.md#sketchmanager), but i think with Vue it's a better way to remove an clean handlers onBeforeDestroy..
 ___
 
 ## Development

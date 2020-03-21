@@ -37,7 +37,7 @@
         name: 'page-1',
         data: () => (
             {
-                drawManager: null,
+                sketchManager: null,
             }
         ),
         mounted() {
@@ -48,7 +48,7 @@
                     // Suggested way
                     try {
 
-                        this.drawManager = await this.$sketch(
+                        this.sketchManager = await this.$sketch(
                             {
                                 ... settings,
                                 canvas: this.$refs.canvas,
@@ -70,7 +70,7 @@
         },
         beforeDestroy() {
 
-            this.drawManager && this.drawManager.unload();
+            this.sketchManager && this.sketchManager.unload();
 
         },
         methods: {

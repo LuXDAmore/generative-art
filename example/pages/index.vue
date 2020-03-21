@@ -90,6 +90,25 @@
                         links[ i ].textContent,
                     );
 
+                    const REDIRECT_TO_GITHUB = links[ i ].href.startWith(
+                        '/.'
+                    );
+
+                    if( REDIRECT_TO_GITHUB ) {
+
+                        links[ i ].setAttribute(
+                            'href',
+                            links[ i ].href.replace(
+                                '/.',
+                                process.env.package.repository.url.replace(
+                                    '.git',
+                                    '/'
+                                ),
+                            ),
+                        );
+
+                    }
+
                 }
 
             },

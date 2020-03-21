@@ -78,6 +78,15 @@
                 }
             ) {
 
+                update(
+                    {
+                        dimensions: [
+                            width,
+                            height,
+                        ],
+                    }
+                );
+
                 const { OrbitControls } = require(
                           'three/examples/jsm/controls/OrbitControls'
                       )

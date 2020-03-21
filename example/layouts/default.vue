@@ -71,6 +71,7 @@
         ),
     };
 </script>
+
 <style scoped>
 
     .layout::before {

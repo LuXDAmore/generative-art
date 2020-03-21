@@ -45,6 +45,7 @@
         "biquad",
         "compat",
         "glslify",
+        "jsonld",
         "keypressed",
         "lauriers",
         "mousedragged",

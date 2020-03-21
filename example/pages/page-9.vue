@@ -1,15 +1,15 @@
 <template>
     <main class="container canvas-container">
 
-        <canvas
-            id="canvas"
-            ref="canvas"
-        />
+        <canvas ref="canvas" />
 
     </main>
 </template>
 
 <script>
+    // Load assets
+    import load from 'load-asset';
+
     // Shaders
     import fragmentShader from '~/assets/pages/page-9/shaders/fragmentShader.glsl';
     import vertexShader from '~/assets/pages/page-9/shaders/vertexShader.glsl';
@@ -45,7 +45,7 @@
                     // Suggested way
                     try {
 
-                        this.drawManager = await this.$draw(
+                        this.drawManager = await this.$sketch(
                             {
                                 ... settings,
                                 canvas: this.$refs.canvas,
@@ -71,7 +71,7 @@
 
         },
         methods: {
-            sketch(
+            async sketch(
                 {
                     context,
                     canvas,
@@ -85,7 +85,25 @@
                           'three/examples/jsm/controls/OrbitControls'
                       )
                       , imageUrlLuna = `${ process.env.base }luna.jpg`
+                      , image = await load(
+                          imageUrlLuna
+                      )
+                      , {
+                          width: imageWidth,
+                          height: imageHeight,
+                      } = image
+                      , aspectRatio = imageWidth / imageHeight
                 ;
+
+                // Update our sketch with new settings
+                update(
+                    {
+                        dimensions: [
+                            imageWidth,
+                            imageHeight,
+                        ],
+                    }
+                );
 
                 // Create a renderer
                 const renderer = new THREE.WebGLRenderer(
@@ -104,7 +122,7 @@
                           canvas
                       )
                       , geometry = new THREE.PlaneBufferGeometry(
-                          width / height,
+                          aspectRatio,
                           1,
                           45,
                           45,

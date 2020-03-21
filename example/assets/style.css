@@ -8,8 +8,9 @@
 html,
 body,
 body > div,
-body > div > div,
-.canvas-container {
+body > div > div:not(.dg.ac),
+.layout,
+main {
 
     min-height: 100vh;
     margin: 0;
@@ -25,12 +26,6 @@ body {
 
 }
 
-.dg.ac {
-
-    z-index: -1 !important;
-
-}
-
 .container {
 
     display: flex;
@@ -38,6 +33,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 100vh;
     margin: 0 auto;
 
 }

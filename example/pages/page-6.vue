@@ -1,10 +1,7 @@
 <template>
     <main class="container canvas-container">
 
-        <canvas
-            id="canvas"
-            ref="canvas"
-        />
+        <canvas ref="canvas" />
 
     </main>
 </template>
@@ -48,7 +45,7 @@
                     // Suggested way
                     try {
 
-                        this.drawManager = await this.$draw(
+                        this.drawManager = await this.$sketch(
                             {
                                 ... settings,
                                 canvas: this.$refs.canvas,

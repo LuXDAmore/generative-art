@@ -24,6 +24,15 @@ const moduleFile = resolve(
             content: PACKAGE.description,
         },
     ]
+    , links = [
+        {
+            once: true,
+            hid: 'humans',
+            rel: 'author',
+            type: 'text/plain',
+            href: '/humans.txt',
+        },
+    ]
 ;
 
 // Nuxt config
@@ -49,14 +58,24 @@ export default {
         },
         title: PACKAGE.name,
         meta,
+        links,
     },
+    /*
+     * Plugins
+     */
+    plugins: [ '~/plugins/jsonld' ],
     /*
      * Modules
      */
     modules: [
+        '@nuxtjs/pwa',
         '@nuxtjs/markdownit',
         moduleFile,
     ],
+    /*
+     * buildModules
+     */
+    buildModules: [ 'nuxt-compress' ],
     /*
      * Watch module
      */

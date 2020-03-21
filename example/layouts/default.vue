@@ -1,5 +1,6 @@
 <template>
     <div class="layout">
+
         <nav class="nav">
             <ul>
                 <li v-for="link in links" :key="link.url">
@@ -9,7 +10,9 @@
                 </li>
             </ul>
         </nav>
-        <Nuxt />
+
+        <nuxt :key="$route.fullPath" />
+
     </div>
 </template>
 

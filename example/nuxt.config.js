@@ -80,7 +80,7 @@ export default {
         moduleFile,
     ],
     sitemap: {
-        hostname: PACKAGE.homepage.homepage,
+        hostname: PACKAGE.homepage,
         gzip: true,
     },
     /*

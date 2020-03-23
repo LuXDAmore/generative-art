@@ -24,7 +24,7 @@ const moduleFile = resolve(
             content: PACKAGE.description,
         },
     ]
-    , links = [
+    , link = [
         {
             once: true,
             hid: 'favicon',
@@ -65,7 +65,7 @@ export default {
         },
         title: PACKAGE.name,
         meta,
-        links,
+        link,
     },
     /*
      * Plugins
@@ -79,10 +79,17 @@ export default {
         '@nuxtjs/markdownit',
         moduleFile,
     ],
+    sitemap: {
+        hostname: PACKAGE.homepage.homepage,
+        gzip: true,
+    },
     /*
      * buildModules
      */
-    buildModules: [ 'nuxt-compress' ],
+    buildModules: [
+        'nuxt-compress',
+        '@nuxtjs/sitemap',
+    ],
     /*
      * Watch module
      */
@@ -132,12 +139,8 @@ export default {
                 'postcss-import': {},
                 'postcss-url': {},
                 'postcss-scoped': {},
-                'postcss-preset-env': this.preset,
                 'postcss-combine-duplicated-selectors': {
                     removeDuplicatedProperties: true,
-                },
-                cssnano: {
-                    preset: 'default',
                 },
             },
             preset: {

@@ -46,12 +46,13 @@
         "lint-fix": "yarn eslint-fix && yarn stylelint-fix",
         "pretest": "yarn lint",
         "test": "jest",
-        "release": "yarn generate && standard-version && git push --follow-tags && yarn publish"
+        "release": "yarn test && yarn generate && standard-version && git push --follow-tags && yarn publish"
     },
     "files": [
         "lib"
     ],
     "dependencies": {
+        "@nuxtjs/sitemap": "^2.0.1",
         "canvas-sketch": "^0.7.3",
         "canvas-sketch-util": "^1.10.0",
         "consola": "^2.11.0",

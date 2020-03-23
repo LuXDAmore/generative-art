@@ -133,7 +133,7 @@ Every page correspond to an example in the [main website](https://luxdamore.gith
 
 ```
 
-> N.B. : You don't really need the [sketchManager](https://github.com/mattdesl/canvas-sketch/blob/master/docs/api.md#sketchmanager), but i think with Vue it's a better way to remove an clean handlers onBeforeDestroy..
+> N.B. : You don't really need the [sketchManager](https://github.com/mattdesl/canvas-sketch/blob/master/docs/api.md#sketchmanager), but i think with Vue it's a better way to remove and clean handlers onBeforeDestroy..
 ___
 
 ## Development

@@ -1,7 +1,7 @@
 <template>
     <main class="container canvas-container">
 
-        <h6 class="absolute text--center text--red no-pointer-event">
+        <h6 class="absolute z-index--1 text--center text--red no-pointer-event">
             <small>TODO</small>
         </h6>
 

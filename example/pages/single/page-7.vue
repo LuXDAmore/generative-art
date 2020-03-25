@@ -1,7 +1,7 @@
 <template>
     <main class="container canvas-container">
 
-        <h6 ref="title" class="absolute text--center text--red no-pointer-event">
+        <h6 ref="title" class="absolute z-index--1 text--center text--red no-pointer-event">
             Click on the canvas<br>
             <small>(allow access to camera and microphone)</small>
         </h6>

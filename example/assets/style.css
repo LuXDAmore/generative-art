@@ -73,6 +73,14 @@ h1 {
 
 }
 
+code {
+
+    padding: 0 2px;
+    color: #333;
+    background: #f8f8f8;
+
+}
+
 blockquote {
 
     margin-left: 0;
@@ -85,6 +93,17 @@ blockquote {
 .absolute {
 
     position: absolute;
+
+}
+
+.z-index--minus-1 {
+
+    z-index: -1;
+
+}
+
+.z-index--1 {
+
     z-index: 1;
 
 }

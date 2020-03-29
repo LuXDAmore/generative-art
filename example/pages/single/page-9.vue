@@ -17,17 +17,24 @@
     // Sketch
     import * as THREE from 'three';
 
-    // Canvas sketch
-    const settings = {
-        // Make the loop animated
-        animate: true,
-        // Get a WebGL canvas rather than 2D
-        context: 'webgl',
-        // Turn on MSAA
-        attributes: {
-            antialias: true,
-        },
-    };
+    // Three Utils
+    const orbitControlsImporter = () => import(
+                'three/examples/jsm/controls/OrbitControls'
+            )
+            .then(
+                m => m.default || m
+            )
+          // Canvas sketch
+          , settings = {
+              // Make the loop animated
+              animate: true,
+              // Get a WebGL canvas rather than 2D
+              context: 'webgl',
+              // Turn on MSAA
+              attributes: {
+                  antialias: true,
+              },
+          };
 
     // Page
     export default {
@@ -81,9 +88,7 @@
                 }
             ) {
 
-                const { OrbitControls } = require(
-                          'three/examples/jsm/controls/OrbitControls'
-                      )
+                const { OrbitControls } = await orbitControlsImporter()
                       , imageUrlLuna = `${ process.env.base }luna.jpg`
                       , image = await load(
                           imageUrlLuna

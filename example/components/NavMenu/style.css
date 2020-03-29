@@ -10,6 +10,13 @@
     flex-direction: row;
     align-items: flex-end;
     justify-content: space-between;
+    height: 0;
+    padding: 0;
+
+}
+
+.nav-menu .nav {
+
     padding: 16px;
 
 }

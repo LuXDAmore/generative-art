@@ -2,16 +2,29 @@
 
 precision mediump float;
 
-varying vec2 vUv;
-varying vec3 vWorldPosition;
+uniform float page;
+uniform float time;
 
-void main () {
+varying vec2 vUv;
+varying vec3 vNormal;
+varying vec4 vPosition;
+
+attribute vec3 positionSphere;
+
+void main() {
 
     vUv = uv;
 
-    vec4 worldPosition = modelMatrix * vec4( position, 1.0 );
-    vWorldPosition = worldPosition.xyz;
+    vNormal = normal;
 
-    gl_Position =  projectionMatrix * modelViewMatrix * vec4( position.xyz, 1.0 );
+    vec3 pos = position;
+
+    vec3 final = mix(
+        pos,
+        positionSphere,
+        .5 + .5 * sin( time / 2. )
+    );
+
+    gl_Position = projectionMatrix * modelViewMatrix * vec4( final, 1.0 );
 
 }

@@ -19,11 +19,9 @@ let nuxt
 
 const url = path => `http://localhost:${ port }${ path }`
     , get = path => request(
-        {
-            url: url(
-                path
-            ),
-        }
+        url(
+            path
+        )
     )
 ;
 

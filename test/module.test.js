@@ -1,8 +1,8 @@
-import config from '../example/nuxt.config';
-
 import { Nuxt, Builder } from 'nuxt';
 import request from 'request-promise-native';
 import getPort from 'get-port';
+
+import config from '../example/nuxt.config';
 
 const BASE_URL = '/';
 

@@ -57,6 +57,7 @@
         "canvas-sketch-util": "^1.10.0",
         "consola": "^2.11.0",
         "glslify-loader": "^2.0.0",
+        "gsap": "^3.2.6",
         "load-asset": "^1.2.0",
         "webpack-obj-loader": "^1.0.4"
     },

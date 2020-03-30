@@ -1,6 +1,5 @@
-import { Nuxt, Builder } from 'nuxt';
+import { loadNuxt } from 'nuxt';
 import request from 'request-promise-native';
-import getPort from 'get-port';
 
 import config from '../example/nuxt.config';
 
@@ -8,16 +7,16 @@ const BASE_URL = '/';
 
 config.dev = false;
 config.router.base = BASE_URL;
+config.server.host = 'localhost';
+config.server.port = 9999;
 
 jest.setTimeout(
     60000
 );
 
-let nuxt
-    , port
-;
+let nuxt;
 
-const url = path => `http://localhost:${ port }${ path }`
+const url = path => `http://${ config.server.host }:${ config.server.port }${ path }`
     , get = path => request(
         url(
             path
@@ -32,20 +31,8 @@ describe(
         beforeAll(
             async() => {
 
-                nuxt = new Nuxt(
+                nuxt = await loadNuxt(
                     config
-                );
-
-                await nuxt.ready();
-
-                await new Builder(
-                    nuxt
-                ).build();
-
-                port = await getPort();
-
-                await nuxt.listen(
-                    port
                 );
 
             }

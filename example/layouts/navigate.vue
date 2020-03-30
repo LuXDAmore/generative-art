@@ -12,12 +12,12 @@
 </template>
 
 <script>
+    // ThreeJs
+    import * as THREE from 'three';
+
     // Shaders
     import fragmentShader from '~/assets/pages/navigate/shaders/fragmentShader.glsl';
     import vertexShader from '~/assets/pages/navigate/shaders/vertexShader.glsl';
-
-    // Sketch
-    import * as THREE from 'three';
 
     // Three Utils
     const orbitControlsImporter = () => import(

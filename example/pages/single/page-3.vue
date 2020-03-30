@@ -7,11 +7,11 @@
 </template>
 
 <script>
+    // Sketch
+    import createShader from 'canvas-sketch-util/shader';
+
     // Shaders
     import fragmentShader from '~/assets/pages/page-3/shaders/fragmentShader.glsl';
-
-    // Canvas Sketch Utils
-    import createShader from 'canvas-sketch-util/shader';
 
     // Canvas sketch
     const settings = {

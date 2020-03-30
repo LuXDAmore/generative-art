@@ -7,12 +7,12 @@
 </template>
 
 <script>
+    // ThreeJs
+    import * as THREE from 'three';
+
     // Shaders
     import fragmentShader from '~/assets/pages/page-1/shaders/fragmentShader.glsl';
     import vertexShader from '~/assets/pages/page-1/shaders/vertexShader.glsl';
-
-    // Sketch
-    import * as THREE from 'three';
 
     // Canvas sketch
     const settings = {

@@ -10,12 +10,12 @@
     // Load assets
     import load from 'load-asset';
 
+    // ThreeJs
+    import * as THREE from 'three';
+
     // Shaders
     import fragmentShader from '~/assets/pages/page-9/shaders/fragmentShader.glsl';
     import vertexShader from '~/assets/pages/page-9/shaders/vertexShader.glsl';
-
-    // Sketch
-    import * as THREE from 'three';
 
     // Three Utils
     const orbitControlsImporter = () => import(

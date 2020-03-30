@@ -1,8 +1,7 @@
 <template>
     <div class="layout">
 
-        <!-- z-index--minus-1 -->
-        <canvas ref="canvas" class="absolute" />
+        <canvas ref="canvas" class="absolute z-index--minus-1" />
 
         <nav-menu />
 
@@ -14,6 +13,7 @@
 <script>
     // ThreeJs
     import * as THREE from 'three';
+    import gsap from 'gsap';
 
     // Shaders
     import fragmentShader from '~/assets/pages/navigate/shaders/fragmentShader.glsl';
@@ -36,7 +36,8 @@
               attributes: {
                   antialias: true,
               },
-          };
+          }
+    ;
 
     // Layout
     export default {
@@ -49,35 +50,33 @@
         data: () => (
             {
                 sketchManager: null,
+                animations: {
+                    pageValue: 0,
+                },
             }
         ),
         computed: {
             pageToValue() {
 
-                let page = 1;
+                let page = 0;
 
                 switch( this.$route.path ) {
                 case '/navigate/page-2':
-                    page = 2;
+                    page = 0.5;
                     break;
                 case '/navigate/page-3':
-                    page = 3;
+                    page = 1;
                     break;
                 }
 
                 return page;
 
             },
-            pageToGeometry() {
-
-                if( this.pageToValue === 1 )
-                    return this.createSphere;
-
-                if( this.pageToValue === 2 )
-                    return this.createKlein;
-
-                return this.createGrayKlein;
-
+        },
+        watch: {
+            '$route.path': {
+                handler: 'onRouteChange',
+                immediate: true,
             },
         },
         mounted() {
@@ -114,24 +113,6 @@
 
         },
         methods: {
-            createPlane(
-                u = 1,
-                v = 1,
-                target
-            ) {
-
-                const x = u - 0.5
-                      , y = v - 0.5
-                      , z = 0
-                ;
-
-                target.set(
-                    x,
-                    y,
-                    z
-                );
-
-            },
             createSphere(
                 u = 1,
                 v = 1,
@@ -161,115 +142,6 @@
                           u
                       )
                 ;
-
-                target.set(
-                    x,
-                    y,
-                    z
-                );
-
-            },
-            createKlein(
-                u = 1,
-                v = 1,
-                target
-            ) {
-
-                u *= - 2 * Math.PI;
-                v *= 2 * Math.PI;
-
-                let x
-                    , z
-                ;
-
-                if( u < Math.PI ) {
-
-                    x = 3
-                        * Math.cos(
-                            u
-                        )
-                        * (
-                            1
-                            + Math.sin(
-                                u
-                            )
-                        )
-                        + (
-                            2
-                            * (
-                                1
-                                - Math.cos(
-                                    u
-                                )
-                                / 2
-                            )
-                        )
-                        * Math.cos(
-                            u
-                        )
-                        * Math.cos(
-                            v
-                        )
-                    ;
-
-                    z = - 8
-                        * Math.sin(
-                            u
-                        )
-                        - 2
-                        * (
-                            1
-                            - Math.cos(
-                                u
-                            )
-                            / 2
-                        )
-                        * Math.sin(
-                            u
-                        )
-                        * Math.cos(
-                            v
-                        )
-                    ;
-
-                } else {
-
-                    x = 3
-                        * Math.cos(
-                            u
-                        )
-                        * (
-                            1
-                            + Math.sin(
-                                u
-                            )
-                        )
-                        + (
-                            2
-                            * (
-                                1
-                                - Math.cos(
-                                    u
-                                )
-                                / 2
-                            )
-                        )
-                        * Math.cos(
-                            v + Math.PI
-                        )
-                    ;
-
-                    z = - 8 * Math.sin(
-                        u
-                    );
-
-                }
-
-                const y = - 2 * ( 1 - Math.cos(
-                    u
-                ) / 2 ) * Math.sin(
-                    v
-                );
 
                 target.set(
                     x,
@@ -347,6 +219,18 @@
                 );
 
             },
+            // Animate
+            onRouteChange() {
+
+                gsap.to(
+                    this.animations,
+                    {
+                        duration: 0.63,
+                        pageValue: this.pageToValue,
+                    }
+                );
+
+            },
             // Sketch
             async sketch(
                 {
@@ -378,22 +262,12 @@
                           canvas
                       )
                       , geometry = new THREE.ParametricBufferGeometry(
-                          this.pageToGeometry,
+                          this.createGrayKlein,
                           100,
                           100
                       )
                       , sphereGeometry = new THREE.ParametricBufferGeometry(
                           this.createSphere,
-                          100,
-                          100
-                      )
-                      , kleinGeometry = new THREE.ParametricBufferGeometry(
-                          this.createKlein,
-                          100,
-                          100
-                      )
-                      , grayKleinGeometry = new THREE.ParametricBufferGeometry(
-                          this.createGrayKlein,
                           100,
                           100
                       )
@@ -414,7 +288,7 @@
                                   },
                                   page: {
                                       type: 'f',
-                                      value: 0,
+                                      value: this.animations.pageValue,
                                   },
                                   resolution: {
                                       type: 'v2',
@@ -466,27 +340,11 @@
                     )
                 );
 
-                geometry.setAttribute(
-                    'positionKlein',
-                    new THREE.BufferAttribute(
-                        kleinGeometry.attributes.position.array,
-                        3
-                    )
-                );
-
-                geometry.setAttribute(
-                    'positionGrayKlein',
-                    new THREE.BufferAttribute(
-                        grayKleinGeometry.attributes.position.array,
-                        3
-                    )
-                );
-
                 // Camera things
                 camera.position.set(
                     1,
                     1,
-                    12
+                    18
                 );
 
                 camera.updateProjectionMatrix();
@@ -531,10 +389,14 @@
 
                         // Timing
                         material.uniforms.time.value = time;
-                        material.uniforms.page.value = this.pageToValue;
+                        material.uniforms.page.value = this.animations.pageValue;
 
-                        plane.rotation.x += 0.000001;
-                        plane.rotation.y += 0.01;
+                        plane.rotateX(
+                            0.001
+                        );
+                        plane.rotateY(
+                            0.001
+                        );
 
                         // Controls
                         controls.update();

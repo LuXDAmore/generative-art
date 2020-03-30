@@ -3,11 +3,9 @@
 precision mediump float;
 
 uniform float page;
-uniform float time;
 
 varying vec2 vUv;
 varying vec3 vNormal;
-varying vec4 vPosition;
 
 attribute vec3 positionSphere;
 
@@ -17,14 +15,16 @@ void main() {
 
     vNormal = normal;
 
-    vec3 pos = position;
-
     vec3 final = mix(
-        pos,
+        position,
         positionSphere,
-        .5 + .5 * sin( time / 2. )
+        smoothstep(
+            0.,
+            1.,
+            page
+        )
     );
 
-    gl_Position = projectionMatrix * modelViewMatrix * vec4( final, 1.0 );
+    gl_Position = projectionMatrix * modelViewMatrix * vec4( final, max( .6, - page ) );
 
 }

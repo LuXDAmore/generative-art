@@ -1,5 +1,7 @@
-import { loadNuxt } from 'nuxt';
-import request from 'request-promise-native';
+import {
+    setup,
+    get,
+} from '@nuxtjs/module-test-utils';
 
 import config from '../example/nuxt.config';
 
@@ -8,60 +10,52 @@ const BASE_URL = '/';
 config.dev = false;
 config.router.base = BASE_URL;
 config.server.host = 'localhost';
-config.server.port = 9999;
-
-jest.setTimeout(
-    60000
-);
-
-let nuxt;
-
-const url = path => `http://${ config.server.host }:${ config.server.port }${ path }`
-    , get = path => request(
-        url(
-            path
-        )
-    )
-;
 
 describe(
-    'nuxt',
+    'module',
     () => {
 
-        beforeAll(
-            async() => {
+    let nuxt;
 
-                nuxt = await loadNuxt(
-                    config
-                );
+    beforeAll(
+        async() => {
 
-            }
-        );
+            (
+                { nuxt } = (
+                    await setup(
+                        config
+                    )
+                )
+            );
 
-        afterAll(
-            async() => {
+        },
+        60000
+    );
 
-                await nuxt.close();
+    afterAll(
+        async() => {
 
-            }
-        );
+            await nuxt.close();
 
-        test(
-            'render',
-            async() => {
+        }
+    );
 
-                const html = await get(
-                    BASE_URL
-                );
+    test(
+        'render',
+        async() => {
 
-                expect(
-                    html
-                ).toContain(
-                    'Generative'
-                );
+            const html = await get(
+                BASE_URL
+            );
 
-            }
-        );
+            expect(
+                html
+            ).toContain(
+                'Generative'
+            );
+
+        }
+    );
 
     }
 );

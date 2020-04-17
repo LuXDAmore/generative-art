@@ -36,6 +36,10 @@
                         text: 'Homepage',
                     },
                     {
+                        url: '/single/three-js-starter',
+                        text: 'ThreeJs starter template',
+                    },
+                    {
                         url: '/single/page-1',
                         text: 'Page 1',
                     },

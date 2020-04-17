@@ -62,29 +62,14 @@ body {
     width: 736px;
     max-width: 100%;
     padding: 0 36px;
+    line-height: 1.5;
+    background-color: #fff;
 
 }
 
 h1 {
 
     font-size: 2em;
-
-}
-
-code {
-
-    padding: 0 2px;
-    color: #333;
-    background: #f8f8f8;
-
-}
-
-blockquote {
-
-    margin-left: 0;
-    padding: 0 1rem;
-    color: #819198;
-    border-left: .3rem solid #dce6f0;
 
 }
 

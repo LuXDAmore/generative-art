@@ -4,6 +4,12 @@ body {
 
 }
 
+.canvas-container {
+
+    overflow: hidden;
+
+}
+
 canvas {
 
     top: 0;
@@ -13,7 +19,7 @@ canvas {
     z-index: 0;
     display: block;
     max-width: 100%;
+    max-height: 100vh;
     margin: 0 auto;
-    overflow: hidden;
 
 }

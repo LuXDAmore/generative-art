@@ -300,8 +300,8 @@
                     // Dispose of WebGL context (optional)
                     unload() {
 
-                        controls.dispose();
                         gui.destroy();
+                        controls.dispose();
                         renderer.dispose();
 
                     },

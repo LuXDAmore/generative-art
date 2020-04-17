@@ -123,3 +123,4 @@
 </script>
 
 <style src="highlight.js/styles/github.css"></style>
+<style src="github-markdown-css/github-markdown.css"></style>

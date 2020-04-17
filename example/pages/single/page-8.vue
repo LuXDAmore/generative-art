@@ -208,6 +208,7 @@
                 scene.add(
                     light
                 );
+
                 // Render our sketch
                 return {
                     // Handle resize events here

@@ -35,7 +35,7 @@ So, this is also a module for Nuxt, it simply inject the [canvas-sketch](https:/
 
 After installing this, you have access in Nuxt (client-side) at two things, `$canvasSketch` (the main module, used internally) and at the method `$draw` (it start the sketch).
 
-Check the `example/` folder and take a look at `page-*.vue` for some examples.
+Check the [example/](./example/pages) folder and take a look at `page-*.vue` for some examples.
 Every page correspond to an example in the [main website](https://luxdamore.github.io/generative-art).
 
 ## Setup
@@ -85,7 +85,7 @@ Every page correspond to an example in the [main website](https://luxdamore.gith
                 sketchManager: null,
             }
         ),
-        mounted() {
+        async mounted() {
 
             // Suggested way
             try {
@@ -95,7 +95,8 @@ Every page correspond to an example in the [main website](https://luxdamore.gith
                     {
                         animate: true,
                         hotkeys: false,  // <-- the only default value passed
-                        // <canvas ref="canvas" /> or you can pass a DOMCanvas element document.querySelector( 'canvas' )
+                        // <canvas ref="canvas" />
+                        // or you can pass a DOMCanvas element document.querySelector( 'canvas' )
                         canvas: this.$refs.canvas,
                     },
                     // Method for the rendering
@@ -173,13 +174,3 @@ Do you want to share a beer? We can be good friends.. __[Paypal](https://www.pay
 #### 💘 Inspired by
 
 > **All my thanks goes to Matt DesLauriers for these beautiful and easy to use libraries**.
-
-___
-
-##### ✔ TODO
-
-> Just asking myself if i should do more.
-
-- Add tests;
-- Check compatibility with P5 (actually not working);
-- More config options?

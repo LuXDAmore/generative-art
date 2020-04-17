@@ -1,6 +1,6 @@
 {
     "name": "@luxdamore/nuxt-canvas-sketch",
-    "version": "1.3.1",
+    "version": "1.4.0",
     "description": "Generative Art is the idea realized as genetic code of artificial events, as construction of dynamic complex systems able to generate endless variations. This is also a nuxt-module to make it easy to do (nuxt-canvas-sketch).",
     "author": "Luca Iaconelli <lucabelli@msn.com> (https://lucaiaconelli.it)",
     "license": "MIT",

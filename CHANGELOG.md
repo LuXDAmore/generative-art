@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/LuXDAmore/generative-art/compare/v1.3.1...v1.4.0) (2020-04-17)
+
+
+### Features
+
+* added htaccess ([cd2f804](https://github.com/LuXDAmore/generative-art/commit/cd2f8047e7cacbcebbf5352522959874a4fa8860))
+* added three js starter template ([6446ed2](https://github.com/LuXDAmore/generative-art/commit/6446ed275cce044a2a0b15a9c06f72aef6433ec3))
+
+
+### Bug Fixes
+
+* added controls dispose ([c59e193](https://github.com/LuXDAmore/generative-art/commit/c59e19364bd05a933c1c516ff7fad00c792f4295))
+* controls.dispose(); ([006fe35](https://github.com/LuXDAmore/generative-art/commit/006fe350f5fc2a0905b87b77adda62b3cd822ad3))
+* updated node version ([a1ec7a7](https://github.com/LuXDAmore/generative-art/commit/a1ec7a7562b15f81a3153c92485021e00ba78079))
+* vscode extensions ([12ec575](https://github.com/LuXDAmore/generative-art/commit/12ec575cc200d7d17e252c3eac28b16dc901e293))
+
 ## [1.3.0](https://github.com/LuXDAmore/generative-art/compare/v1.2.2...v1.3.0) (2020-03-31)
 
 

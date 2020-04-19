@@ -146,6 +146,8 @@ Every page correspond to an example in the [main website](https://luxdamore.gith
         canvas {
 
             display: block;
+            width: 100%;
+            height: 100%;
             margin: 0;
             padding: 0;
 

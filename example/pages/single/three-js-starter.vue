@@ -11,8 +11,8 @@
     import * as THREE from 'three';
 
     // Shaders
-    import fragmentShader from '~/assets/pages/three-js-starter/shaders/fragmentShader.glsl';
-    import vertexShader from '~/assets/pages/three-js-starter/shaders/vertexShader.glsl';
+    import fragmentShader from '~/assets/pages/three-js-starter/shaders/fragmentShader.frag';
+    import vertexShader from '~/assets/pages/three-js-starter/shaders/vertexShader.vert';
 
     // ThreeJs Camera Controller
     const orbitControlsImporter = () => import(
@@ -37,6 +37,7 @@
                     // Settings of the sketch
                     {
                         animate: true,
+                        duration: 10,
                         context: 'webgl',
                         attributes: {
                             antialias: true,
@@ -80,6 +81,9 @@
                     1
                 );
 
+                renderer.physicallyCorrectLights = true;
+                renderer.outputEncoding = THREE.sRGBEncoding;
+
                 // Camera
                 const camera = new THREE.PerspectiveCamera(
                     45,
@@ -104,12 +108,8 @@
                           camera,
                           context.canvas
                       )
-                ;
-
-                controls.update();
-
-                // Scene
-                const scene = new THREE.Scene()
+                      // Scene
+                      , scene = new THREE.Scene()
                       , geometry = new THREE.BoxBufferGeometry(
                           1,
                           1,
@@ -123,7 +123,6 @@
                                   derivatives: '#extension GL_OES_standard_derivatives : enable',
                               },
                               side: THREE.DoubleSide,
-                              shading: THREE.FlatShading,
                               uniforms: {
                                   time: {
                                       type: 'f',

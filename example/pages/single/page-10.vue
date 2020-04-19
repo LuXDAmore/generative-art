@@ -1,30 +1,26 @@
 <template>
     <main class="container canvas-container">
 
-        <h6 class="absolute z-index--1 text--center text--red no-pointer-event">
-            <small>TODO</small>
-        </h6>
-
         <canvas ref="canvas" />
 
     </main>
 </template>
 
 <script>
-    // Utils
-    import random from 'canvas-sketch-util/random';
-    import palettes from 'nice-color-palettes';
+    // ThreeJs
+    import * as THREE from 'three';
 
-    // Canvas sketch
-    const settings = {
-        scaleToView: true,
-        dimensions: [
-            2048,
-            2048,
-        ],
-    };
+    // Shaders
+    import fragmentShader from '~/assets/pages/page-10/shaders/fragmentShader.glsl';
+    import vertexShader from '~/assets/pages/page-10/shaders/vertexShader.glsl';
 
-    // Page
+    // ThreeJs Camera Controller
+    const orbitControlsImporter = () => import(
+        'three/examples/jsm/controls/OrbitControls'
+    ).then(
+        m => m.default || m
+    );
+
     export default {
         name: 'page-10',
         data: () => (
@@ -32,32 +28,32 @@
                 sketchManager: null,
             }
         ),
-        mounted() {
+        async mounted() {
 
-            this.$nextTick(
-                async() => {
+            // Suggested way
+            try {
 
-                    // Suggested way
-                    try {
+                this.sketchManager = await this.$sketch(
+                    // Settings of the sketch
+                    {
+                        animate: true,
+                        context: 'webgl',
+                        attributes: {
+                            antialias: true,
+                        },
+                        canvas: this.$refs.canvas,
+                    },
+                    // Method for the rendering
+                    this.sketch,
+                );
 
-                        this.sketchManager = await this.$sketch(
-                            {
-                                ... settings,
-                                canvas: this.$refs.canvas,
-                            },
-                            this.sketch,
-                        );
+            } catch( e ) {
 
-                    } catch( e ) {
+                console.error(
+                    e
+                );
 
-                        console.error(
-                            e
-                        );
-
-                    }
-
-                },
-            );
+            }
 
         },
         beforeDestroy() {
@@ -66,139 +62,145 @@
 
         },
         methods: {
-            sketch(
-                {
-                    context,
-                    width,
-                    height,
-                }
+            async sketch(
+                { context }
             ) {
 
-                const colors = random.shuffle(
-                          random.pick(
-                              palettes
-                          )
+                // Renderer
+                const renderer = new THREE.WebGLRenderer(
+                    {
+                        context,
+                    }
+                );
+
+                renderer.setClearColor(
+                    new THREE.Color(
+                        '#333'
+                    ),
+                    1
+                );
+
+                // Camera
+                const camera = new THREE.PerspectiveCamera(
+                    45,
+                    1,
+                    0.01,
+                    100
+                );
+
+                camera.position.set(
+                    2,
+                    2,
+                    4,
+                );
+
+                camera.lookAt(
+                    new THREE.Vector3()
+                );
+
+                // Controls
+                const { OrbitControls } = await orbitControlsImporter()
+                      , controls = new OrbitControls(
+                          camera,
+                          context.canvas
                       )
-                      , angles = [
-                          0,
-                          0.5,
+                ;
+
+                controls.update();
+
+                // Scene
+                const scene = new THREE.Scene()
+                      , geometry = new THREE.BoxBufferGeometry(
                           1,
-                          1.5,
-                      ]
-                      , grid = [
-                          4,
-                          10,
-                      ]
-                      , mainColor = colors.shift()
-                      , count = random.rangeFloor(
-                          ... grid
+                          1,
+                          1
+                      )
+                      , material = new THREE.ShaderMaterial(
+                          {
+                              vertexShader,
+                              fragmentShader,
+                              extensions: {
+                                  derivatives: '#extension GL_OES_standard_derivatives : enable',
+                              },
+                              side: THREE.DoubleSide,
+                              shading: THREE.FlatShading,
+                              uniforms: {
+                                  time: {
+                                      type: 'f',
+                                      value: 0,
+                                  },
+                                  playhead: {
+                                      type: 'f',
+                                      value: 0,
+                                  },
+                              },
+                          }
+                      )
+                      , plane = new THREE.Mesh(
+                          geometry,
+                          material
                       )
                 ;
 
-                context.clearRect(
-                    0,
-                    0,
-                    width,
-                    height
+                scene.add(
+                    plane
                 );
 
-                context.fillStyle = mainColor;
-
-                context.fillRect(
-                    0,
-                    0,
-                    width,
-                    height
-                );
-
-                class Circle {
-
-                    constructor(
-                        x = 100,
-                        y = 100,
-                        radius = 100,
-                        startAngle = Math.PI * random.pick(
-                            angles
-                        ),
-                        endAngle = startAngle + Math.PI * 1.5,
-                        color = random.pick(
-                            colors
-                        ),
+                // Render
+                return {
+                    render(
+                        {
+                            time,
+                            playhead,
+                        }
                     ) {
 
-                        this.x = x;
-                        this.y = y;
-                        this.radius = radius;
+                        // Animation
+                        plane.rotation.y = time * ( 10 * Math.PI / 100 );
 
-                        this.startAngle = startAngle;
-                        this.endAngle = endAngle;
-                        this.color = color;
+                        // Uniforms for Shaders
+                        material.uniforms.time.value = time;
+                        material.uniforms.playhead.value = playhead;
 
-                    }
+                        // Threejs
+                        controls.update();
 
-                    draw(
-                        context,
-                        moveX,
-                        moveY
+                        renderer.render(
+                            scene,
+                            camera
+                        );
+
+                    },
+                    // Events
+                    resize(
+                        {
+                            pixelRatio,
+                            viewportWidth,
+                            viewportHeight,
+                        }
                     ) {
 
-                        context.save();
-
-                        context.strokeStyle = this.color;
-                        context.fillStyle = this.color;
-
-                        context.beginPath();
-
-                        context.moveTo(
-                            moveX,
-                            moveY,
+                        renderer.setPixelRatio(
+                            pixelRatio
                         );
 
-                        context.arc(
-                            this.x,
-                            this.y,
-                            this.radius,
-                            this.startAngle,
-                            this.endAngle,
+                        renderer.setSize(
+                            viewportWidth,
+                            viewportHeight,
                         );
 
-                        context.fill();
+                        camera.aspect = viewportWidth / viewportHeight;
 
-                        context.restore();
+                        camera.updateProjectionMatrix();
 
-                    }
-                }
+                    },
+                    unload() {
 
-                const radius = 300
-                      , circles = []
-                ;
+                        controls.dispose();
+                        renderer.dispose();
 
-                for( let index = 0; index < count; index ++ ) {
-
-                    const xy = radius * index
-                          , circle = new Circle(
-                              xy,
-                              xy,
-                              radius
-                          )
-                    ;
-
-                    circle.draw(
-                        context,
-                        radius * 2,
-                    );
-
-                    circles.push(
-                        circle
-                    );
-
-                }
-
-                console.info(
-                    circles
-                );
-
-                return () => {};
+                    },
+                };
 
             },
         },

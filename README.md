@@ -87,62 +87,70 @@ Every page correspond to an example in the [main website](https://luxdamore.gith
         </div>
     </template>
 
-```
+    <script>
+        export default {
+            data: () => (
+                {
+                    sketchManager: null,
+                }
+            ),
+            async mounted() {
 
-```javascript
+                // Suggested way
+                try {
 
-    export default {
-        data: () => (
-            {
-                sketchManager: null,
-            }
-        ),
-        async mounted() {
+                    this.sketchManager = await this.$sketch(
+                        // Settings of the sketch
+                        {
+                            animate: true,
+                            hotkeys: false,  // <-- the only default value passed
+                            // <canvas ref="canvas" />
+                            // or you can pass a DOMCanvas element document.querySelector( 'canvas' )
+                            canvas: this.$refs.canvas,
+                        },
+                        // Method for the rendering
+                        this.sketch,
+                    );
 
-            // Suggested way
-            try {
+                } catch( e ) {
 
-                this.sketchManager = await this.$sketch(
-                    // Settings of the sketch
-                    {
-                        animate: true,
-                        hotkeys: false,  // <-- the only default value passed
-                        // <canvas ref="canvas" />
-                        // or you can pass a DOMCanvas element document.querySelector( 'canvas' )
-                        canvas: this.$refs.canvas,
-                    },
-                    // Method for the rendering
-                    this.sketch,
-                );
+                    console.error(
+                        e
+                    );
 
-            } catch( e ) {
-
-                console.error(
-                    e
-                );
-
-            }
-
-        },
-        beforeDestroy() {
-
-            this.sketchManager && this.sketchManager.unload();
-
-        },
-        methods: {
-            sketch({ context }) {
-
-                // Here you start coding-art
-
-                return ({ context }) => {
-
-                    // Here you can return an animation
-
-                };
+                }
 
             },
-        },
-    };
+            beforeDestroy() {
+
+                this.sketchManager && this.sketchManager.unload();
+
+            },
+            methods: {
+                sketch({ context }) {
+
+                    // Here you start coding-art
+
+                    return ({ context }) => {
+
+                        // Here you can return an animation
+
+                    };
+
+                },
+            },
+        };
+    </script>
+
+    <style scoped>
+        canvas {
+
+            display: block;
+            margin: 0;
+            padding: 0;
+
+        }
+    </style>
 
 ```
 

@@ -11,8 +11,8 @@
     import * as THREE from 'three';
 
     // Shaders
-    import fragmentShader from '~/assets/pages/page-10/shaders/fragmentShader.glsl';
-    import vertexShader from '~/assets/pages/page-10/shaders/vertexShader.glsl';
+    import fragmentShader from '~/assets/pages/page-10/shaders/fragmentShader.frag';
+    import vertexShader from '~/assets/pages/page-10/shaders/vertexParticles.vert';
 
     // ThreeJs Camera Controller
     const orbitControlsImporter = () => import(
@@ -37,6 +37,7 @@
                     // Settings of the sketch
                     {
                         animate: true,
+                        duration: 6,
                         context: 'webgl',
                         attributes: {
                             antialias: true,
@@ -80,6 +81,9 @@
                     1
                 );
 
+                renderer.physicallyCorrectLights = true;
+                renderer.outputEncoding = THREE.sRGBEncoding;
+
                 // Camera
                 const camera = new THREE.PerspectiveCamera(
                     45,
@@ -89,9 +93,9 @@
                 );
 
                 camera.position.set(
-                    2,
-                    2,
-                    4,
+                    0,
+                    0,
+                    1,
                 );
 
                 camera.lookAt(
@@ -104,16 +108,14 @@
                           camera,
                           context.canvas
                       )
-                ;
-
-                controls.update();
-
-                // Scene
-                const scene = new THREE.Scene()
+                      // Geometry and Material
                       , geometry = new THREE.BoxBufferGeometry(
                           1,
                           1,
-                          1
+                          1,
+                          45,
+                          45,
+                          45
                       )
                       , material = new THREE.ShaderMaterial(
                           {
@@ -123,12 +125,7 @@
                                   derivatives: '#extension GL_OES_standard_derivatives : enable',
                               },
                               side: THREE.DoubleSide,
-                              shading: THREE.FlatShading,
                               uniforms: {
-                                  time: {
-                                      type: 'f',
-                                      value: 0,
-                                  },
                                   playhead: {
                                       type: 'f',
                                       value: 0,
@@ -136,10 +133,12 @@
                               },
                           }
                       )
-                      , plane = new THREE.Mesh(
+                      , plane = new THREE.Points(
                           geometry,
                           material
                       )
+                      // Scene
+                      , scene = new THREE.Scene()
                 ;
 
                 scene.add(
@@ -149,22 +148,16 @@
                 // Render
                 return {
                     render(
-                        {
-                            time,
-                            playhead,
-                        }
+                        { playhead }
                     ) {
 
-                        // Animation
-                        plane.rotation.y = time * ( 10 * Math.PI / 100 );
-
                         // Uniforms for Shaders
-                        material.uniforms.time.value = time;
                         material.uniforms.playhead.value = playhead;
 
-                        // Threejs
+                        // Camera
                         controls.update();
 
+                        // Render
                         renderer.render(
                             scene,
                             camera
@@ -196,6 +189,7 @@
                     },
                     unload() {
 
+                        // Dispose
                         controls.dispose();
                         renderer.dispose();
 

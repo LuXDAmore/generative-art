@@ -30,6 +30,7 @@
     overflow: hidden;
     background-color: #333;
     border: 1px dotted #fff;
+    cursor: pointer;
 
 }
 

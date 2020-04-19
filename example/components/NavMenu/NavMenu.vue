@@ -88,7 +88,7 @@
                     },
                     {
                         url: '/single/page-7',
-                        text: 'Page 7',
+                        text: 'Microphone and webcam',
                     },
                     {
                         url: '/single/page-8',

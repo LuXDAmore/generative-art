@@ -1,10 +1,8 @@
+// VSCode vertex
 #pragma vscode_glsllint_stage : vert
 
-varying vec2 vUv;
-
+// Main
 void main () {
-
-    vUv = uv;
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4( position.xyz, 1.0 );
 

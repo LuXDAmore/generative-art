@@ -3,7 +3,7 @@
 
         <canvas ref="canvas" class="absolute z-index--minus-1" />
 
-        <nav-menu />
+        <nav-menu keep-navigation-menu-opened />
 
         <nuxt />
 

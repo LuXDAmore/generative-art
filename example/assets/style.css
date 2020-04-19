@@ -45,15 +45,10 @@ body {
 
 }
 
-.container:not(.readme) {
-
-    overflow: hidden;
-
-}
-
 .readme {
 
     min-height: 100vh;
+    padding-top: 55px;
 
 }
 

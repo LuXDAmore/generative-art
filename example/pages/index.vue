@@ -1,5 +1,5 @@
 <template>
-    <main class="container readme canvas-container">
+    <main class="container readme">
 
         <article
             class="markdown-body"

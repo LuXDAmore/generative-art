@@ -1,26 +1,43 @@
 <template>
     <div class="nav-menu">
+        <details class="nav-menu__details">
 
-        <nav class="nav">
-            <ul>
-                <li v-for="link in links" :key="link.url">
-                    <nuxt-link :to="link.url">
-                        {{ link.text }}
-                    </nuxt-link>
-                </li>
-            </ul>
-        </nav>
+            <summary class="nav-menu__summary">
+                <h2>
+                    Single examples
+                </h2>
+            </summary>
 
-        <nav class="nav nav-2">
-            <ul>
-                <li v-for="link in linksNavigate" :key="link.url">
-                    <nuxt-link :to="link.url">
-                        {{ link.text }}
-                    </nuxt-link>
-                </li>
-            </ul>
-        </nav>
+            <nav class="nav">
+                <ul>
+                    <li v-for="link in links" :key="link.url">
+                        <nuxt-link :to="link.url">
+                            {{ link.text }}
+                        </nuxt-link>
+                    </li>
+                </ul>
+            </nav>
 
+        </details>
+        <details class="nav-menu__details" :open="keepNavigationMenuOpened">
+
+            <summary class="nav-menu__summary">
+                <h2>
+                    Navigation example
+                </h2>
+            </summary>
+
+            <nav class="nav">
+                <ul>
+                    <li v-for="link in linksNavigate" :key="link.url">
+                        <nuxt-link :to="link.url">
+                            {{ link.text }}
+                        </nuxt-link>
+                    </li>
+                </ul>
+            </nav>
+
+        </details>
     </div>
 </template>
 
@@ -28,6 +45,12 @@
     export default {
         name: 'nav-menu',
         inheritAttrs: false,
+        props: {
+            keepNavigationMenuOpened: {
+                type: Boolean,
+                default: false,
+            },
+        },
         data: () => (
             {
                 links: [

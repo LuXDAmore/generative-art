@@ -85,15 +85,6 @@
                 }
             ) {
 
-                update(
-                    {
-                        dimensions: [
-                            width,
-                            height,
-                        ],
-                    }
-                );
-
                 const { OrbitControls } = await orbitControlsImporter()
                       , imageUrlLuna = `${ process.env.base }luna.jpg`
 

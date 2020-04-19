@@ -57,21 +57,9 @@
             sketch(
                 {
                     canvas,
-                    update,
-                    width,
-                    height,
                     render,
                 }
             ) {
-
-                update(
-                    {
-                        dimensions: [
-                            width,
-                            height,
-                        ],
-                    }
-                );
 
                 function reRender() {
 

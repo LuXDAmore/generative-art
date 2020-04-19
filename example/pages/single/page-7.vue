@@ -90,15 +90,6 @@
                 }
             ) {
 
-                update(
-                    {
-                        dimensions: [
-                            width,
-                            height,
-                        ],
-                    }
-                );
-
                 const { OrbitControls } = await orbitControlsImporter()
                       , dat = require(
                           'dat.gui'
@@ -144,7 +135,7 @@
                       }
                       , camera = new THREE.PerspectiveCamera(
                           63,
-                          width / height,
+                          1,
                           0.001,
                           1000
                       )

@@ -280,7 +280,6 @@
                                   derivatives: '#extension GL_OES_standard_derivatives : enable',
                               },
                               side: THREE.DoubleSide,
-                              shading: THREE.FlatShading,
                               uniforms: {
                                   time: {
                                       type: 'f',

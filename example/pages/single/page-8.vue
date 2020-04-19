@@ -81,7 +81,6 @@
                     canvas,
                     width,
                     height,
-                    update,
                 }
             ) {
 
@@ -210,15 +209,6 @@
                             viewportHeight,
                         }
                     ) {
-
-                        update(
-                            {
-                                dimensions: [
-                                    viewportWidth,
-                                    viewportHeight,
-                                ],
-                            }
-                        );
 
                         renderer.setPixelRatio(
                             pixelRatio

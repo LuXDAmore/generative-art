@@ -25,7 +25,7 @@
 [donate-src]: https://img.shields.io/badge/paypal-donate-black.svg?style=flat-square
 [donate-href]: https://www.paypal.com/paypalme2/luxdamore
 
-> Generative Art is the idea realized as genetic code of artificial events, as construction of dynamic complex systems able to generate endless variations. This is also a nuxt-module to make it easy to do.
+> Generative Art is the idea realized as genetic code of artificial events, as construction of dynamic complex systems able to generate endless variations. This is also a nuxt-module to make it easy to do (nuxt-canvas-sketch, threejs included).
 
 ## 💘 Motivation
 

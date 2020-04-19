@@ -77,6 +77,16 @@ Every page correspond to an example in the [main website](https://luxdamore.gith
 
 ## Usage
 
+```html
+
+    <template>
+        <div class="canvas__container">
+            <canvas ref="canvas" />
+        </div>
+    </template>
+
+```
+
 ```javascript
 
     export default {

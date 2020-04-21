@@ -8,3 +8,4 @@ bower_components
 coverage
 dist
 example/**/sw.js
+*.env

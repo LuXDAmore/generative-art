@@ -179,7 +179,7 @@ Details changes for each release are documented in the [**release notes**](./CHA
 
 ### 📃 License
 
-[MIT License](./LICENSE) // Copyright (©) 2019-present [Luca Iaconelli](https://lucaiaconelli.it)
+[MIT License](./LICENSE) // Copyright (©) 2020-present [Luca Iaconelli](https://lucaiaconelli.it)
 
 #### 💸 Are you feeling generous today?  :)
 

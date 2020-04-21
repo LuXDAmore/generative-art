@@ -1,8 +1,23 @@
+// Node
 import { resolve } from 'path';
+
+// Env
+import dotenv from 'dotenv';
 import * as PACKAGE from '../package.json';
 
-// Var
-const moduleFile = resolve(
+// Vars
+const ENV = dotenv
+        .config(
+            {
+                path: resolve(
+                    __dirname,
+                    '.env',
+                ),
+            }
+        )
+        .parsed
+    // Module
+    , moduleFile = resolve(
         __dirname,
         '../lib/module'
     )
@@ -83,6 +98,7 @@ export default {
      * Modules
      */
     modules: [
+        '@nuxtjs/gtm',
         '@nuxtjs/pwa',
         '@nuxtjs/markdownit',
         moduleFile,
@@ -91,10 +107,16 @@ export default {
         hostname: PACKAGE.homepage,
         gzip: true,
     },
+    gtm: {
+        id: ENV.ANALYTICS_ID,
+        dev: false,
+        scriptDefer: true,
+    },
     /*
      * buildModules
      */
     buildModules: [
+        '@nuxtjs/dotenv',
         'nuxt-compress',
         '@nuxtjs/sitemap',
     ],

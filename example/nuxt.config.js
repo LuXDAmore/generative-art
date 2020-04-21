@@ -144,12 +144,10 @@ if( IS_PROD && ENV.ANALYTICS_ID ) {
 
     modules.push(
         [
-            '@nuxtjs/gtm',
+            '@nuxtjs/google-analytics',
             {
                 id: ENV.ANALYTICS_ID,
                 dev: false,
-                scriptDefer: true,
-                pageTracking: true,
             },
         ],
     );

@@ -15,7 +15,7 @@ const ENV = dotenv
                 ),
             }
         )
-        .parsed
+        .parsed || {}
     // Module
     , moduleFile = resolve(
         __dirname,

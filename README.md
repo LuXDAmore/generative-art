@@ -25,7 +25,7 @@
 [donate-src]: https://img.shields.io/badge/paypal-donate-black.svg?style=flat-square
 [donate-href]: https://www.paypal.com/paypalme2/luxdamore
 
-> Generative Art is the idea realized as genetic code of artificial events, as construction of dynamic complex systems able to generate endless variations. This is also a nuxt-module to make it easy to do (nuxt-canvas-sketch, threejs included).
+> Generative Art is the idea realized as genetic code of artificial events, as construction of dynamic complex systems able to generate endless variations. This is also a nuxt-module to make it easy to do (nuxt-canvas-sketch, threejs not included).
 
 ## 💘 Motivation
 
@@ -157,6 +157,17 @@ Every page correspond to an example in the [main website](https://luxdamore.gith
 ```
 
 > N.B. : You don't really need the [sketchManager](https://github.com/mattdesl/canvas-sketch/blob/master/docs/api.md#sketchmanager), but i think with Vue it's a better way to remove and clean handlers onBeforeDestroy..
+
+### ThreeJS
+
+There are lots of examples using `threejs`, but it's not included, add it with:
+
+```bash
+
+    yarn add three # or npm install --save three
+
+```
+
 ___
 
 ## Development

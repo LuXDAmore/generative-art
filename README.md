@@ -183,7 +183,8 @@ Details changes for each release are documented in the [**release notes**](./CHA
 
 #### 💸 Are you feeling generous today?  :)
 
-Do you want to share a beer? We can be good friends.. __[Paypal](https://www.paypal.me/luxdamore) // [Patreon](https://www.patreon.com/luxdamore)__
+Do you want to share a beer? We can be good friends..
+__[Paypal](https://www.paypal.me/luxdamore) // [Patreon](https://www.patreon.com/luxdamore)__
 
 > _It's always a good day to be magnanimous - cit_
 

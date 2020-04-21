@@ -48,6 +48,7 @@
         "compat",
         "glslify",
         "gsap",
+        "jsdelivr",
         "jsonld",
         "keypressed",
         "lauriers",

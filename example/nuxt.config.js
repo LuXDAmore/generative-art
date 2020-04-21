@@ -243,6 +243,7 @@ export default {
      * Env
      */
     env: {
+        ... ENV,
         package: PACKAGE,
         base,
     },

@@ -1466,6 +1466,14 @@
     webpack-node-externals "^1.7.2"
     webpackbar "^4.0.0"
 
+"@nuxtjs/dotenv@^1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/dotenv/-/dotenv-1.4.1.tgz#dd5abb98e22cc7ae27139d3aa606151034293128"
+  integrity sha512-DpdObsvRwC8d89I9mzz6pBg6e/PEXHazDM57DOI1mmML2ZjHfQ/DvkjlSzUL7T+TnW3b/a4Ks5wQx08DqFBmeQ==
+  dependencies:
+    consola "^2.10.1"
+    dotenv "^8.1.0"
+
 "@nuxtjs/eslint-config@latest":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@nuxtjs/eslint-config/-/eslint-config-2.0.2.tgz#ff521ee1c0b875ac340f17ed656db213b6af854e"
@@ -1479,6 +1487,11 @@
     eslint-plugin-standard "^4.0.1"
     eslint-plugin-unicorn "^16.0.0"
     eslint-plugin-vue "^6.1.2"
+
+"@nuxtjs/gtm@^2.2.3":
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/gtm/-/gtm-2.2.3.tgz#c5e861e9988e69c6e69e11808fcd0af27d3571fd"
+  integrity sha512-YRvxCo2rpe61kR49LmepK0lCjrrb3hvb89X7/AO5IFPzPU6hxUDpi4V3rnahUTwHcDdYknVqtjAn8ZFMp+HE2Q==
 
 "@nuxtjs/markdownit-loader@^1.1.1":
   version "1.1.1"
@@ -4996,6 +5009,11 @@ dot-prop@^5.2.0:
   integrity sha512-uEUyaDKoSQ1M4Oq8l45hSE26SnTxL6snNnqvK/VWx5wJhmff5z0FUVJDKDanor/6w3kzE3i7XZOk+7wC0EXr1A==
   dependencies:
     is-obj "^2.0.0"
+
+dotenv@^8.1.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
+  integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
 
 dotgitignore@2.1.0:
   version "2.1.0"
@@ -9785,9 +9803,9 @@ nuxt-compress@^1.1.0:
     compression-webpack-plugin "^3.1.0"
 
 nuxt-jsonld@^1.4.5:
-  version "1.4.5"
-  resolved "https://registry.yarnpkg.com/nuxt-jsonld/-/nuxt-jsonld-1.4.5.tgz#c6c3094fbe52640980ab25d1808ee0439c5a9de2"
-  integrity sha512-khRAy2ABCciWyvs/qmY0LuNxq9KUHNQq0L1ItzMSkAIx4theu5WCkXquRZZ2mPr0/QpKSwBZUD4hNNojraTodQ==
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/nuxt-jsonld/-/nuxt-jsonld-1.4.6.tgz#e6aeaf1459a21a3892c579a5cad87761b2d36929"
+  integrity sha512-IVSvAPAYumhyf/TjQC9tu+dpRrEo6WakYUiktNPGStF+f9Lwr0xk0UFuuOsjLOF+22PHhTpvTUAEM2HWxV5qOA==
 
 nuxt-start@^2.12.1:
   version "2.12.2"
@@ -13328,9 +13346,9 @@ stylelint-scss@^3.17.0, stylelint-scss@^3.4.0:
     postcss-value-parser "^4.0.3"
 
 stylelint@^13.3.2:
-  version "13.3.2"
-  resolved "https://registry.yarnpkg.com/stylelint/-/stylelint-13.3.2.tgz#fbcb69a2452bc35de3eedd95b443449f92ab4107"
-  integrity sha512-kpO3/Gz2ZY40EWUwFYYkgpzhf8ZDUyKpcui5+pS0XKJBj/EMYmZpOJoL8IFAz2yApYeg91NVy5yAjE39hDzWvQ==
+  version "13.3.3"
+  resolved "https://registry.yarnpkg.com/stylelint/-/stylelint-13.3.3.tgz#e267a628ebfc1adad6f5a1fe818724c34171402b"
+  integrity sha512-j8Oio2T1YNiJc6iXDaPYd74Jg4zOa1bByNm/g9/Nvnq4tDPsIjMi46jhRZyPPktGPwjJ5FwcmCqIRlH6PVP8mA==
   dependencies:
     "@stylelint/postcss-css-in-js" "^0.37.1"
     "@stylelint/postcss-markdown" "^0.36.1"

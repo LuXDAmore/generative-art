@@ -17,12 +17,13 @@ const ENV = dotenv
         )
         .parsed || {}
     // Module
+    , IS_PROD = process.env.NODE_ENV === 'production'
     , moduleFile = resolve(
         __dirname,
         '../lib/module'
     )
     , base = (
-        process.env.NODE_ENV === 'production'
+        IS_PROD
         ? `${
             PACKAGE.homepage.replace(
                 'https://luxdamore.github.io',
@@ -63,7 +64,97 @@ const ENV = dotenv
             href: `${ base }humans.txt`,
         },
     ]
+    , script = []
+    , __dangerouslyDisableSanitizersByTagID = {}
+    , modules = [
+        '@nuxtjs/gtm',
+        '@nuxtjs/pwa',
+        '@nuxtjs/markdownit',
+        moduleFile,
+    ]
+    , buildModules = [
+        '@nuxtjs/dotenv',
+        'nuxt-compress',
+        '@nuxtjs/sitemap',
+    ]
 ;
+
+// GTM
+if( IS_PROD && ENV.ANALYTICS_ID ) {
+
+    link.push(
+        {
+            once: true,
+            hid: 'preconnect-jsdelivr',
+            rel: 'preconnect',
+            href: 'https://cdn.jsdelivr.net',
+            crossorigin: true,
+        },
+    );
+
+    link.push(
+        {
+            once: true,
+            hid: 'preconnect-google-tagmanager',
+            rel: 'preconnect',
+            href: 'https://www.googletagmanager.com',
+            crossorigin: true,
+        },
+    );
+
+    link.push(
+        {
+            once: true,
+            hid: 'prefetch-google-tagmanager',
+            rel: 'dns-prefetch',
+            href: 'https://www.googletagmanager.com',
+            crossorigin: true,
+        },
+    );
+
+    link.push(
+        {
+            once: true,
+            hid: 'preconnect-google-analytics',
+            rel: 'preconnect',
+            href: 'https://www.google-analytics.com',
+            crossorigin: true,
+        },
+    );
+
+    link.push(
+        {
+            once: true,
+            hid: 'prefetch-google-analytics',
+            rel: 'dns-prefetch',
+            href: 'https://www.google-analytics.com',
+            crossorigin: true,
+        },
+    );
+
+    script.push(
+        {
+            once: true,
+            hid: 'google-tag-manager-inner-html',
+            innerHTML: `window.dataLayer=window.dataLayer||[];window.dataLayer.push({originalLocation:document.location.protocol+'//'+document.location.hostname+document.location.pathname+document.location.search});`,
+        },
+    );
+
+    __dangerouslyDisableSanitizersByTagID[ 'google-tag-manager-inner-html' ] = [ 'innerHTML' ];
+
+    modules.push(
+        [
+            '@nuxtjs/gtm',
+            {
+                id: ENV.ANALYTICS_ID,
+                dev: false,
+                scriptDefer: true,
+                pageTracking: true,
+            },
+        ],
+    );
+
+}
 
 // Nuxt config
 export default {
@@ -89,6 +180,8 @@ export default {
         title: PACKAGE.name,
         meta,
         link,
+        script,
+        __dangerouslyDisableSanitizersByTagID,
     },
     /*
      * Plugins
@@ -97,29 +190,15 @@ export default {
     /*
      * Modules
      */
-    modules: [
-        '@nuxtjs/gtm',
-        '@nuxtjs/pwa',
-        '@nuxtjs/markdownit',
-        moduleFile,
-    ],
+    modules,
     sitemap: {
         hostname: PACKAGE.homepage,
         gzip: true,
     },
-    gtm: {
-        id: ENV.ANALYTICS_ID,
-        dev: false,
-        scriptDefer: true,
-    },
     /*
      * buildModules
      */
-    buildModules: [
-        '@nuxtjs/dotenv',
-        'nuxt-compress',
-        '@nuxtjs/sitemap',
-    ],
+    buildModules,
     /*
      * Watch module
      */

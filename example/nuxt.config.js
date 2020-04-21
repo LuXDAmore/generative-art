@@ -67,7 +67,6 @@ const ENV = dotenv
     , script = []
     , __dangerouslyDisableSanitizersByTagID = {}
     , modules = [
-        '@nuxtjs/gtm',
         '@nuxtjs/pwa',
         '@nuxtjs/markdownit',
         moduleFile,
@@ -142,12 +141,11 @@ if( IS_PROD && ENV.ANALYTICS_ID ) {
 
     __dangerouslyDisableSanitizersByTagID[ 'google-tag-manager-inner-html' ] = [ 'innerHTML' ];
 
-    modules.push(
+    buildModules.push(
         [
             '@nuxtjs/google-analytics',
             {
                 id: ENV.ANALYTICS_ID,
-                dev: false,
             },
         ],
     );

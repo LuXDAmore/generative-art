@@ -174,3 +174,39 @@
 
 <style src="highlight.js/styles/github.css"></style>
 <style src="github-markdown-css/github-markdown.css"></style>
+
+<style scoped>
+    .markdown-body {
+
+        width: 736px;
+        max-width: 100%;
+        padding: 0 36px;
+        line-height: 1.5;
+        background-color: #fff;
+
+    }
+
+    .markdown-body ::v-deep pre code .hljs-comment,
+    .markdown-body ::v-deep pre code .hljs-attr,
+    .markdown-body ::v-deep pre code .hljs-built_in, /* stylelint-disable-line */
+    .markdown-body ::v-deep pre code .hljs-variable,
+    .markdown-body ::v-deep pre code .hljs-quote {
+
+        color: #900;
+
+    }
+
+    .markdown-body ::v-deep pre code .hljs-number,
+    .markdown-body ::v-deep pre code .hljs-literal,
+    .markdown-body ::v-deep pre code .hljs-tag .hljs-attr {
+
+        color: #035e21;
+
+    }
+
+    .markdown-body ::v-deep pre code {
+
+        max-width: none;
+
+    }
+</style>

@@ -11,7 +11,7 @@
             <nav class="nav">
                 <ul>
                     <li v-for="link in links" :key="link.url">
-                        <nuxt-link :to="link.url">
+                        <nuxt-link :to="link.url" :title="link.text">
                             {{ link.text }}
                         </nuxt-link>
                     </li>
@@ -30,7 +30,7 @@
             <nav class="nav">
                 <ul>
                     <li v-for="link in linksNavigate" :key="link.url">
-                        <nuxt-link :to="link.url">
+                        <nuxt-link :to="link.url" :title="link.text">
                             {{ link.text }}
                         </nuxt-link>
                     </li>
@@ -119,6 +119,36 @@
                 ],
             }
         ),
+        jsonld() {
+
+            if( ! this.links.length && ! this.linksNavigate.length )
+                return null;
+
+            return {
+                '@context': 'http://schema.org',
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                    ... this.links,
+                    ... this.linksNavigate,
+                ].map(
+                    (
+                        item,
+                        index,
+                    ) => (
+                        {
+                            '@type': 'ListItem',
+                            position: index + 1,
+                            item: {
+                                '@id': item.url,
+                                url: item.url,
+                                name: item.text || item.title,
+                            },
+                        }
+                    ),
+                ),
+            };
+
+        },
     };
 </script>
 

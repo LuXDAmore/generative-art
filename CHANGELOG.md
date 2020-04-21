@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/LuXDAmore/generative-art/compare/v1.4.1...v1.5.0) (2020-04-21)
+
+
+### Features
+
+* better gtm ([4643ac3](https://github.com/LuXDAmore/generative-art/commit/4643ac3563ef470e6912c00c8b7f9aa11c024fa9))
+* gtm ([554f921](https://github.com/LuXDAmore/generative-art/commit/554f921d81b6abc2b26cc2fccdf075138ade06a1))
+* jsonld and title ([8c9269f](https://github.com/LuXDAmore/generative-art/commit/8c9269f5db5de36679b47e09824bc52ce6b400c9))
+* keywords added ([b1ef1bf](https://github.com/LuXDAmore/generative-art/commit/b1ef1bfedf30844486b622e5cfb47fdf68bcc8a7))
+* new example ([cb93cc4](https://github.com/LuXDAmore/generative-art/commit/cb93cc474693b9d901eda02266c228d2679cdb87))
+
+
+### Bug Fixes
+
+* envs inside nuxt ([0d1fe95](https://github.com/LuXDAmore/generative-art/commit/0d1fe950aa380b3690d96fc95eb5ebb7a48c6344))
+* extra update ([d9ccff3](https://github.com/LuXDAmore/generative-art/commit/d9ccff31e4ec586ebb3e0948cbf513c675e0e4ba))
+* missing env ([3800b60](https://github.com/LuXDAmore/generative-art/commit/3800b6090147b0f4d07b7b2afc22af71841aa3af))
+* removed extra things ([8394188](https://github.com/LuXDAmore/generative-art/commit/8394188ee06ecc485936e7c3e32ffde31a9e7722))
+* removed old store unused ([6b06fe0](https://github.com/LuXDAmore/generative-art/commit/6b06fe04cfdc34e8c0d8dd9baba948db1eadb55c))
+* scripts ([2197229](https://github.com/LuXDAmore/generative-art/commit/2197229b960b774413c05a9b573c2a933df0f40a))
+* shaders ([94784f7](https://github.com/LuXDAmore/generative-art/commit/94784f774de3926d5cf40f53737af07adeb95ec7))
+* some bugs and things ([f36eae8](https://github.com/LuXDAmore/generative-art/commit/f36eae8f0ed1997962b5605dd9807aedc860db5b))
+
 ## [1.4.0](https://github.com/LuXDAmore/generative-art/compare/v1.3.1...v1.4.0) (2020-04-17)
 
 

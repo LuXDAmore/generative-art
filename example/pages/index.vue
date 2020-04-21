@@ -119,6 +119,56 @@
 
             },
         },
+        head() {
+
+            return {
+                link: [
+                    {
+                        once: true,
+                        hid: 'preload-badge-npm-v',
+                        rel: 'preload',
+                        as: 'image',
+                        href: 'https://img.shields.io/npm/v/@luxdamore/nuxt-canvas-sketch/latest.svg?style=flat-square',
+                    },
+                    {
+                        once: true,
+                        hid: 'preload-badge-npm-dt',
+                        rel: 'preload',
+                        as: 'image',
+                        href: 'https://img.shields.io/npm/dt/@luxdamore/nuxt-canvas-sketch.svg?style=flat-square',
+                    },
+                    {
+                        once: true,
+                        hid: 'preload-badge-circleci',
+                        rel: 'preload',
+                        as: 'image',
+                        href: 'https://img.shields.io/circleci/build/github/LuXDAmore/generative-art.svg?style=flat-square',
+                    },
+                    {
+                        once: true,
+                        hid: 'preload-badge-dependencies',
+                        rel: 'preload',
+                        as: 'image',
+                        href: 'https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg?style=flat-square',
+                    },
+                    {
+                        once: true,
+                        hid: 'preload-badge-npm',
+                        rel: 'preload',
+                        as: 'image',
+                        href: 'https://img.shields.io/npm/l/@luxdamore/nuxt-canvas-sketch.svg?style=flat-square',
+                    },
+                    {
+                        once: true,
+                        hid: 'preload-badge-paypal',
+                        rel: 'preload',
+                        as: 'image',
+                        href: 'https://img.shields.io/badge/paypal-donate-black.svg?style=flat-square',
+                    },
+                ],
+            };
+
+        },
     };
 </script>
 

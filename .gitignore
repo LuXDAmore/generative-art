@@ -7,5 +7,6 @@ bower_components
 .DS_Store
 coverage
 dist
-example/**/sw.js
 *.env
+example/**/sw.js
+example/**/google*.html

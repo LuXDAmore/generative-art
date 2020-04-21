@@ -53,9 +53,3 @@ object-assign
  * (c) 2018-present egoist <0x142857@gmail.com>
  * Released under the MIT License.
  */
-
-/**
- * vuex v3.2.0
- * (c) 2020 Evan You
- * @license MIT
- */

@@ -3,6 +3,7 @@ import {
     get,
 } from '@nuxtjs/module-test-utils';
 
+// Nuxt config
 import config from '../example/nuxt.config';
 
 const BASE_URL = '/';

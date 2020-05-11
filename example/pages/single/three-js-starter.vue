@@ -155,6 +155,7 @@
                     ) {
 
                         // Animation
+                        // TODO: playhead * 2 per infinite animation
                         plane.rotation.y = time * ( 10 * Math.PI / 100 );
 
                         // Uniforms for Shaders
@@ -186,6 +187,7 @@
                         renderer.setSize(
                             viewportWidth,
                             viewportHeight,
+                            false
                         );
 
                         camera.aspect = viewportWidth / viewportHeight;

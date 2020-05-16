@@ -1,0 +1,34 @@
+.readme .markdown-body {
+
+    width: 736px;
+    max-width: 100%;
+    padding: 0 36px;
+    line-height: 1.5;
+    background-color: #fff;
+
+}
+
+.readme .markdown-body ::v-deep pre code .hljs-comment,
+.readme .markdown-body ::v-deep pre code .hljs-attr,
+/* stylelint-disable-next-line */
+.readme .markdown-body ::v-deep pre code .hljs-built_in,
+.readme .markdown-body ::v-deep pre code .hljs-variable,
+.readme .markdown-body ::v-deep pre code .hljs-quote {
+
+    color: #900;
+
+}
+
+.readme .markdown-body ::v-deep pre code .hljs-number,
+.readme .markdown-body ::v-deep pre code .hljs-literal,
+.readme .markdown-body ::v-deep pre code .hljs-tag .hljs-attr {
+
+    color: #035e21;
+
+}
+
+.readme .markdown-body ::v-deep pre code {
+
+    max-width: none;
+
+}

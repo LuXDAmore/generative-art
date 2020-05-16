@@ -102,6 +102,10 @@
                         url: '/single/page-10',
                         text: 'Page 10',
                     },
+                    {
+                        url: '/single/prove',
+                        text: 'Prove',
+                    },
                 ],
                 linksNavigate: [
                     {

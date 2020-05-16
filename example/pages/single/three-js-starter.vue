@@ -154,9 +154,8 @@
                         }
                     ) {
 
-                        // Animation
-                        // TODO: playhead * 2 per infinite animation
-                        plane.rotation.y = time * ( 10 * Math.PI / 100 );
+                        // Animation -> depends on `duration: 6`
+                        plane.rotation.y = playhead * 2 * Math.PI;
 
                         // Uniforms for Shaders
                         material.uniforms.time.value = time;

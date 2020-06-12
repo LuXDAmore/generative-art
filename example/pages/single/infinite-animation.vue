@@ -11,8 +11,8 @@
     import * as THREE from 'three';
 
     // Shaders
-    import fragmentShader from '~/assets/pages/prove/shaders/fragmentShader.frag';
-    import vertexShader from '~/assets/pages/prove/shaders/vertexShader.vert';
+    import fragmentShader from '~/assets/pages/infinite-animation/shaders/fragmentShader.frag';
+    import vertexShader from '~/assets/pages/infinite-animation/shaders/vertexShader.vert';
 
     // ThreeJs Camera Controller
     const orbitControlsImporter = () => import(
@@ -22,7 +22,7 @@
     );
 
     export default {
-        name: 'prove',
+        name: 'infinite-animation',
         data: () => (
             {
                 sketchManager: null,
@@ -159,7 +159,7 @@
                         }
                     ) {
 
-                        // Animation
+                        // Animation (infinite)
                         plane.rotation.y = playhead * 2 * Math.PI;
 
                         // Uniforms for Shaders

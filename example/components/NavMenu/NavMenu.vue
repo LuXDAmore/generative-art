@@ -103,8 +103,8 @@
                         text: 'Page 10',
                     },
                     {
-                        url: '/single/prove',
-                        text: 'Prove',
+                        url: '/single/infinite-animation',
+                        text: 'Infinite animation',
                     },
                 ],
                 linksNavigate: [

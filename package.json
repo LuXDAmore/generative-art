@@ -39,7 +39,6 @@
         "build": "nuxt build example",
         "prestart": "yarn build",
         "start": "nuxt start example",
-        "pregenerate": "yarn test",
         "generate": "nuxt generate example",
         "eslint": "eslint --ext .js,.vue .",
         "eslint-fix": "eslint --fix --ext .js,.vue .",

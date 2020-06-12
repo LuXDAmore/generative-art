@@ -45,7 +45,7 @@ module.exports = {
                     'info',
                     'error',
                 ],
-            }
+            },
         ],
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
         'one-var': [
@@ -55,10 +55,16 @@ module.exports = {
                 var: 'consecutive',
                 let: 'consecutive',
                 const: 'consecutive',
-            }
+            },
         ],
-        'spaced-comment': [ 'warn', 'always' ],
-        'function-call-argument-newline': [ 'warn', 'always' ],
+        'spaced-comment': [
+ 'warn',
+'always',
+],
+        'function-call-argument-newline': [
+ 'warn',
+'always',
+],
         'prefer-const': 'warn',
         'no-useless-rename': [
             'warn',
@@ -79,27 +85,27 @@ module.exports = {
             {
                 minItems: 2,
                 multiline: true,
-            }
+            },
         ],
         'array-bracket-newline': [
             'warn',
             {
                 minItems: 2,
                 multiline: true,
-            }
+            },
         ],
         'function-paren-newline': [
             'warn',
             {
                 minItems: 1,
-            }
+            },
         ],
         'brace-style': [
             'warn',
             '1tbs',
             {
                 allowSingleLine: true,
-            }
+            },
         ],
         'comma-style': [
             'warn',
@@ -108,15 +114,15 @@ module.exports = {
                 exceptions: {
                     ArrayExpression: true,
                     ObjectExpression: true,
-                }
-            }
+                },
+            },
         ],
         'comma-spacing': [
             'warn',
             {
                 before: false,
                 after: true,
-            }
+            },
         ],
         quotes: [
             'warn',
@@ -124,7 +130,7 @@ module.exports = {
             {
                 avoidEscape: true,
                 allowTemplateLiterals: true,
-            }
+            },
         ],
         semi: [
             'warn',
@@ -159,8 +165,8 @@ module.exports = {
                     'const',
                     'let',
                     'var',
-                ]
-            }
+                ],
+            },
         ],
         'no-empty': 'warn',
         'no-return-await': 'warn',
@@ -170,7 +176,7 @@ module.exports = {
                 max: 1,
                 maxEOF: 1,
                 maxBOF: 1,
-            }
+            },
         ],
         'lines-around-comment': [
             'warn',
@@ -185,7 +191,7 @@ module.exports = {
                 allowObjectEnd: true,
                 allowArrayStart: true,
                 allowArrayEnd: true,
-            }
+            },
         ],
         'no-inner-declarations': [
             'warn',
@@ -212,19 +218,19 @@ module.exports = {
             'warn',
             {
                 beforeColon: false,
-            }
+            },
         ],
         'new-cap': [
             'warn',
             {
                 newIsCap: true,
-            }
+            },
         ],
         'no-duplicate-imports': [
             'warn',
             {
                 includeExports: true,
-            }
+            },
         ],
         'no-floating-decimal': 'warn',
         'no-multi-spaces': 'warn',
@@ -240,7 +246,7 @@ module.exports = {
             'warn',
             {
                 allowAllPropertiesOnSameLine: false,
-            }
+            },
         ],
         'object-curly-newline': [
             'warn',
@@ -262,15 +268,15 @@ module.exports = {
                     multiline: true,
                     consistent: false,
                     minProperties: 2,
-                }
-            }
+                },
+            },
         ],
         'padded-blocks': [
             'warn',
             {
                 switches: 'never',
                 blocks: 'always',
-            }
+            },
         ],
         'yield-star-spacing': [
             'warn',
@@ -290,10 +296,13 @@ module.exports = {
                 exports: 'always-multiline',
                 imports: 'always-multiline',
                 functions: 'only-multiline',
-            }
+            },
         ],
         'dot-notation': 'warn',
-        'eqeqeq': [ 'warn', 'always' ],
+        'eqeqeq': [
+ 'warn',
+'always',
+],
         'camelcase': [
             'off',
             {
@@ -318,19 +327,19 @@ module.exports = {
                 singleValue: true,
                 objectsInArrays: false,
                 arraysInArrays: true,
-            }
+            },
         ],
         'computed-property-spacing': [
             'warn',
-            'always'
+            'always',
         ],
         'space-in-parens': [
             1,
-            'always'
+            'always',
         ],
         'object-curly-spacing': [
             'warn',
-            'always'
+            'always',
         ],
         'keyword-spacing': [
             'warn',
@@ -373,12 +382,12 @@ module.exports = {
                     finally: {
                         after: true,
                     },
-                }
-            }
+                },
+            },
         ],
         'arrow-parens': [
             'warn',
-            'as-needed'
+            'as-needed',
         ],
         'no-irregular-whitespace': 'warn',
         'space-unary-ops': [
@@ -386,14 +395,14 @@ module.exports = {
             {
                 words: true,
                 nonwords: true,
-            }
+            },
         ],
         'arrow-spacing': [
             1,
             {
                 before: true,
                 after: true,
-            }
+            },
         ],
         'object-shorthand': [
             'warn',
@@ -407,7 +416,7 @@ module.exports = {
                 ignoreRestSiblings: true,
                 caughtErrors: 'all',
                 argsIgnorePattern: '^_',
-            }
+            },
         ],
         'max-len': [
             'off',
@@ -417,21 +426,21 @@ module.exports = {
                 ignoreUrls: true,
                 ignoreTemplateLiterals: true,
                 ignoreStrings: true,
-            }
+            },
         ],
         'max-statements': [
             'warn',
             72,
             {
                 ignoreTopLevelFunctions: true,
-            }
+            },
         ],
         'lines-between-class-members': [
             'warn',
             'always',
             {
                 exceptAfterSingleLine: true,
-            }
+            },
         ],
         // Plugins
         // Standard
@@ -451,7 +460,7 @@ module.exports = {
             'warn',
             {
                 allowComputed: true,
-            }
+            },
         ],
         // Compat
         'compat/compat': 'warn',
@@ -465,7 +474,7 @@ module.exports = {
             'warn',
             {
                 allowUsingIterationVar: true,
-            }
+            },
         ],
         'vue/component-name-in-template-casing': [
             'warn',
@@ -473,25 +482,25 @@ module.exports = {
         ],
         'vue/name-property-casing': [
             'warn',
-            'kebab-case'
+            'kebab-case',
         ],
         'vue/singleline-html-element-content-newline': [
             'warn',
             {
                 ignoreWhenEmpty: false,
                 ignores: [ 'slot' ],
-            }
+            },
         ],
         'vue/multiline-html-element-content-newline': [
             'warn',
             {
                 ignoreWhenEmpty: false,
                 allowEmptyLines: true,
-            }
+            },
         ],
         'vue/attribute-hyphenation': [
             'warn',
-            'always'
+            'always',
         ],
         'vue/max-attributes-per-line': [
             'warn',
@@ -499,43 +508,43 @@ module.exports = {
                 'singleline': 2,
                 'multiline': {
                     'max': 1,
-                    'allowFirstLine': false
-                }
-            }
+                    'allowFirstLine': false,
+                },
+            },
         ],
         'vue/html-end-tags': 'warn',
         'vue/html-indent': [
             'warn',
-            4
+            4,
         ],
         'vue/html-self-closing': 'warn',
         'vue/attributes-order': 'warn',
         'vue/html-quotes': [
             'warn',
-            'double'
+            'double',
         ],
         'vue/order-in-components': 'warn',
         'vue/html-closing-bracket-newline': [
             'warn',
             {
                 singleline: 'never',
-                multiline: 'always'
-            }
+                multiline: 'always',
+            },
         ],
         'vue/html-closing-bracket-spacing': [
             'warn',
             {
                 startTag: 'never',
                 endTag: 'never',
-                selfClosingTag: 'always'
-            }
+                selfClosingTag: 'always',
+            },
         ],
         'vue/script-indent': [
             'warn',
             4,
             {
-                baseIndent: 1
-            }
+                baseIndent: 1,
+            },
         ],
     },
 };

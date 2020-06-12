@@ -10,7 +10,7 @@ const BASE_URL = '/';
 
 config.dev = false;
 config.router.base = BASE_URL;
-config.server = null;
+config.server = {};
 
 describe(
     'module',

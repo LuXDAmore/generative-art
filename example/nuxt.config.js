@@ -173,7 +173,7 @@ export default {
         htmlAttrs: {
             lang: 'en',
         },
-        title: `${ ENV.TITLE } - ${ PACKAGE.name }`,
+        title: `${ ENV.TITLE || '' } - ${ PACKAGE.name }`,
         meta,
         link,
         script,

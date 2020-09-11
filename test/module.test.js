@@ -1,3 +1,4 @@
+// Test utils
 import {
     setup,
     get,
@@ -10,53 +11,55 @@ const BASE_URL = '/';
 
 config.dev = false;
 config.router.base = BASE_URL;
-config.server = {};
 
+// Tests
 describe(
     'module',
     () => {
 
-    let nuxt;
+        let nuxt;
 
-    beforeAll(
-        async() => {
+        beforeAll(
+            async() => {
 
-            (
-                { nuxt } = (
-                    await setup(
-                        config
+                (
+                    { nuxt } = (
+                        await setup(
+                            config
+                        )
                     )
-                )
-            );
+                );
 
-        },
-        60000
-    );
+            },
+            60000
+        );
 
-    afterAll(
-        async() => {
+        afterAll(
+            async() => {
 
-            await nuxt.close();
+                await nuxt.close();
 
-        }
-    );
+            },
+            60000
+        );
 
-    test(
-        'render',
-        async() => {
+        test(
+            'render',
+            async() => {
 
-            const html = await get(
-                BASE_URL
-            );
+                const html = await get(
+                    BASE_URL
+                );
 
-            expect(
-                html
-            ).toContain(
-                'Generative'
-            );
+                expect(
+                    html
+                ).toContain(
+                    'Generative Art'
+                );
 
-        }
-    );
+            },
+            60000
+        );
 
     }
 );

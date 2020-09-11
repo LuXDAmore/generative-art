@@ -11,13 +11,13 @@ object-assign
 */
 
 /*!
-  * vue-router v3.3.3
+  * vue-router v3.4.3
   * (c) 2020 Evan You
   * @license MIT
   */
 
 /*!
- * CSSPlugin 3.3.1
+ * CSSPlugin 3.5.1
  * https://greensock.com
  *
  * Copyright 2008-2020, GreenSock. All rights reserved.
@@ -27,7 +27,7 @@ object-assign
 */
 
 /*!
- * GSAP 3.3.1
+ * GSAP 3.5.1
  * https://greensock.com
  *
  * @license Copyright 2008-2020, GreenSock. All rights reserved.
@@ -37,8 +37,8 @@ object-assign
 */
 
 /*!
- * Vue.js v2.6.11
- * (c) 2014-2019 Evan You
+ * Vue.js v2.6.12
+ * (c) 2014-2020 Evan You
  * Released under the MIT License.
  */
 

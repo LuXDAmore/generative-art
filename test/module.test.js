@@ -31,7 +31,7 @@ describe(
                 );
 
             },
-            60000
+            80000
         );
 
         afterAll(
@@ -39,8 +39,7 @@ describe(
 
                 await nuxt.close();
 
-            },
-            60000
+            }
         );
 
         test(
@@ -57,8 +56,7 @@ describe(
                     'Generative Art'
                 );
 
-            },
-            60000
+            }
         );
 
     }

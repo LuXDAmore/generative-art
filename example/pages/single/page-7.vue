@@ -123,7 +123,7 @@
                           const [ intersect ] = raycaster.intersectObjects(
                                     scene.children
                                 )
-                                , point = intersect?.point ?? null
+                                , point = intersect && intersect.point ? intersect.point : null
                           ;
 
                           if( point )

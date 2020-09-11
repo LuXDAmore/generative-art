@@ -126,7 +126,7 @@ module.exports = {
         'at-rule-no-unknown': null,
         'property-no-vendor-prefix': true,
         'selector-descendant-combinator-no-non-space': true,
-        'unit-whitelist': [
+        'unit-allowed-list': [
             'vh',
             'vw',
             'px',

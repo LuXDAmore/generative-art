@@ -8,9 +8,9 @@
 
 }
 
+ /* stylelint-disable */
 .readme .markdown-body ::v-deep pre code .hljs-comment,
 .readme .markdown-body ::v-deep pre code .hljs-attr,
-/* stylelint-disable-next-line */
 .readme .markdown-body ::v-deep pre code .hljs-built_in,
 .readme .markdown-body ::v-deep pre code .hljs-variable,
 .readme .markdown-body ::v-deep pre code .hljs-quote {
@@ -18,6 +18,7 @@
     color: #900;
 
 }
+ /* stylelint-enable */
 
 .readme .markdown-body ::v-deep pre code .hljs-number,
 .readme .markdown-body ::v-deep pre code .hljs-literal,

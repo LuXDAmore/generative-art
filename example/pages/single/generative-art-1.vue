@@ -14,7 +14,7 @@
 
     // Page
     export default {
-        name: 'page-5',
+        name: 'generative-art-1',
         data: () => (
             {
                 sketchManager: null,

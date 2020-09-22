@@ -79,8 +79,8 @@
                         text: 'Page 4',
                     },
                     {
-                        url: '/single/page-5',
-                        text: 'Page 5',
+                        url: '/single/generative-art-1',
+                        text: 'Generative Art 1',
                     },
                     {
                         url: '/single/page-6',
@@ -101,6 +101,10 @@
                     {
                         url: '/single/page-10',
                         text: 'Page 10',
+                    },
+                    {
+                        url: '/single/page-11',
+                        text: 'Page 11',
                     },
                     {
                         url: '/single/infinite-animation',

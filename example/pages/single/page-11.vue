@@ -116,15 +116,15 @@
                 );
 
                 // Mouse
-                const mouse = new THREE.Vector2(
-                          Math.random(),
-                          Math.random()
-                      )
+                const mouse = {
+                          x: Math.random(),
+                          y: Math.random(),
+                      }
                       , onMouseMove = event => {
 
-                          // calculate mouse position in normalized device coordinates
+                          // Calculate mouse position in normalized device coordinates
                           mouse.x = event.clientX / window.innerWidth;
-                          mouse.y = 1.0 - event.clientY / window.innerHeight;
+                          mouse.y = 1.0 - ( event.clientY / window.innerHeight );
 
                       }
                       // Scene
@@ -166,7 +166,10 @@
                                   },
                                   uMousePosition: {
                                       type: 'v2',
-                                      value: mouse,
+                                      value: new THREE.Vector2(
+                                          Math.random(),
+                                          Math.random()
+                                      ),
                                   },
                               },
                           }

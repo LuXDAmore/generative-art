@@ -104,7 +104,7 @@
                 camera.position.set(
                     0,
                     0,
-                    54,
+                    54
                 );
 
                 camera.lookAt(

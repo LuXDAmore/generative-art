@@ -14,13 +14,7 @@
     import fragmentShader from '~/assets/pages/page-11/shaders/fragmentShader.frag';
     import vertexShader from '~/assets/pages/page-11/shaders/vertexShader.vert';
 
-    // ThreeJs Camera Controller
-    const orbitControlsImporter = () => import(
-        'three/examples/jsm/controls/OrbitControls'
-    ).then(
-        m => m.default || m
-    );
-
+    // Page
     export default {
         name: 'page-11',
         data: () => (
@@ -62,7 +56,7 @@
 
         },
         methods: {
-            async sketch(
+            sketch(
                 {
                     context,
                     canvas,
@@ -122,16 +116,7 @@
                 );
 
                 // Mouse
-                const isIntersectedByMouse = false
-
-                      // Controls
-                      , { OrbitControls } = await orbitControlsImporter()
-                      , controls = new OrbitControls(
-                          camera,
-                          context.canvas
-                      )
-                      // Mouse
-                      , mouse = new THREE.Vector2(
+                const mouse = new THREE.Vector2(
                           Math.random(),
                           Math.random()
                       )
@@ -213,11 +198,9 @@
                         material.uniforms.uTime.value = time / 3.6;
 
                         // Mouse
-                        isIntersectedByMouse && ( material.uniforms.uMousePosition.value = mouse );
+                        material.uniforms.uMousePosition.value = mouse;
 
-                        // Threejs
-                        controls.update();
-
+                        // Render
                         renderer.render(
                             scene,
                             camera
@@ -245,7 +228,6 @@
                     },
                     unload() {
 
-                        controls.dispose();
                         renderer.dispose();
 
                     },

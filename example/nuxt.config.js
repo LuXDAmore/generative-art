@@ -244,9 +244,6 @@ export default {
                 'postcss-import': {},
                 'postcss-url': {},
                 'postcss-scoped': {},
-                'postcss-combine-duplicated-selectors': {
-                    removeDuplicatedProperties: true,
-                },
             },
             preset: {
                 stage: 2,

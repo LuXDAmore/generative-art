@@ -13,11 +13,6 @@ module.exports = {
             },
         },
     ],
-    globals: {
-        googletag: true,
-        Cookiebot: true,
-        CookiebotDialog: true,
-    },
     parserOptions: {
         parser: 'babel-eslint',
         sourceType: 'module',
@@ -27,7 +22,7 @@ module.exports = {
         '@vue/prettier',
         'eslint:recommended',
         'plugin:nuxt/recommended',
-        'plugin:vue/recommended',
+        'plugin:vue/strongly-recommended',
     ],
     plugins: [
         'standard',
@@ -518,6 +513,10 @@ module.exports = {
             4,
         ],
         'vue/html-self-closing': 'warn',
+        'vue/component-definition-name-casing': [
+            'warn',
+            'kebab-case',
+        ],
         'vue/attributes-order': 'warn',
         'vue/html-quotes': [
             'warn',

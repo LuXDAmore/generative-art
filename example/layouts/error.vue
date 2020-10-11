@@ -32,13 +32,6 @@
                 required: true,
             },
         },
-        computed: {
-            is404() {
-
-                return this.error && this.error.statusCode === 404;
-
-            },
-        },
         head() {
 
             if( ! this.is404 )
@@ -55,6 +48,13 @@
                 ],
             };
 
+        },
+        computed: {
+            is404() {
+
+                return this.error && this.error.statusCode === 404;
+
+            },
         },
     };
 </script>

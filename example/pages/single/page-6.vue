@@ -19,11 +19,10 @@
 
     // Three Utils
     const orbitControlsImporter = () => import(
-                'three/examples/jsm/controls/OrbitControls'
-            )
-            .then(
-                m => m.default || m
-            )
+              'three/examples/jsm/controls/OrbitControls'
+          ).then(
+              m => m.default || m
+          )
           // Canvas sketch
           , settings = {
               // Make the loop animated

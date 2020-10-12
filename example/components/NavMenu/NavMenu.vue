@@ -4,7 +4,7 @@
 
             <summary class="nav-menu__summary">
                 <h2>
-                    Single examples
+                    Single
                 </h2>
             </summary>
 
@@ -23,13 +23,32 @@
 
             <summary class="nav-menu__summary">
                 <h2>
-                    Navigation example
+                    Navigation
                 </h2>
             </summary>
 
             <nav class="nav">
                 <ul>
                     <li v-for="link in linksNavigate" :key="link.url">
+                        <nuxt-link :to="link.url" :title="link.text">
+                            {{ link.text }}
+                        </nuxt-link>
+                    </li>
+                </ul>
+            </nav>
+
+        </details>
+        <details class="nav-menu__details">
+
+            <summary class="nav-menu__summary">
+                <h2>
+                    Experiments
+                </h2>
+            </summary>
+
+            <nav class="nav">
+                <ul>
+                    <li v-for="link in linksExperiments" :key="link.url">
                         <nuxt-link :to="link.url" :title="link.text">
                             {{ link.text }}
                         </nuxt-link>
@@ -87,8 +106,8 @@
                         text: 'Page 6',
                     },
                     {
-                        url: '/single/page-7',
-                        text: 'Microphone and webcam',
+                        url: '/single/audio-video',
+                        text: 'Microphone audio and video webcam',
                     },
                     {
                         url: '/single/page-8',
@@ -123,6 +142,12 @@
                     {
                         url: '/navigate/page-3',
                         text: 'Navigate 3',
+                    },
+                ],
+                linksExperiments: [
+                    {
+                        url: '/experiments/facemesh-with-machine-learning',
+                        text: 'Facemesh with Machine Learning',
                     },
                 ],
             }

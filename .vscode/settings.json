@@ -52,9 +52,12 @@
         "mousemoved",
         "nyquist",
         "onaudioprocess",
+        "oncanplaythrough",
+        "onclick",
         "orbitcontrols",
         "playhead",
         "raycaster",
+        "tfjs",
         "uint",
         "webgl",
         "wireframe"

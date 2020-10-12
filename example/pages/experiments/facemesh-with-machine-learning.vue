@@ -1,18 +1,33 @@
 <template>
     <main class="container canvas-container">
 
+        <video
+            v-show="showVideo"
+            ref="video"
+            preload="auto"
+            class="absolute z-index--1 pin-r pin-b"
+            playsinline
+            autoplay
+            muted
+        />
+
         <canvas ref="canvas" />
 
     </main>
 </template>
 
 <script>
+    // Facemesh Machine learning
+    import * as facemesh from '@tensorflow-models/facemesh';
+    import '@tensorflow/tfjs-backend-cpu';
+    import '@tensorflow/tfjs-backend-webgl';
+
     // ThreeJs
     import * as THREE from 'three';
 
     // Shaders
-    import fragmentShader from '~/assets/pages/three-js-starter/shaders/fragmentShader.frag';
-    import vertexShader from '~/assets/pages/three-js-starter/shaders/vertexShader.vert';
+    import fragmentShader from '~/assets/pages/facemesh-with-machine-learning/shaders/fragmentShader.frag';
+    import vertexShader from '~/assets/pages/facemesh-with-machine-learning/shaders/vertexShader.vert';
 
     // ThreeJs Camera Controller
     const orbitControlsImporter = () => import(
@@ -22,10 +37,12 @@
     );
 
     export default {
-        name: 'three-js-starter',
+        name: 'facemesh-with-machine-learning',
         data: () => (
             {
                 sketchManager: null,
+                facemesh: null,
+                showVideo: true,
             }
         ),
         async mounted() {
@@ -63,9 +80,54 @@
 
         },
         methods: {
+            async findFaces() {
+
+                if( ! this.facemesh )
+                    return;
+
+                const faces = await this.facemesh.estimateFaces(
+                    this.$refs.video
+                );
+
+                if( ! faces.length )
+                    return;
+
+                // Each face object contains a `scaledMesh` property,
+                // which is an array of 468 landmarks.
+                faces.forEach(
+                    face => {
+
+                        const keypoints = face.scaledMesh;
+
+                        // Log facial keypoints.
+                        for( let i = 0; i < keypoints.length; i ++ ) {
+
+                            const [
+                                x,
+                                y,
+                                z,
+                            ] = keypoints[ i ];
+
+                            console.info(
+                                `Keypoint ${ i }: [${ x }, ${ y }, ${ z }]`
+                            );
+
+                        }
+
+                    }
+                );
+
+            },
             async sketch(
-                { context }
+                {
+                    context,
+                    width,
+                    height,
+                }
             ) {
+
+                if( ! this.$refs.video )
+                    return;
 
                 // Renderer
                 const renderer = new THREE.WebGLRenderer(
@@ -79,6 +141,11 @@
                         '#333'
                     ),
                     1
+                );
+
+                renderer.setSize(
+                    width,
+                    height
                 );
 
                 renderer.physicallyCorrectLights = true;
@@ -132,6 +199,12 @@
                                       type: 'f',
                                       value: 0,
                                   },
+                                  video: {
+                                      type: 't',
+                                      value: new THREE.VideoTexture(
+                                          this.$refs.video
+                                      ),
+                                  },
                               },
                           }
                       )
@@ -139,11 +212,56 @@
                           geometry,
                           material
                       )
+                      //   Webcam
+                      , webcamReady = async() => {
+
+                          console.info(
+                              'Clicked or ready'
+                          );
+
+                          material.uniforms.video.value.needsUpdate = true;
+
+                          await this.findFaces();
+
+                      }
                 ;
 
                 scene.add(
                     plane
                 );
+
+                this.facemesh = await facemesh.load(
+                    {
+                        maxFaces: 1,
+                    }
+                );
+
+                this.$refs.video.width = 250;
+                this.$refs.video.height = 180;
+
+                // eslint-disable-next-line
+                this.$refs.video.srcObject = await navigator.mediaDevices.getUserMedia(
+                    {
+                        audio: false,
+                        video: {
+                            width: 250,
+                            height: 180,
+                            facingMode: 'user',
+                        },
+                    }
+                );
+
+                this.$refs.video.addEventListener(
+                    'click',
+                    webcamReady,
+                    false
+                );
+                this.$refs.video.addEventListener(
+                    'canplaythrough',
+                    webcamReady
+                );
+
+                await this.$refs.video.play();
 
                 // Render
                 return {
@@ -154,7 +272,7 @@
                         }
                     ) {
 
-                        // Animation -> depends on `duration` setting
+                        // Animation -> depends on `duration`
                         plane.rotation.y = playhead * 2 * Math.PI;
 
                         // Uniforms for Shaders

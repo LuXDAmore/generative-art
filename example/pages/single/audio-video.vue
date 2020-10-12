@@ -1,7 +1,7 @@
 <template>
     <main class="container canvas-container">
 
-        <h6 ref="title" class="absolute z-index--1 text--center text--red no-pointer-event">
+        <h6 ref="title" class="absolute z-index--1 text--center text--red no-pointer-event cursor-pointer">
             Click on the canvas<br>
             <small>(allow access to camera and microphone)</small>
         </h6>
@@ -39,7 +39,7 @@
 
     // Page
     export default {
-        name: 'page-7',
+        name: 'audio-video',
         data: () => (
             {
                 sketchManager: null,
@@ -230,17 +230,19 @@
                           video.srcObject = stream;
                           video.width = width;
                           video.height = height;
+                          video.playsinline = true;
+                          video.muted = true;
                           video.autoplay = true;
 
-                          video.play();
+                          video.oncanplaythrough = () => ( material.uniforms.video.value.needsUpdate = true );
 
-                          material.uniforms.video.value.needsUpdate = true;
+                          video.play();
 
                       }
                       //   User permissions
                       , askForMedia = () => {
 
-                          // FIXME: Da fare meglio questa parte
+                          // FIXME: It's should be done better
                           canvas.removeEventListener(
                               'click',
                               askForMedia,
@@ -249,35 +251,63 @@
 
                           this.$refs.title.remove();
 
-                          navigator // eslint-disable-line compat/compat
-                              .mediaDevices
-                              .getUserMedia(
-                                  {
-                                      audio: true,
-                                      video: false,
-                                  }
-                              )
-                              .then(
-                                  onAudioSuccess
-                              )
-                          ;
+                          try {
 
-                          navigator // eslint-disable-line compat/compat
-                              .mediaDevices
-                              .getUserMedia(
-                                  {
-                                      video: {
-                                          width,
-                                          height,
-                                          facingMode: 'user',
-                                      },
-                                      audio: false,
-                                  }
-                              )
-                              .then(
-                                  onVideoSuccess
-                              )
-                          ;
+                              navigator // eslint-disable-line compat/compat
+                                  .mediaDevices
+                                  .getUserMedia(
+                                      {
+                                          audio: true,
+                                          video: false,
+                                      }
+                                  )
+                                  .then(
+                                      onAudioSuccess
+                                  )
+                              ;
+
+                          } catch( e ) {
+
+                              console.error(
+                                  e
+                              );
+
+                              window.alert(
+                                  'You must allow access to your microphone'
+                              );
+
+                          }
+
+                          try {
+
+                              navigator // eslint-disable-line compat/compat
+                                  .mediaDevices
+                                  .getUserMedia(
+                                      {
+                                          video: {
+                                              width,
+                                              height,
+                                              facingMode: 'user',
+                                          },
+                                          audio: false,
+                                      }
+                                  )
+                                  .then(
+                                      onVideoSuccess
+                                  )
+                              ;
+
+                          } catch( e ) {
+
+                              console.error(
+                                  e
+                              );
+
+                              window.alert(
+                                  'You must allow access to your webcam'
+                              );
+
+                          }
 
                       }
                       // Materials

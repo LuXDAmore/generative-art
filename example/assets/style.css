@@ -45,13 +45,6 @@ body {
 
 }
 
-.readme {
-
-    min-height: 100vh;
-    padding-top: 45px;
-
-}
-
 h1 {
 
     font-size: 2em;
@@ -97,5 +90,23 @@ a {
 .no-pointer-event {
 
     pointer-events: none;
+
+}
+
+.cursor-pointer {
+
+    cursor: pointer;
+
+}
+
+.pin-r {
+
+    right: 16px;
+
+}
+
+.pin-b {
+
+    bottom: 16px;
 
 }

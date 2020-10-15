@@ -5,9 +5,13 @@
 uniform mediump float time;
 uniform mediump float playhead;
 
+varying vec2 vUv;
+varying vec3 vNormal;
+varying vec3 face;
+
 // Main
 void main () {
 
-    gl_FragColor = vec4( playhead, playhead, playhead, 1. );
+    gl_FragColor = vec4( face.x, face.y, 1., 1. );
 
 }

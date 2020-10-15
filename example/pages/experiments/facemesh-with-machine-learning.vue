@@ -1,17 +1,17 @@
 <template>
     <main class="container canvas-container">
 
+        <canvas ref="canvas" />
+
         <video
             v-show="showVideo"
             ref="video"
             preload="auto"
-            class="absolute z-index--1 pin-r pin-b"
+            class="absolute z-index--1 pin-r pin-b cursor--pointer"
             playsinline
             autoplay
             muted
         />
-
-        <canvas ref="canvas" />
 
     </main>
 </template>
@@ -80,44 +80,6 @@
 
         },
         methods: {
-            async findFaces() {
-
-                if( ! this.facemesh )
-                    return;
-
-                const faces = await this.facemesh.estimateFaces(
-                    this.$refs.video
-                );
-
-                if( ! faces.length )
-                    return;
-
-                // Each face object contains a `scaledMesh` property,
-                // which is an array of 468 landmarks.
-                faces.forEach(
-                    face => {
-
-                        const keypoints = face.scaledMesh;
-
-                        // Log facial keypoints.
-                        for( let i = 0; i < keypoints.length; i ++ ) {
-
-                            const [
-                                x,
-                                y,
-                                z,
-                            ] = keypoints[ i ];
-
-                            console.info(
-                                `Keypoint ${ i }: [${ x }, ${ y }, ${ z }]`
-                            );
-
-                        }
-
-                    }
-                );
-
-            },
             async sketch(
                 {
                     context,
@@ -153,15 +115,14 @@
 
                 // Camera
                 const camera = new THREE.PerspectiveCamera(
-                    45,
+                    54,
                     1,
                     0.01,
-                    100
                 );
 
                 camera.position.set(
                     2,
-                    2,
+                    1,
                     4,
                 );
 
@@ -175,12 +136,16 @@
                           camera,
                           context.canvas
                       )
+                      // Video
+                      , videoWidth = 250
+                      , videoHeight = 160
                       // Scene
                       , scene = new THREE.Scene()
-                      , geometry = new THREE.BoxBufferGeometry(
-                          1,
-                          1,
-                          1
+                      , geometry = new THREE.PlaneBufferGeometry(
+                          3,
+                          3,
+                          54,
+                          54,
                       )
                       , material = new THREE.ShaderMaterial(
                           {
@@ -212,56 +177,116 @@
                           geometry,
                           material
                       )
-                      //   Webcam
-                      , webcamReady = async() => {
-
-                          console.info(
-                              'Clicked or ready'
-                          );
-
-                          material.uniforms.video.value.needsUpdate = true;
-
-                          await this.findFaces();
-
-                      }
+                      // Attributes
+                      , vertices = new Float32Array(
+                          new Array(
+                              1404
+                          ).fill(
+                              0
+                          )
+                      )
+                      , faceLandmarks = new THREE.BufferAttribute(
+                          vertices,
+                          3,
+                      )
                 ;
+
+                faceLandmarks.name = 'faceLandmarks';
+
+                geometry.setAttribute(
+                    'faceLandmarks',
+                    faceLandmarks
+                );
 
                 scene.add(
                     plane
                 );
 
-                this.facemesh = await facemesh.load(
-                    {
-                        maxFaces: 1,
-                    }
-                );
+                // Faces
+                const findFaces = async() => {
 
-                this.$refs.video.width = 250;
-                this.$refs.video.height = 180;
+                          console.info(
+                              geometry.attributes.faceLandmarks
+                          );
 
-                // eslint-disable-next-line
-                this.$refs.video.srcObject = await navigator.mediaDevices.getUserMedia(
-                    {
-                        audio: false,
-                        video: {
-                            width: 250,
-                            height: 180,
-                            facingMode: 'user',
-                        },
-                    }
-                );
+                          if( ! this.facemesh )
+                              return;
+
+                          const faces = await this.facemesh.estimateFaces(
+                              this.$refs.video
+                          );
+
+                          if( ! faces.length )
+                              return;
+
+                          // Each face object contains a `scaledMesh` property,
+                          // which is an array of 468 landmarks.
+                          faces.forEach(
+                              face => {
+
+                                  const vertices = new Float32Array(
+                                      face.scaledMesh.flat()
+                                  );
+
+                                  geometry.attributes.faceLandmarks.array = vertices;
+                                  geometry.attributes.faceLandmarks.needsUpdate = true;
+
+                              }
+                          );
+
+                      }
+                      // Webcam
+                      , webcamReady = async() => {
+
+                          console.info(
+                              'Video clicked'
+                          );
+
+                          // Video loading
+                          this.facemesh = await facemesh.load(
+                              {
+                                  maxFaces: 1,
+                              }
+                          );
+
+                          await findFaces();
+
+                      }
+                ;
+
+                // Webcam
+                this.$refs.video.width = videoWidth;
+                this.$refs.video.height = videoHeight;
 
                 this.$refs.video.addEventListener(
                     'click',
                     webcamReady,
                     false
                 );
-                this.$refs.video.addEventListener(
-                    'canplaythrough',
-                    webcamReady
-                );
 
-                await this.$refs.video.play();
+                try {
+
+                    // eslint-disable-next-line
+                    this.$refs.video.srcObject = await navigator.mediaDevices.getUserMedia(
+                        {
+                            audio: false,
+                            video: {
+                                width: videoWidth,
+                                height: videoHeight,
+                                facingMode: 'user',
+                            },
+                        }
+                    );
+
+                    this.$refs.video.play();
+
+                } catch( e ) {
+
+                    console.error(
+                        e
+                    );
+
+                }
 
                 // Render
                 return {
@@ -273,7 +298,7 @@
                     ) {
 
                         // Animation -> depends on `duration`
-                        plane.rotation.y = playhead * 2 * Math.PI;
+                        // plane.rotation.y = playhead * 2 * Math.PI;
 
                         // Uniforms for Shaders
                         material.uniforms.time.value = time;

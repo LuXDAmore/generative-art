@@ -257,7 +257,7 @@ export default {
                 'postcss-import': {},
                 'postcss-url': {},
                 'postcss-scoped': {},
-                'postcss-preset-env': this.preset,
+                'postcss-preset-env': ( this ? ( this.preset || {} ) : {} ),
                 'postcss-combine-duplicated-selectors': {
                     removeDuplicatedValues: true,
                     removeDuplicatedProperties: true,

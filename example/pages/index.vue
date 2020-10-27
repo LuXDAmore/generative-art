@@ -32,6 +32,7 @@
     // Page
     export default {
         name: 'homepage',
+        layout: 'readme',
         head() {
 
             return {

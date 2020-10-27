@@ -75,7 +75,7 @@
                 links: [
                     {
                         url: '/',
-                        text: 'Homepage',
+                        text: 'HOMEPAGE',
                     },
                     {
                         url: '/single/three-js-starter',

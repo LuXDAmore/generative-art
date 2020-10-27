@@ -110,7 +110,7 @@
         "nuxt-compress": "^3.0.0",
         "nuxt-jsonld": "^1.4.9",
         "nuxt-start": "^2.14.7",
-        "postcss-combine-duplicated-selectors": "10.0.2",
+        "postcss-combine-duplicated-selectors": "9.4.0",
         "postcss-scoped": "^0.0.0",
         "prettier": "^2.0.5",
         "prettier-eslint": "^11.0.0",

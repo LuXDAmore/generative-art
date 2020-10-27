@@ -1,14 +1,6 @@
-.readme {
-
-    min-height: 100vh;
-    padding-top: 45px;
-
-}
-
 .readme .markdown-body {
 
-    width: 736px;
-    max-width: 100%;
+    max-width: 736px;
     padding: 0 36px;
     line-height: 1.5;
     background-color: #fff;

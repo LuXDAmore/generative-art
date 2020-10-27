@@ -17,7 +17,6 @@ body > div > div:not(.dg.ac),
 .layout,
 main {
 
-    min-height: 100vh;
     margin: 0;
     padding: 0;
 
@@ -25,8 +24,8 @@ main {
 
 body {
 
+    position: relative;
     color: #333;
-
     line-height: 1.5;
 
 }
@@ -40,8 +39,25 @@ body {
     justify-content: center;
     width: 100%;
     max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+main {
+
     min-height: 100vh;
-    margin: 0 auto;
+    padding-top: 135px;
+
+}
+
+@media ( min-width: 800px ) {
+
+    main {
+
+        padding-top: 45px;
+
+    }
 
 }
 

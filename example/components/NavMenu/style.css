@@ -1,6 +1,8 @@
 .nav-menu {
 
     position: absolute;
+    top: 0;
+    left: 0;
     z-index: 2;
     display: flex;
     flex: 1 1 100%;
@@ -74,5 +76,12 @@
     color: #fff;
     font-weight: lighter;
     white-space: nowrap;
+
+}
+
+.nav-menu .nav a.nuxt-link-exact-active {
+
+    font-weight: bolder;
+    text-decoration: none;
 
 }

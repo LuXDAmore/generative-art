@@ -11,11 +11,7 @@
 }
 
 html,
-body,
-body > div,
-body > div > div:not(.dg.ac),
-.layout,
-main {
+body {
 
     margin: 0;
     padding: 0;
@@ -47,17 +43,6 @@ body {
 main {
 
     min-height: 100vh;
-    padding-top: 135px;
-
-}
-
-@media ( min-width: 800px ) {
-
-    main {
-
-        padding-top: 45px;
-
-    }
 
 }
 

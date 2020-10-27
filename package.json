@@ -38,6 +38,7 @@
         "dev": "nuxt -o example",
         "dev:offline": "yarn --offline dev",
         "build": "nuxt build example",
+        "export": "nuxt export example",
         "generate": "nuxt generate example",
         "start": "nuxt start example",
         "prestart": "yarn build",

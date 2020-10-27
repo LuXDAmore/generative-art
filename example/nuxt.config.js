@@ -154,6 +154,7 @@ if( IS_PROD && ENV.ANALYTICS_ID ) {
 
 // Nuxt config
 export default {
+    target: 'static',
     modern: true,
     components: false,
     features: {

@@ -4,7 +4,6 @@
         <canvas ref="canvas" />
 
         <video
-            v-show="showVideo"
             ref="video"
             preload="auto"
             class="absolute z-index--1 pin-r pin-b cursor--pointer"
@@ -42,7 +41,6 @@
             {
                 sketchManager: null,
                 facemesh: null,
-                showVideo: true,
             }
         ),
         async mounted() {
@@ -54,7 +52,7 @@
                     // Settings of the sketch
                     {
                         animate: true,
-                        duration: 10,
+                        duration: 6.279582609797744,
                         context: 'webgl',
                         attributes: {
                             antialias: true,
@@ -85,16 +83,17 @@
                     context,
                     width,
                     height,
+                    pixelRatio,
+                    update,
                 }
             ) {
-
-                if( ! this.$refs.video )
-                    return;
 
                 // Renderer
                 const renderer = new THREE.WebGLRenderer(
                     {
                         context,
+                        antialias: true,
+                        alpha: true,
                     }
                 );
 
@@ -105,30 +104,41 @@
                     1
                 );
 
-                renderer.setSize(
-                    width,
-                    height
-                );
+                const getPixelRatio = (
+                          p = pixelRatio
+                      ) => ( p >= 3 ? 3 : p )
+                      , calcWidthAndHeight = (
+                          w = width,
+                          h = height,
+                          minify = 1,
+                          ratio = w / h
+                      ) => {
+
+                          const width = ( h * ratio ) / minify
+                                , height = h / minify
+                          ;
+
+                          return {
+                              width,
+                              height,
+                              ratio,
+                          };
+
+                      }
+                      , dimensions = calcWidthAndHeight()
+                ;
 
                 renderer.physicallyCorrectLights = true;
                 renderer.outputEncoding = THREE.sRGBEncoding;
 
                 // Camera
                 const camera = new THREE.PerspectiveCamera(
-                    54,
-                    1,
+                    81,
+                    dimensions.width / dimensions.height,
                     0.01,
                 );
 
-                camera.position.set(
-                    2,
-                    1,
-                    4,
-                );
-
-                camera.lookAt(
-                    new THREE.Vector3()
-                );
+                camera.position.z = 1000;
 
                 // Controls
                 const { OrbitControls } = await orbitControlsImporter()
@@ -136,84 +146,95 @@
                           camera,
                           context.canvas
                       )
-                      // Video
-                      , videoWidth = 250
-                      , videoHeight = 160
                       // Scene
                       , scene = new THREE.Scene()
-                      , geometry = new THREE.PlaneBufferGeometry(
-                          3,
-                          3,
-                          54,
-                          54,
+                      , planeGeometry = new THREE.PlaneBufferGeometry(
+                          1000,
+                          1000,
+                          10,
+                          10
                       )
-                      , material = new THREE.ShaderMaterial(
+                      , planeMaterial = new THREE.MeshBasicMaterial(
+                          {
+                              color: new THREE.Color(
+                                  '#123'
+                              ),
+                              side: THREE.DoubleSide,
+                          }
+                      )
+                      , pointsGeometry = new THREE.BufferGeometry()
+                      , pointsMaterial = new THREE.ShaderMaterial(
                           {
                               vertexShader,
                               fragmentShader,
                               extensions: {
                                   derivatives: '#extension GL_OES_standard_derivatives : enable',
                               },
+                              depthTest: false,
+                              depthWrite: false,
+                              transparent: true,
                               side: THREE.DoubleSide,
                               uniforms: {
-                                  time: {
+                                  uPlayhead: {
                                       type: 'f',
                                       value: 0,
-                                  },
-                                  playhead: {
-                                      type: 'f',
-                                      value: 0,
-                                  },
-                                  video: {
-                                      type: 't',
-                                      value: new THREE.VideoTexture(
-                                          this.$refs.video
-                                      ),
                                   },
                               },
                           }
                       )
+                      , points = new THREE.Points(
+                          pointsGeometry,
+                          pointsMaterial
+                      )
                       , plane = new THREE.Mesh(
-                          geometry,
-                          material
+                          planeGeometry,
+                          planeMaterial
                       )
                       // Attributes
-                      , vertices = new Float32Array(
-                          new Array(
-                              1404
-                          ).fill(
-                              0
+                      , number = 468
+                      , numberOfCoords = 3
+                      , videoRatioDimension = 3
+                      , pointsPositions = new THREE
+                          .Float32BufferAttribute(
+                              new Array(
+                                  number * numberOfCoords
+                              ).fill(
+                                  0
+                              ),
+                              numberOfCoords,
                           )
-                      )
-                      , faceLandmarks = new THREE.BufferAttribute(
-                          vertices,
-                          3,
-                      )
+                          .setUsage(
+                              THREE.DynamicDrawUsage
+                          )
                 ;
 
-                faceLandmarks.name = 'faceLandmarks';
+                planeGeometry.name = 'face';
+                pointsPositions.name = 'position';
 
-                geometry.setAttribute(
-                    'faceLandmarks',
-                    faceLandmarks
+                pointsGeometry.setAttribute(
+                    'position',
+                    pointsPositions
+                );
+
+                scene.add(
+                    points
                 );
 
                 scene.add(
                     plane
                 );
 
+                if( ! this.$refs.video )
+                    return;
+
                 // Faces
                 const findFaces = async() => {
-
-                          console.info(
-                              geometry.attributes.faceLandmarks
-                          );
 
                           if( ! this.facemesh )
                               return;
 
                           const faces = await this.facemesh.estimateFaces(
-                              this.$refs.video
+                              this.$refs.video,
                           );
 
                           if( ! faces.length )
@@ -224,12 +245,33 @@
                           faces.forEach(
                               face => {
 
-                                  const vertices = new Float32Array(
-                                      face.scaledMesh.flat()
+                                  if( ! face.scaledMesh )
+                                      return;
+
+                                  face.scaledMesh.forEach(
+                                      (
+                                          [
+                                              x,
+                                              y,
+                                              z,
+                                          ],
+                                          index
+                                      ) => pointsPositions.setXYZ(
+                                          index,
+                                          x,
+                                          y,
+                                          z,
+                                      )
                                   );
 
-                                  geometry.attributes.faceLandmarks.array = vertices;
-                                  geometry.attributes.faceLandmarks.needsUpdate = true;
+                                  pointsGeometry.attributes.position.needsUpdate = true;
+
+                                  console.info(
+                                      'Face updated',
+                                      {
+                                          pointsGeometry,
+                                      }
+                                  );
 
                               }
                           );
@@ -237,10 +279,6 @@
                       }
                       // Webcam
                       , webcamReady = async() => {
-
-                          console.info(
-                              'Video clicked'
-                          );
 
                           // Video loading
                           this.facemesh = await facemesh.load(
@@ -252,61 +290,83 @@
                           await findFaces();
 
                       }
+                      // Webcam to Video
+                      , videoInitialization = async(
+                          w = width,
+                          h = height
+                      ) => {
+
+                          try {
+
+                              if( ! this.$refs.video )
+                                  return;
+
+                              // Video
+                              const videoDimension = calcWidthAndHeight(
+                                        w,
+                                        h,
+                                        videoRatioDimension
+                                    )
+                                    , videoWidth = videoDimension.width
+                                    , videoHeight = videoDimension.height
+                              ;
+
+                              this.$refs.video.width = videoWidth;
+                              this.$refs.video.height = videoHeight;
+
+                              // eslint-disable-next-line compat/compat
+                              this.$refs.video.srcObject = await navigator.mediaDevices.getUserMedia(
+                                  {
+                                      audio: false,
+                                      video: {
+                                          width: w,
+                                          height: h,
+                                          facingMode: 'user',
+                                      },
+                                  }
+                              );
+
+                              await webcamReady();
+
+                              await this.$refs.video.play();
+
+                          } catch( e ) {
+
+                              console.error(
+                                  e
+                              );
+
+                          }
+
+                      }
                 ;
 
                 // Webcam
-                this.$refs.video.width = videoWidth;
-                this.$refs.video.height = videoHeight;
-
                 this.$refs.video.addEventListener(
                     'click',
-                    webcamReady,
+                    findFaces,
                     false
                 );
 
-                try {
-
-                    // eslint-disable-next-line
-                    this.$refs.video.srcObject = await navigator.mediaDevices.getUserMedia(
-                        {
-                            audio: false,
-                            video: {
-                                width: videoWidth,
-                                height: videoHeight,
-                                facingMode: 'user',
-                            },
-                        }
-                    );
-
-                    this.$refs.video.play();
-
-                } catch( e ) {
-
-                    console.error(
-                        e
-                    );
-
-                }
+                this.$refs.video.addEventListener(
+                    'playing',
+                    findFaces,
+                    false
+                );
 
                 // Render
                 return {
                     render(
-                        {
-                            time,
-                            playhead,
-                        }
+                        { playhead }
                     ) {
 
-                        // Animation -> depends on `duration`
-                        // plane.rotation.y = playhead * 2 * Math.PI;
-
                         // Uniforms for Shaders
-                        material.uniforms.time.value = time;
-                        material.uniforms.playhead.value = playhead;
+                        pointsMaterial.uniforms.uPlayhead.value = playhead;
 
-                        // Threejs
+                        // Camera
                         controls.update();
 
+                        // Threejs
                         renderer.render(
                             scene,
                             camera
@@ -322,19 +382,43 @@
                         }
                     ) {
 
-                        renderer.setPixelRatio(
-                            pixelRatio
+                        console.info(
+                            'resize',
+                            viewportWidth,
+                            viewportHeight,
+                        );
+
+                        const dimensions = calcWidthAndHeight(
+                            viewportWidth,
+                            viewportHeight,
+                        );
+
+                        update(
+                            {
+                                dimensions: [
+                                    dimensions.width,
+                                    dimensions.height,
+                                ],
+                            }
                         );
 
                         renderer.setSize(
-                            viewportWidth,
-                            viewportHeight,
+                            dimensions.width,
+                            dimensions.height,
                             false
                         );
 
-                        camera.aspect = viewportWidth / viewportHeight;
+                        renderer.setPixelRatio(
+                            getPixelRatio(
+                                pixelRatio
+                            )
+                        );
+
+                        camera.aspect = dimensions.width / dimensions.height;
 
                         camera.updateProjectionMatrix();
+
+                        videoInitialization();
 
                     },
                     unload() {

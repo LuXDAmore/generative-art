@@ -1,17 +1,19 @@
 // VSCode Frag
 #pragma vscode_glsllint_stage : frag
 
-// Uniforms
-uniform mediump float time;
-uniform mediump float playhead;
+// Const
+const float PI = 3.1415926535897932384626433832795;
 
-varying vec2 vUv;
-varying vec3 vNormal;
-varying vec3 face;
+// Uniforms
+uniform mediump float uPlayhead;
+uniform sampler2D pointTexture;
+
+// Varying
+varying vec3 vPos;
 
 // Main
 void main () {
 
-    gl_FragColor = vec4( face.x, face.y, 1., 1. );
+    gl_FragColor = vec4( gl_PointCoord, 1., 1. ) * vec4( vPos, 1. );
 
 }

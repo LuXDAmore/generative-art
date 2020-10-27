@@ -1,26 +1,17 @@
 // VSCode vertex
 #pragma vscode_glsllint_stage : vert
 
-// Uniforms - Automatically injected by ThreeJs
-// uniform mat4 position;
-// uniform mat4 modelViewMatrix;
-// uniform mat4 projectionMatrix;
-
-varying vec2 vUv;
-varying vec3 vNormal;
-varying vec3 face;
-
-attribute vec3 faceLandmarks;
+// Varying
+varying vec3 vPos;
 
 // Main
 void main () {
 
-    vUv = uv;
-    vNormal = normal;
-
-    face = faceLandmarks;
+    vPos = position.xyz;
 
    vec4 mvPosition = modelViewMatrix * vec4( position.xyz, 1.0 );
+
+    gl_PointSize = 1000. * ( 1. / - mvPosition.z );
 
     gl_Position = projectionMatrix * mvPosition;
 

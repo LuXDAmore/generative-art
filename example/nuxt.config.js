@@ -206,7 +206,7 @@ export default {
     /*
     ** Watch module
     */
-     watch: [ moduleFile ],
+    watch: [ '../lib/**/*.*' ],
     /*
     ** Router
     */

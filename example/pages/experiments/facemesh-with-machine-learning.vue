@@ -83,8 +83,6 @@
                     context,
                     width,
                     height,
-                    pixelRatio,
-                    update,
                 }
             ) {
 
@@ -104,41 +102,29 @@
                     1
                 );
 
-                const getPixelRatio = (
-                          p = pixelRatio
-                      ) => ( p >= 3 ? 3 : p )
-                      , calcWidthAndHeight = (
-                          w = width,
-                          h = height,
-                          minify = 1,
-                          ratio = w / h
-                      ) => {
-
-                          const width = ( h * ratio ) / minify
-                                , height = h / minify
-                          ;
-
-                          return {
-                              width,
-                              height,
-                              ratio,
-                          };
-
-                      }
-                      , dimensions = calcWidthAndHeight()
-                ;
-
                 renderer.physicallyCorrectLights = true;
                 renderer.outputEncoding = THREE.sRGBEncoding;
 
                 // Camera
                 const camera = new THREE.PerspectiveCamera(
-                    81,
-                    dimensions.width / dimensions.height,
+                    92,
+                    width / height,
                     0.01,
                 );
 
-                camera.position.z = 1000;
+                camera.position.set(
+                    0,
+                    0,
+                    250,
+                );
+
+                camera.lookAt(
+                    new THREE.Vector3(
+                        1.0,
+                        1.0,
+                        1.0
+                    )
+                );
 
                 // Controls
                 const { OrbitControls } = await orbitControlsImporter()
@@ -149,10 +135,8 @@
                       // Scene
                       , scene = new THREE.Scene()
                       , planeGeometry = new THREE.PlaneBufferGeometry(
-                          1000,
-                          1000,
-                          10,
-                          10
+                          100,
+                          100,
                       )
                       , planeMaterial = new THREE.MeshBasicMaterial(
                           {
@@ -245,10 +229,10 @@
                           faces.forEach(
                               face => {
 
-                                  if( ! face.scaledMesh )
+                                  if( ! face.mesh )
                                       return;
 
-                                  face.scaledMesh.forEach(
+                                  face.mesh.forEach(
                                       (
                                           [
                                               x,
@@ -302,13 +286,8 @@
                                   return;
 
                               // Video
-                              const videoDimension = calcWidthAndHeight(
-                                        w,
-                                        h,
-                                        videoRatioDimension
-                                    )
-                                    , videoWidth = videoDimension.width
-                                    , videoHeight = videoDimension.height
+                              const videoWidth = width / videoRatioDimension
+                                    , videoHeight = height / videoRatioDimension
                               ;
 
                               this.$refs.video.width = videoWidth;
@@ -382,42 +361,22 @@
                         }
                     ) {
 
-                        console.info(
-                            'resize',
-                            viewportWidth,
-                            viewportHeight,
-                        );
-
-                        const dimensions = calcWidthAndHeight(
-                            viewportWidth,
-                            viewportHeight,
-                        );
-
-                        update(
-                            {
-                                dimensions: [
-                                    dimensions.width,
-                                    dimensions.height,
-                                ],
-                            }
-                        );
-
+                        // ThreeJs
                         renderer.setSize(
-                            dimensions.width,
-                            dimensions.height,
+                            viewportWidth,
+                            viewportHeight,
                             false
                         );
 
                         renderer.setPixelRatio(
-                            getPixelRatio(
-                                pixelRatio
-                            )
+                            pixelRatio
                         );
 
-                        camera.aspect = dimensions.width / dimensions.height;
-
+                        // Camera
+                        camera.aspect = viewportHeight / viewportHeight;
                         camera.updateProjectionMatrix();
 
+                        // Webcam
                         videoInitialization();
 
                     },

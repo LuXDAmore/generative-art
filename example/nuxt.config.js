@@ -155,6 +155,14 @@ if( IS_PROD && ENV.ANALYTICS_ID ) {
 // Nuxt config
 export default {
     modern: true,
+    components: false,
+    features: {
+        transitions: false,
+        validate: false,
+    },
+    vueMeta: {
+        refreshOnceOnNavigation: true,
+    },
     css: [
         'modern-normalize/modern-normalize.css',
         '~assets/style.css',
@@ -180,54 +188,35 @@ export default {
         __dangerouslyDisableSanitizersByTagID,
     },
     /*
-     * Plugins
-     */
+    ** Plugins
+    */
     plugins: [ '~/plugins/jsonld' ],
     /*
-     * Modules
-     */
+    ** Modules
+    */
     modules,
     sitemap: {
         hostname: PACKAGE.homepage,
         gzip: true,
     },
     /*
-     * buildModules
-     */
+    ** buildModules
+    */
     buildModules,
     /*
-     * Watch module
-     */
+    ** Watch module
+    */
      watch: [ moduleFile ],
     /*
-     * Router
-     */
+    ** Router
+    */
     router: {
         base,
     },
     /*
-     * Build
-     */
+    ** Build
+    */
     build: {
-        babel: {
-            presets: (
-                { isServer }
-            ) => (
-                [
-                    [
-                        require.resolve(
-                            '@nuxt/babel-preset-app'
-                        ),
-                        {
-                            buildTarget: isServer ? 'server' : 'client',
-                            corejs: {
-                                version: 3,
-                            },
-                        },
-                    ],
-                ]
-            ),
-        },
         loaders: {
             vue: {
                 compilerOptions: {
@@ -236,14 +225,46 @@ export default {
                 },
             },
         },
-        /*
-         ** PostCSS
-         */
+        splitChunks: {
+            layouts: true,
+            pages: true,
+            commons: true,
+        },
+        babel: {
+            presets: (
+                _,
+                [
+                    preset,
+                    options,
+                ]
+            ) => [
+                [
+                    preset,
+                    {
+                        ... options,
+                        corejs: {
+                            ... ( options.corejs || {} ),
+                            version: 3,
+                        },
+                    },
+                ],
+            ],
+        },
         postcss: {
+            parser: 'postcss-scss',
+            syntax: 'postcss-scss',
             plugins: {
                 'postcss-import': {},
                 'postcss-url': {},
                 'postcss-scoped': {},
+                'postcss-preset-env': this.preset,
+                'postcss-combine-duplicated-selectors': {
+                    removeDuplicatedValues: true,
+                    removeDuplicatedProperties: true,
+                },
+                cssnano: {
+                    preset: 'default',
+                },
             },
             preset: {
                 stage: 2,
@@ -289,8 +310,8 @@ export default {
         ) {
 
             /*
-             ** ESLint loaded
-             */
+            ** ESLint loaded
+            */
             isDev && isClient && config.module.rules.push(
                 {
                     enforce: 'pre',
@@ -303,8 +324,25 @@ export default {
         },
     },
     /*
-     * Generate
-     */
+    ** Render
+    */
+    render: {
+        resourceHints: true,
+        http2: {
+            push: true,
+        },
+    },
+    /*
+    ** Vue
+    */
+    vue: {
+        config: {
+            productionTip: false,
+        },
+    },
+    /*
+    ** Generate
+    */
     generate: {
         dir: resolve(
             __dirname,
@@ -312,16 +350,16 @@ export default {
         ),
     },
     /*
-     * Env
-     */
+    ** Env
+    */
     env: {
         ... ENV,
         package: PACKAGE,
         base,
     },
     /*
-     * Server
-     */
+    ** Server
+    */
     server: {
         host: '0.0.0.0',
     },

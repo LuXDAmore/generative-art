@@ -1,7 +1,8 @@
 # TODO
 
-> Just asking myself if i should do more.
+> I'm asking myself if i should do more.
 
-- Add tests;
+- Add more tests;
+- Improve the documentation and the examples;
 - Check compatibility with P5 (actually not working);
-- More config options?
+- More configurations / options?

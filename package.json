@@ -108,7 +108,7 @@
         "markdownlint": "^0.21.1",
         "modern-normalize": "^1.0.0",
         "nuxt": "^2.14.7",
-        "nuxt-compress": "^3.0.0",
+        "nuxt-compress": "^4.0.0",
         "nuxt-jsonld": "^1.4.9",
         "nuxt-start": "^2.14.7",
         "postcss-combine-duplicated-selectors": "9.4.0",
@@ -124,6 +124,6 @@
         "stylelint-no-unsupported-browser-features": "^4.1.3",
         "stylelint-order": "^4.1.0",
         "stylelint-scss": "^3.17.2",
-        "three": "^0.121.1"
+        "three": "^0.122.0"
     }
 }

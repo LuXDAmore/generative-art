@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/LuXDAmore/generative-art/compare/v1.5.3...v1.6.0) (2020-10-28)
+
+
+### Features
+
+* added maxpixelratio ([d0e0d0b](https://github.com/LuXDAmore/generative-art/commit/d0e0d0bef531f15cb861ae14665ee99f51eaa210))
+* better nuxt config file ([79adf48](https://github.com/LuXDAmore/generative-art/commit/79adf48837894a0f93eba7de91e672fec6ad3e35))
+* face mesh example in progress ([07c755e](https://github.com/LuXDAmore/generative-art/commit/07c755edcab06574cc288acc82add2195e3e4ac7))
+* facemesh ([27366f7](https://github.com/LuXDAmore/generative-art/commit/27366f7da14cfd37fb9b09e6797ed99ff6529c27))
+* new examples ([1f7c37a](https://github.com/LuXDAmore/generative-art/commit/1f7c37a76e40bbc1ac59ba3f173f2c4aeeb9b4f9))
+
+
+### Bug Fixes
+
+* dev dep ([0237ee5](https://github.com/LuXDAmore/generative-art/commit/0237ee58434a1af1bc134f14f91c962c654521af))
+* dev deps ([6f826a2](https://github.com/LuXDAmore/generative-art/commit/6f826a24a7067e74a427f45f1a8527672515735b))
+* facemesh ([1f643d5](https://github.com/LuXDAmore/generative-art/commit/1f643d5f1e8aba8fd72476611946cf4391a46726))
+* linting ([a0c49d6](https://github.com/LuXDAmore/generative-art/commit/a0c49d6e6047e59bc07a179ebce9ff757aefb5e1))
+* navigation ([0ffc2ba](https://github.com/LuXDAmore/generative-art/commit/0ffc2ba01b97f0f4ec9c391247b0b130a9c1503e))
+* null coaleshing during build ([05911d3](https://github.com/LuXDAmore/generative-art/commit/05911d321fc0a3f2ad0f22e86aff32e26d5dbb2a))
+* removed extra things ([9c050b3](https://github.com/LuXDAmore/generative-art/commit/9c050b3ef793f048a73ade63db1ed76c04e7714f))
+* restored splitting ([fb9d692](https://github.com/LuXDAmore/generative-art/commit/fb9d6925838bbebfd4c3f91f2c742e672afba5fa))
+* style linting ([8750fc6](https://github.com/LuXDAmore/generative-art/commit/8750fc6ffe195e2209d90d5259c6c2dfc09e349e))
+* test ([abdd52c](https://github.com/LuXDAmore/generative-art/commit/abdd52cc38f8b5d3404f656dadc4552d013a0f7a))
+* test ([8ec6a36](https://github.com/LuXDAmore/generative-art/commit/8ec6a3633c57b357c06209f3644900c957842dd2))
+* test bug ([0c742d0](https://github.com/LuXDAmore/generative-art/commit/0c742d0de9bafa5cde5b2764fa12e9156fab40ef))
+* test timing ([127ebee](https://github.com/LuXDAmore/generative-art/commit/127ebee6d92f3db2399dbbc513a59e759d9477c1))
+* updated dev dep ([36eeb91](https://github.com/LuXDAmore/generative-art/commit/36eeb91637bbe63f3912af59a5004bb8b29769ce))
+* updating mouse only in animation phase ([6da6e5c](https://github.com/LuXDAmore/generative-art/commit/6da6e5c0debb6228805b70fbd31abf5a04acd36f))
+
 ### [1.5.3](https://github.com/LuXDAmore/generative-art/compare/v1.5.2...v1.5.3) (2020-06-12)
 
 ## [1.5.0](https://github.com/LuXDAmore/generative-art/compare/v1.4.1...v1.5.0) (2020-04-21)

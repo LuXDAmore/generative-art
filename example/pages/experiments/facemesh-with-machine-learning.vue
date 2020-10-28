@@ -209,9 +209,9 @@
                     points
                 );
 
-                // scene.add(
-                //     plane
-                // );
+                scene.add(
+                    plane
+                );
 
                 if( ! this.$refs.video )
                     return;

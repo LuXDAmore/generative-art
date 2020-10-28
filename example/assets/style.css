@@ -52,6 +52,12 @@ h1 {
 
 }
 
+.w-full {
+
+    width: 100%;
+
+}
+
 .absolute {
 
     position: absolute;
@@ -67,6 +73,12 @@ h1 {
 .z-index--1 {
 
     z-index: 1;
+
+}
+
+.z-index--2 {
+
+    z-index: 2;
 
 }
 

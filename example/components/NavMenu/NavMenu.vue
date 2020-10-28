@@ -1,6 +1,7 @@
 <template>
     <div class="nav-menu">
-        <details class="nav-menu__details">
+
+        <details v-if="links.length" class="nav-menu__details">
 
             <summary class="nav-menu__summary">
                 <h2>
@@ -19,7 +20,8 @@
             </nav>
 
         </details>
-        <details class="nav-menu__details" :open="keepNavigationMenuOpened">
+
+        <details v-if="linksNavigate.length" class="nav-menu__details">
 
             <summary class="nav-menu__summary">
                 <h2>
@@ -38,7 +40,8 @@
             </nav>
 
         </details>
-        <details class="nav-menu__details">
+
+        <details v-if="linksExperiments.length" class="nav-menu__details">
 
             <summary class="nav-menu__summary">
                 <h2>
@@ -57,6 +60,7 @@
             </nav>
 
         </details>
+
     </div>
 </template>
 
@@ -64,12 +68,6 @@
     export default {
         name: 'nav-menu',
         inheritAttrs: false,
-        props: {
-            keepNavigationMenuOpened: {
-                type: Boolean,
-                default: false,
-            },
-        },
         data: () => (
             {
                 links: [

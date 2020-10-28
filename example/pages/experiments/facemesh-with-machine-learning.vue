@@ -12,6 +12,11 @@
             muted
         />
 
+        <h6 class="w-full absolute z-index--2 text--center no-pointer-event pin-r pin-b">
+            Click on the video to see your face<br>
+            <small>(allow access to camera and microphone)</small>
+        </h6>
+
     </main>
 </template>
 
@@ -204,9 +209,9 @@
                     points
                 );
 
-                scene.add(
-                    plane
-                );
+                // scene.add(
+                //     plane
+                // );
 
                 if( ! this.$refs.video )
                     return;

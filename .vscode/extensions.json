@@ -5,6 +5,7 @@
     "recommendations": [
         "octref.vetur",
         "en10ve.threejs",
+        "circledev.glsl-canvas",
         "cadenas.vscode-glsllint",
         "slevesque.vscode-3dviewer",
         "formulahendry.auto-close-tag",

@@ -2,7 +2,7 @@
 #pragma vscode_glsllint_stage : vert
 
 // Uniforms - Automatically injected by ThreeJs
-// uniform mat4 position;
+// attribute vec3 position;
 // uniform mat4 modelViewMatrix;
 // uniform mat4 projectionMatrix;
 

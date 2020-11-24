@@ -8,19 +8,33 @@
 
 <script>
     // ThreeJs
-    import * as THREE from 'three';
-
-    // Shaders
-    import fragmentShader from '~/assets/pages/three-js-starter/shaders/fragmentShader.frag';
-    import vertexShader from '~/assets/pages/three-js-starter/shaders/vertexShader.vert';
+    import {
+        WebGLRenderer,
+        // Mesh, Scene, Material and Geometry
+        Mesh,
+        Scene,
+        MeshStandardMaterial,
+        BoxBufferGeometry,
+        // Camera
+        PerspectiveCamera,
+        // Utils
+        Color,
+        Vector3,
+        sRGBEncoding,
+        DoubleSide,
+    } from 'three';
 
     // ThreeJs Camera Controller
-    const orbitControlsImporter = () => import(
-        'three/examples/jsm/controls/OrbitControls'
-    ).then(
-        m => m.default || m
-    );
+    const orbitControlsLoader = () => import(
+              'three/examples/jsm/controls/OrbitControls'
+          )
+          // ThreeJs Lights
+          , pointLightLoader = () => import(
+              'three/src/lights/PointLight'
+          )
+    ;
 
+    // Page
     export default {
         name: 'three-js-starter',
         data: () => (
@@ -63,103 +77,171 @@
 
         },
         methods: {
-            async sketch(
-                { context }
+            createRenderer(
+                context
             ) {
 
                 // Renderer
-                const renderer = new THREE.WebGLRenderer(
+                const renderer = new WebGLRenderer(
                     {
                         context,
                     }
                 );
 
                 renderer.setClearColor(
-                    new THREE.Color(
-                        '#333'
+                    new Color(
+                        '#121212'
                     ),
                     1
                 );
 
+                renderer.outputEncoding = sRGBEncoding;
                 renderer.physicallyCorrectLights = true;
-                renderer.outputEncoding = THREE.sRGBEncoding;
+
+                return renderer;
+
+            },
+            async createCameraAndControls(
+                {
+                    width,
+                    height,
+                    context: { canvas },
+                }
+            ) {
 
                 // Camera
-                const camera = new THREE.PerspectiveCamera(
+                const camera = new PerspectiveCamera(
                     45,
-                    1,
-                    0.01,
+                    width / height,
+                    0.1,
                     100
                 );
 
                 camera.position.set(
-                    2,
-                    2,
-                    4,
+                    0,
+                    0,
+                    6
                 );
 
                 camera.lookAt(
-                    new THREE.Vector3()
+                    new Vector3()
                 );
 
                 // Controls
-                const { OrbitControls } = await orbitControlsImporter()
+                const { OrbitControls } = await orbitControlsLoader()
                       , controls = new OrbitControls(
                           camera,
-                          context.canvas
+                          canvas
                       )
-                      // Scene
-                      , scene = new THREE.Scene()
-                      , geometry = new THREE.BoxBufferGeometry(
+                ;
+
+                return {
+                    camera,
+                    controls,
+                };
+
+            },
+            createSceneAndMeshMaterialGeometry() {
+
+                // Scene
+                const scene = new Scene()
+                      , geometry = new BoxBufferGeometry(
                           1,
                           1,
                           1
                       )
-                      , material = new THREE.ShaderMaterial(
+                      , material = new MeshStandardMaterial(
                           {
-                              vertexShader,
-                              fragmentShader,
-                              extensions: {
-                                  derivatives: '#extension GL_OES_standard_derivatives : enable',
-                              },
-                              side: THREE.DoubleSide,
-                              uniforms: {
-                                  time: {
-                                      type: 'f',
-                                      value: 0,
-                                  },
-                                  playhead: {
-                                      type: 'f',
-                                      value: 0,
-                                  },
-                              },
+                              side: DoubleSide,
+                              color: new Color(
+                                  '#fff'
+                              ),
                           }
                       )
-                      , plane = new THREE.Mesh(
+                      , mesh = new Mesh(
                           geometry,
                           material
                       )
                 ;
 
+                return {
+                    scene,
+                    material,
+                    mesh,
+                };
+
+            },
+            async createLights() {
+
+                const { PointLight } = await pointLightLoader()
+                      , light = new PointLight(
+                          new Color(
+                              '#f05'
+                          ),
+                          500,
+                          100,
+                          2
+                      );
+
+                light.position.set(
+                    8,
+                    10,
+                    13
+                );
+
+                return {
+                    light,
+                };
+
+            },
+            // Sketch for canvas-sketch
+            async sketch(
+                {
+                    context,
+                    width,
+                    height,
+                }
+            ) {
+
+                const renderer = this.createRenderer(
+                          context
+                      )
+                      , {
+                          camera,
+                          controls,
+                      } = await this.createCameraAndControls(
+                          {
+                              width,
+                              height,
+                              context,
+                          }
+                      )
+                      , { light } = await this.createLights()
+                      , {
+                          scene,
+                          mesh,
+                      } = this.createSceneAndMeshMaterialGeometry()
+                ;
+
                 scene.add(
-                    plane
+                    light
+                );
+
+                scene.add(
+                    mesh
                 );
 
                 // Render
                 return {
                     render(
-                        {
-                            time,
-                            playhead,
-                        }
+                        { playhead }
                     ) {
 
-                        // Animation -> depends on `duration` setting
-                        plane.rotation.y = playhead * 2 * Math.PI;
+                        const speed = ( playhead * 2 * Math.PI );
 
-                        // Uniforms for Shaders
-                        material.uniforms.time.value = time;
-                        material.uniforms.playhead.value = playhead;
+                        // Animation -> depends on `duration` setting
+                        mesh.rotation.y = speed;
+                        mesh.rotation.z = speed;
 
                         // Threejs
                         controls.update();

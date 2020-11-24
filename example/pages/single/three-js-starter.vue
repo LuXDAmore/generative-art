@@ -62,6 +62,12 @@
                     this.sketch,
                 );
 
+                // Destroy it
+                this.$once(
+                    'hook:beforeDestroy',
+                    () => this.sketchManager.unload()
+                );
+
             } catch( e ) {
 
                 console.error(
@@ -69,11 +75,6 @@
                 );
 
             }
-
-        },
-        beforeDestroy() {
-
-            this.sketchManager && this.sketchManager.unload();
 
         },
         methods: {
@@ -166,8 +167,8 @@
 
                 return {
                     scene,
-                    material,
                     mesh,
+                    material,
                 };
 
             },
@@ -181,7 +182,8 @@
                           500,
                           100,
                           2
-                      );
+                      )
+                ;
 
                 light.position.set(
                     8,
@@ -243,9 +245,10 @@
                         mesh.rotation.y = speed;
                         mesh.rotation.z = speed;
 
-                        // Threejs
+                        // Controls
                         controls.update();
 
+                        // Renderer
                         renderer.render(
                             scene,
                             camera
@@ -261,6 +264,7 @@
                         }
                     ) {
 
+                        // Renderer
                         renderer.setPixelRatio(
                             pixelRatio
                         );
@@ -271,8 +275,8 @@
                             false
                         );
 
+                        // Camera
                         camera.aspect = viewportWidth / viewportHeight;
-
                         camera.updateProjectionMatrix();
 
                     },

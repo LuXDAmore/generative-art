@@ -4,10 +4,6 @@
 // Const
 const float PI = 3.1415926535897932384626433832795;
 
-// Uniforms
-uniform mediump float uPlayhead;
-uniform sampler2D pointTexture;
-
 // Varying
 varying vec3 vPos;
 

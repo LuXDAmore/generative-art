@@ -52,9 +52,35 @@ h1 {
 
 }
 
+video {
+
+    display: block;
+    margin: 0;
+    padding: 0;
+
+}
+
+.opacity-50 {
+
+    opacity: .5;
+
+}
+
 .w-full {
 
     width: 100%;
+
+}
+
+.w-screen {
+
+    width: 100vw;
+
+}
+
+.h-screen {
+
+    height: 100vh;
 
 }
 
@@ -109,6 +135,15 @@ a {
 .cursor--pointer {
 
     cursor: pointer;
+
+}
+
+.pin {
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 
 }
 

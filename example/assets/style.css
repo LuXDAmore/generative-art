@@ -60,6 +60,34 @@ video {
 
 }
 
+button {
+
+    width: 100%;
+    max-width: 354px;
+    margin: 16px auto;
+    padding: 8px;
+    color: #f05;
+    font-weight: bold;
+    line-height: 1.36;
+    text-align: center;
+    background-color: #f3f0f1;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    opacity: .9;
+    transition: all .27s ease-in-out;
+    appearance: none;
+
+}
+
+button:hover,
+button:active,
+button:focus {
+
+    opacity: 1;
+
+}
+
 .opacity-50 {
 
     opacity: .5;

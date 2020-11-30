@@ -19,7 +19,6 @@
         PerspectiveCamera,
         // Utils
         Color,
-        Vector3,
         sRGBEncoding,
         DoubleSide,
     } from 'three';
@@ -79,7 +78,12 @@
         },
         methods: {
             createRenderer(
-                context
+                {
+                    context,
+                    width,
+                    height,
+                    color = '#111',
+                }
             ) {
 
                 // Renderer
@@ -91,9 +95,14 @@
 
                 renderer.setClearColor(
                     new Color(
-                        '#121212'
+                        color
                     ),
                     1
+                );
+
+                renderer.setSize(
+                    width,
+                    height
                 );
 
                 renderer.outputEncoding = sRGBEncoding;
@@ -112,20 +121,16 @@
 
                 // Camera
                 const camera = new PerspectiveCamera(
-                    45,
+                    70,
                     width / height,
-                    0.1,
-                    100
+                    0.001,
+                    1000
                 );
 
                 camera.position.set(
                     0,
                     0,
-                    6
-                );
-
-                camera.lookAt(
-                    new Vector3()
+                    4.5
                 );
 
                 // Controls
@@ -172,12 +177,14 @@
                 };
 
             },
-            async createLights() {
+            async createLights(
+                color = '#f05'
+            ) {
 
                 const { PointLight } = await pointLightLoader()
                       , light = new PointLight(
                           new Color(
-                              '#f05'
+                              color
                           ),
                           500,
                           100,
@@ -206,15 +213,19 @@
             ) {
 
                 const renderer = this.createRenderer(
-                          context
+                          {
+                              context,
+                              width,
+                              height,
+                          }
                       )
                       , {
                           camera,
                           controls,
                       } = await this.createCameraAndControls(
                           {
-                              width,
-                              height,
+                              width: window.innerWidth,
+                              height: window.innerHeight,
                               context,
                           }
                       )

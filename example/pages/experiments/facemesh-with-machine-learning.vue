@@ -3,7 +3,7 @@
 
         <video
             ref="video"
-            preload="auto"
+            preload="none"
             class="absolute z-index--minus-1 pin cursor--pointer w-screen h-screen"
             playsinline
             autoplay
@@ -12,10 +12,19 @@
 
         <canvas ref="canvas" class="opacity-50" />
 
-        <h6 class="w-full absolute z-index--2 text--center no-pointer-event pin-r pin-b">
-            Click on the video to see your face<br>
-            <small>(allow access to camera and microphone)</small>
-        </h6>
+        <button
+            type="button"
+            class="w-full absolute z-index--2 pin-b"
+            @click.prevent="face()"
+        >
+            <template v-if="! isWebcamReady">
+                Click here to see your face<br>
+                <small>(You must allow access to your camera)</small>
+            </template>
+            <template v-else>
+                Click to update the face points geometry
+            </template>
+        </button>
 
     </main>
 </template>
@@ -33,7 +42,7 @@
         Points,
         Scene,
         ShaderMaterial,
-        PlaneBufferGeometry,
+        BufferGeometry,
         // Camera
         PerspectiveCamera,
         // Utils
@@ -43,7 +52,6 @@
         DoubleSide,
         // Buffers
         Float32BufferAttribute,
-        BufferAttribute,
         DynamicDrawUsage,
     } from 'three';
 
@@ -59,9 +67,22 @@
     // Page
     export default {
         name: 'three-js-starter',
+        data: () => (
+            {
+                width: 500,
+                height: 500,
+                isWebcamReady: false,
+            }
+        ),
         created() {
 
             this.$sketchManager = null;
+
+            // Faces and geometry utils
+            this.$facemesh = null;
+            this.$geometry = null;
+            this.$camera = null;
+            this.$scene = null;
 
         },
         async mounted() {
@@ -100,21 +121,33 @@
         },
         methods: {
             createRenderer(
-                context
+                {
+                    context,
+                    width,
+                    height,
+                    color = '#111',
+                }
             ) {
 
                 // Renderer
                 const renderer = new WebGLRenderer(
                     {
                         context,
+                        depth: false,
+                        antialias: true,
                     }
                 );
 
                 renderer.setClearColor(
                     new Color(
-                        '#121212'
+                        color
                     ),
                     1
+                );
+
+                renderer.setSize(
+                    width,
+                    height
                 );
 
                 renderer.outputEncoding = sRGBEncoding;
@@ -133,20 +166,16 @@
 
                 // Camera
                 const camera = new PerspectiveCamera(
-                    45,
+                    70,
                     width / height,
-                    0.1,
-                    100
+                    0.001,
+                    1000
                 );
 
                 camera.position.set(
                     0,
                     0,
                     3
-                );
-
-                camera.lookAt(
-                    new Vector3()
                 );
 
                 // Controls
@@ -163,26 +192,22 @@
                 };
 
             },
-            createSceneAndPointsMaterialGeometry(
-                {
-                    width,
-                    height,
-                }
-            ) {
+            createSceneAndPointsMaterialGeometry() {
 
                 // Scene
                 const scene = new Scene()
-                      , geometry = new PlaneBufferGeometry(
-                          width / height,
-                          1,
-                          21,
-                          22
-                      )
+                      , geometry = new BufferGeometry()
                       , material = new ShaderMaterial(
                           {
+                              depthTest: false,
+                              depthWrite: false,
+                              transparent: true,
                               vertexShader,
                               fragmentShader,
                               side: DoubleSide,
+                              extensions: {
+                                  derivatives: '#extension GL_OES_standard_derivatives : enable',
+                              },
                               uniforms: {
                                   time: {
                                       type: 'f',
@@ -195,18 +220,28 @@
                               },
                           }
                       )
-                      , points = new Points(
-                          geometry,
-                          material
-                      )
                 ;
+
+                geometry.name = 'face';
 
                 return {
                     scene,
-                    points,
                     geometry,
                     material,
                 };
+
+            },
+            createPoints(
+                material,
+                geometry,
+            ) {
+
+                const points = new Points(
+                    geometry,
+                    material
+                );
+
+                return points;
 
             },
             // Attributes
@@ -216,100 +251,47 @@
 
                 const number = 468
                       , numberOfCoords = 3
+                      , arrayOfPoints = Array.from(
+                          {
+                              length: number * numberOfCoords,
+                          },
+                          Math.random
+                      )
                       , points = new Float32BufferAttribute(
-                          new Array(
-                              number * numberOfCoords
-                          ).fill(
-                              0
-                          ),
+                          arrayOfPoints,
                           numberOfCoords,
                       ).setUsage(
                           DynamicDrawUsage
                       )
+                      , attributeName = 'position'
                 ;
 
+                points.name = attributeName;
+
                 geometry.setAttribute(
-                    'facesPoints',
-                    new BufferAttribute(
-                        points,
-                        numberOfCoords
-                    )
+                    attributeName,
+                    points
                 );
 
             },
             // Faces
-            async findFaces() {
-
-                // if( ! this.facemesh )
-                //     return;
-
-                // const faces = await this.facemesh.estimateFaces(
-                //     this.$refs.video,
-                // );
-
-                // if( ! faces.length )
-                //     return;
-
-                // Each face object contains a `scaledMesh` property,
-                // which is an array of 468 landmarks.
-                // faces.forEach(
-                //     face => {
-
-                //         if( ! face.mesh )
-                //             return;
-
-                //         face.mesh.forEach(
-                //             (
-                //                 [
-                //                     x,
-                //                     y,
-                //                     z,
-                //                 ],
-                //                 index
-                //             ) => pointsPositions.setXYZ(
-                //                 index,
-                //                 x,
-                //                 y,
-                //                 z,
-                //             )
-                //         );
-
-                //         // pointsGeometry.attributes.position.needsUpdate = true;
-
-                //         // console.info(
-                //         //     'Face updated',
-                //         //     {
-                //         //         pointsGeometry,
-                //         //     }
-                //         // );
-
-                //     }
-                // );
-
-            },
-            async webcamReady() {
-
-                // Video loading
-                this.facemesh = await load(
-                    {
-                        maxFaces: 1,
-                    }
-                );
-
-                await this.findFaces();
-
-            },
-            async videoInitialization(
-                {
-                    width,
-                    height,
-                }
+            async face(
+                width = this.width,
+                height = this.height,
             ) {
 
-                try {
+                if( ! this.$refs.video )
+                    return;
 
-                    if( ! this.$refs.video )
-                        return;
+                if( this.isWebcamReady || this.$facemesh ) {
+
+                    await this.findFaces();
+
+                    return;
+
+                }
+
+                try {
 
                     // Video
                     this.$refs.video.width = width;
@@ -329,7 +311,127 @@
 
                     await this.$refs.video.play();
 
-                    await this.webcamReady();
+                    // Start the recognition
+                    await this.facemeshInit();
+
+                    this.isWebcamReady = true;
+
+                    await this.findFaces();
+
+                } catch( e ) {
+
+                    console.error(
+                        e
+                    );
+
+                }
+
+            },
+            async facemeshInit() {
+
+                this.$nuxt.$loading.start();
+
+                try {
+
+                    // Load the Face library
+                    this.$facemesh = await load(
+                        {
+                            maxFaces: 1,
+                        }
+                    );
+
+                } catch( e ) {
+
+                    console.error(
+                        e
+                    );
+
+                }
+
+                this.$nuxt.$loading.finish();
+
+            },
+            async findFaces() {
+
+                if( ! this.$facemesh )
+                    return;
+
+                try {
+
+                    const faces = await this.$facemesh.estimateFaces(
+                        this.$refs.video,
+                    );
+
+                    if( ! faces.length )
+                        return;
+
+                    console.info(
+                        'Faces found',
+                        faces
+                    );
+
+                    // Each face object contains a `scaledMesh` property,
+                    // which is an array of 468 landmarks.
+                    faces.forEach(
+                        face => {
+
+                            if( ! face.mesh )
+                                return;
+
+                            const {
+                                      mesh: points,
+                                      //   boundingBox,
+                                  } = face
+                                  , position = []
+                            ;
+
+                            points.forEach(
+                                (
+                                    [
+                                        x,
+                                        y,
+                                        z,
+                                    ]
+                                ) => {
+
+                                    const {
+                                        x: xN,
+                                        y: yN,
+                                        z: zN,
+                                    } = new Vector3(
+                                        x,
+                                        y,
+                                        z
+                                    ).normalize();
+
+                                    position.push(
+                                        xN,
+                                        yN,
+                                        zN
+                                    );
+
+                                }
+                            );
+
+                            this.$geometry.attributes.position.array = new Float32Array(
+                                position
+                            );
+
+                            this.$geometry.attributes.position.needsUpdate = true;
+
+                            this.$geometry.computeBoundingSphere();
+
+                            console.info(
+                                'Face updated',
+                                {
+                                    position,
+                                    geometry: this.$geometry,
+                                    scene: this.$scene,
+                                }
+                            );
+
+                        }
+                    );
 
                 } catch( e ) {
 
@@ -349,38 +451,55 @@
                 }
             ) {
 
+                this.width = width;
+                this.height = height;
+
                 const renderer = this.createRenderer(
-                          context
+                          {
+                              context,
+                              width,
+                              height,
+                          }
                       )
                       , {
                           camera,
                           controls,
                       } = await this.createCameraAndControls(
                           {
-                              width,
-                              height,
+                              width: window.innerWidth,
+                              height: window.innerHeight,
                               context,
                           }
                       )
                       , {
                           scene,
-                          points,
                           material,
                           geometry,
-                      } = this.createSceneAndPointsMaterialGeometry(
-                          {
-                              width,
-                              height,
-                          }
-                      )
+                      } = this.createSceneAndPointsMaterialGeometry()
                 ;
 
                 this.addAttributes(
                     geometry
                 );
 
+                const points = this.createPoints(
+                    material,
+                    geometry
+                );
+
                 scene.add(
                     points
+                );
+
+                this.$geometry = geometry;
+                this.$camera = camera;
+                this.$scene = scene;
+
+                console.info(
+                    'Sketch ready',
+                    {
+                        geometry: this.$geometry,
+                    }
                 );
 
                 // Render

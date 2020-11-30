@@ -2,16 +2,18 @@
 #pragma vscode_glsllint_stage : vert
 
 // Varying
-varying vec3 vPos;
+varying vec4 vPos;
+varying vec2 vUv;
 
 // Main
 void main () {
 
-    vPos = position.xyz;
+   vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
 
-   vec4 mvPosition = modelViewMatrix * vec4( position.xyz, 1.0 );
+    vUv = uv;
+    vPos = mvPosition;
 
-    gl_PointSize = 2. * ( 1. / - mvPosition.z );
+    gl_PointSize = 10. * ( 1. / - mvPosition.z );
 
     gl_Position = projectionMatrix * mvPosition;
 

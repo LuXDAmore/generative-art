@@ -124,6 +124,6 @@
         "stylelint-no-unsupported-browser-features": "^4.1.4",
         "stylelint-order": "^4.1.0",
         "stylelint-scss": "^3.17.2",
-        "three": "^0.122.0"
+        "three": "^0.123.0"
     }
 }

@@ -1,6 +1,5 @@
 {
     // ESLint
-    "eslint.enable": true,
     "eslint.alwaysShowStatus": true,
     "eslint.options": {
         "extensions": [
@@ -8,12 +7,6 @@
             ".vue"
         ]
     },
-    // Vue
-    "prettier.singleQuote": true,
-    "prettier.tabWidth": 4,
-    "prettier.trailingComma": "all",
-    "prettier.printWidth": 120,
-    "prettier.jsxSingleQuote": true,
     // Colors
     "workbench.colorCustomizations": {
         "activityBar.background": "#65c89b",
@@ -64,7 +57,6 @@
         "wireframe"
     ],
     "cSpell.ignoreWords": [
-        "c",
         "nwedck",
         "pmouse"
     ]

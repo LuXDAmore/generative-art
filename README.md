@@ -32,17 +32,19 @@
 I'm introducing myself into the **Generative art**, **3D art**, **Visual design** and **Creative coding** worlds.
 
 So, why i can't do this with my favorite libraries and framework?
-Infact, this is also a module for [**NuxtJS**](https://nuxtjs.org/), it inject the [canvas-sketch](https://github.com/mattdesl/canvas-sketch) library with [`canvas-sketch-utils`](https://github.com/mattdesl/canvas-sketch-util) and [`load-asset`](https://github.com/mattdesl/load-asset) from the creative coder [Matt DesLauriers](https://www.mattdesl.com/).
+Infact, this is also a module for [**NuxtJS**](https://nuxtjs.org/), it inject the [canvas-sketch](https://github.com/mattdesl/canvas-sketch) library with [`canvas-sketch-utils`](https://github.com/mattdesl/canvas-sketch-util) and [`load-asset`](https://github.com/mattdesl/load-asset) (from the creative coder [Matt DesLauriers](https://www.mattdesl.com/)).
 
 After installation, you have access in NuxtJS (on the [client-side](https://nuxtjs.org/docs/2.x/directory-structure/plugins#client-or-server-side-only)) at two things, `$canvasSketch` (the main module, used internally) and at the method `$sketch` (it starts the sketch).
 
 Check out the [example/pages](./example/pages) folder for some demos.
 _Every page correspond to an example in the [main website](https://luxdamore.github.io/generative-art)_.
 
+> N.B.: This is a _work-in-progress project_, I'm learning and testing new things here.
+
 ## Setup
 
 1. Add `@luxdamore/nuxt-canvas-sketch` dependency to your project;
-2. Add `@luxdamore/nuxt-canvas-sketch` as a `modules` in your `nuxt.config.js`.
+2. Inject `@luxdamore/nuxt-canvas-sketch` as a `modules` in your `nuxt.config.js`.
 
 ```bash
 
@@ -62,7 +64,7 @@ _Every page correspond to an example in the [main website](https://luxdamore.git
         // Module configuration
         canvasSketch: {
             hideErrorsInConsole: false,
-            hideGenericMessagesInConsole: false, // Disabled in production
+            hideGenericMessagesInConsole: false, // `true` in production
         },
 
     };
@@ -70,6 +72,8 @@ _Every page correspond to an example in the [main website](https://luxdamore.git
 ```
 
 ## Usage
+
+> N.B. : I'm using the [sketchManager](https://github.com/mattdesl/canvas-sketch/blob/master/docs/api.md#sketchmanager), because i think with VueJS it's the better way to remove and clean handlers during the destroy phase.
 
 ```html
 
@@ -105,7 +109,7 @@ _Every page correspond to an example in the [main website](https://luxdamore.git
                         this.sketch,
                     );
 
-                    // Ensure every listener is discarded on-component-destoy
+                    // Ensure every listener is removed on-component-destoy
                     this.$once(
                         'hook:beforeDestroy',
                         () => this.sketchManager.unload()
@@ -154,13 +158,11 @@ _Every page correspond to an example in the [main website](https://luxdamore.git
 
 ```
 
-> N.B. : It doesn't really need the [sketchManager](https://github.com/mattdesl/canvas-sketch/blob/master/docs/api.md#sketchmanager), but i think with Vue it's the better way to remove and clean handlers during the destroy phase.
-
 ___
 
-## Related things
+### Related things
 
-### ThreeJS
+#### ThreeJS
 
 There are lots of examples using `threejs`, but it's not included, You can follow the examples and add it with:
 
@@ -173,30 +175,28 @@ There are lots of examples using `threejs`, but it's not included, You can follo
 
 There si also a [ThreeJS starter template](https://luxdamore.github.io/generative-art/single/three-js-starter) for the plugin.
 
-### Tensorflow - Machine Learning and face recognition with Facemesh
+#### Tensorflow - Machine Learning and face recognition with Facemesh
 
 [Facemesh by **Tensorflow**](https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection) is not included, but you can follow the installation process [here](https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection#installation).
 
-```bash
+There si also an example with [ThreeJS and Tensorflow](https://luxdamore.github.io/generative-art/experiments/facemesh-with-machine-learning) for the plugin.
 
-    yarn add three # or npm install --save three
-
-```
+___
 
 ### Extra Resources
 
-**CanvaSketch**:
+#### CanvaSketch
 
 - [Documentation](https://github.com/mattdesl/canvas-sketch/blob/master/docs/README.md);
 - [Api](https://github.com/mattdesl/canvas-sketch/blob/master/docs/api.md);
 - [Examples](https://github.com/mattdesl/canvas-sketch/tree/master/examples).
 
-**ThreeJS and Shaders**:
+#### ThreeJS and Shaders
 
 - [The Book of Shaders](https://thebookofshaders.com/);
 - [Three.js Fundamentals](https://thebookofshaders.com/).
 
-**Videos about creative coding and 3D art**:
+#### Videos about creative coding and 3D art
 
 - [Matt DesLauriers](https://github.com/mattdesl).
 - [Yuri Artyukh](https://www.youtube.com/channel/UCDo7RTzizoOdPjY8A-xDR7g);
@@ -212,6 +212,8 @@ ___
 1. Clone this repository;
 2. Install dependencies using `yarn install` or `npm install`;
 3. Start development server using `yarn dev` or `npm run dev`.
+
+> To access camera and/or microphone from localhost, you need to enable _[Unsecure Origins in Chrome](https://medium.com/@Carmichaelize/enabling-the-microphone-camera-in-chrome-for-local-unsecure-origins-9c90c3149339)_.
 
 ## 🐞 Issues
 
@@ -229,19 +231,22 @@ Details changes for each release are documented in the [**release notes**](./CHA
 
 [MIT License](./LICENSE) // Copyright (©) 2020-present [Luca Iaconelli](https://lucaiaconelli.it)
 
+___
+
 #### 💸 Are you feeling generous today?  :)
 
-Do you want to share a beer? We can be good friends..
+If You want to share a beer, we can be really good friends 😻
+
 __[Paypal](https://www.paypal.me/luxdamore) // [Patreon](https://www.patreon.com/luxdamore)__
+
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/luxdamore)
 
 > _It's always a good day to be magnanimous_ - cit
 
 #### 💼 Hire me
 
-[![Contacts](https://img.shields.io/badge/email-Contact%20me-success)](https://lucaiaconelli.it)
-
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/luxdamore)
+[![Hire me](https://img.shields.io/badge/Contact%20Me-Let's%20Talk-informational?style=social&logo=minutemailer)](https://lucaiaconelli.it)
 
 #### 💘 Inspired by
 
-> **All my thanks goes to Matt DesLauriers for those useful libraries**.
+> **All my thanks goes to _Matt DesLauriers_ and _Yuri Artyukh_ for those useful libraries and tutorials**.

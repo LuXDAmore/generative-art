@@ -10715,14 +10715,6 @@ postcss-colormin@^4.0.3:
     postcss "^7.0.0"
     postcss-value-parser "^3.0.0"
 
-postcss-combine-duplicated-selectors@^9.4.0:
-  version "9.4.0"
-  resolved "https://registry.yarnpkg.com/postcss-combine-duplicated-selectors/-/postcss-combine-duplicated-selectors-9.4.0.tgz#dae866debae5f93b58e13e6cc69419105e91336a"
-  integrity sha512-rMnO1H3wgR1T6QSlK3i8Slz9p3xD+0yOi4J7qwh/5PGR3z8jbgYvRlNKAIvXDtGBQbJKoWs4df5skL3a/fdUEA==
-  dependencies:
-    postcss "^7.0.0"
-    postcss-selector-parser "^6.0.0"
-
 postcss-convert-values@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/postcss-convert-values/-/postcss-convert-values-4.0.1.tgz#ca3813ed4da0f812f9d43703584e449ebe189a7f"
@@ -11313,14 +11305,6 @@ postcss-sass@^0.4.4:
     gonzales-pe "^4.3.0"
     postcss "^7.0.21"
 
-postcss-scoped@^0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-scoped/-/postcss-scoped-0.0.0.tgz#96c98bcd9117f36f387f46fcb8c267bbd93d42ef"
-  integrity sha1-lsmLzZEX8284f0b8uMJnu9k9Qu8=
-  dependencies:
-    hash-sum "^1.0.2"
-    postcss "^5.0.2"
-
 postcss-scss@^1.0.2:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/postcss-scss/-/postcss-scss-1.0.6.tgz#ab903f3bb20161bc177896462293a53d4bff5f7a"
@@ -11449,7 +11433,7 @@ postcss-values-parser@^2.0.0, postcss-values-parser@^2.0.1:
     indexes-of "^1.0.1"
     uniq "^1.0.1"
 
-postcss@^5.0.2, postcss@^5.2.16:
+postcss@^5.2.16:
   version "5.2.18"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-5.2.18.tgz#badfa1497d46244f6390f58b319830d9107853c5"
   integrity sha512-zrUjRRe1bpXKsX1qAJNJjqZViErVuyEkMTRrwu4ud4sbTtIBRmtaYDrHmcGgmrbsW3MHfmtIf+vJumgQn+PrXg==

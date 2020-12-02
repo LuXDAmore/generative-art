@@ -10,28 +10,79 @@
             muted
         />
 
-        <canvas ref="canvas" class="opacity-50" />
+        <canvas
+            ref="canvas"
+            :class="{
+                'opacity-90': showBackground,
+            }"
+        />
 
-        <button
-            type="button"
-            class="w-full absolute z-index--2 pin-b"
-            @click.prevent="face()"
-        >
-            <template v-if="! isWebcamReady">
-                Click here to see your face<br>
-                <small>(You must allow access to your camera)</small>
+        <div class="w-full absolute z-index--2 pin-b text--center">
+
+            <button
+                v-if="! continuosRafCheck"
+                :disabled="loading"
+                type="button"
+                @click.prevent="face()"
+            >
+
+                <template v-if="isWebcamReady">
+                    Click to update the face points geometry
+                </template>
+                <template v-else-if="loading">
+                    <strong>Loading...</strong><br>
+                    <small><em>Please wait</em></small>
+                </template>
+                <template v-else>
+                    <strong>Click to start FaceRecognition</strong><br>
+                    <small>(<em>You must allow access to your camera</em>)</small>
+                </template>
+
+            </button>
+
+            <template v-if="isWebcamReady">
+
+                <br>
+
+                <label for="continuosRafCheck">
+
+                    <input
+                        id="continuosRafCheck"
+                        v-model="continuosRafCheck"
+                        :disabled="! isWebcamReady"
+                        type="checkbox"
+                    >
+
+                    Let FaceRecognition going during onRequestAnimationFrame()
+
+                </label>
+
+                <br>
+
+                <label for="showBackground">
+
+                    <input
+                        id="showBackground"
+                        v-model="showBackground"
+                        :disabled="! isWebcamReady"
+                        type="checkbox"
+                    >
+
+                    Show the webcam background?
+
+                </label>
+
             </template>
-            <template v-else>
-                Click to update the face points geometry
-            </template>
-        </button>
+
+        </div>
 
     </main>
 </template>
 
 <script>
     // Facemesh Machine learning
-    import { load } from '@tensorflow-models/facemesh';
+    import { load, SupportedPackages } from '@tensorflow-models/face-landmarks-detection';
+    import { UV_COORDS } from '@tensorflow-models/face-landmarks-detection/dist/mediapipe-facemesh/uv_coords';
     import '@tensorflow/tfjs-backend-cpu';
     import '@tensorflow/tfjs-backend-webgl';
 
@@ -47,13 +98,14 @@
         PerspectiveCamera,
         // Utils
         Color,
-        Vector3,
         sRGBEncoding,
-        DoubleSide,
         // Buffers
         Float32BufferAttribute,
         DynamicDrawUsage,
     } from 'three';
+
+    // Gsap
+    import gsap from 'gsap';
 
     // Shaders
     import fragmentShader from '~/assets/pages/facemesh-with-machine-learning/shaders/fragmentShader.frag';
@@ -71,18 +123,25 @@
             {
                 width: 500,
                 height: 500,
+                showBackground: false,
+                continuosRafCheck: false,
                 isWebcamReady: false,
+                loading: false,
+                // Points
+                pointsSize: 20,
             }
         ),
         created() {
 
+            // Sketch Manager
             this.$sketchManager = null;
 
-            // Faces and geometry utils
+            // Face library
             this.$facemesh = null;
-            this.$geometry = null;
+
+            // Geometry utils
             this.$camera = null;
-            this.$scene = null;
+            this.$geometry = null;
 
         },
         async mounted() {
@@ -158,9 +217,9 @@
             },
             async createCameraAndControls(
                 {
+                    context: { canvas },
                     width,
                     height,
-                    context: { canvas },
                 }
             ) {
 
@@ -169,13 +228,13 @@
                     70,
                     width / height,
                     0.001,
-                    1000
+                    2000
                 );
 
                 camera.position.set(
                     0,
                     0,
-                    3
+                    - 6
                 );
 
                 // Controls
@@ -204,7 +263,6 @@
                               transparent: true,
                               vertexShader,
                               fragmentShader,
-                              side: DoubleSide,
                               extensions: {
                                   derivatives: '#extension GL_OES_standard_derivatives : enable',
                               },
@@ -216,6 +274,10 @@
                                   playhead: {
                                       type: 'f',
                                       value: 0,
+                                  },
+                                  pointsSize: {
+                                      type: 'f',
+                                      value: this.pointsSize,
                                   },
                               },
                           }
@@ -250,28 +312,55 @@
             ) {
 
                 const number = 468
-                      , numberOfCoords = 3
-                      , arrayOfPoints = Array.from(
+                      // Position
+                      , numberOfPositions = 3
+                      , arrayOfPositions = Array.from(
                           {
-                              length: number * numberOfCoords,
+                              length: number * numberOfPositions,
                           },
                           Math.random
                       )
-                      , points = new Float32BufferAttribute(
-                          arrayOfPoints,
-                          numberOfCoords,
+                      , position = new Float32BufferAttribute(
+                          arrayOfPositions,
+                          numberOfPositions,
                       ).setUsage(
                           DynamicDrawUsage
                       )
-                      , attributeName = 'position'
+                      , positionAttributeName = 'position'
+                      // uv
+                      , numberOfUv = 2
+                      , arrayOfUv = UV_COORDS.flat()
+                      , uv = new Float32BufferAttribute(
+                          arrayOfUv,
+                          numberOfUv,
+                      )
+                      , uvAttributeName = 'uv'
                 ;
 
-                points.name = attributeName;
-
+                position.name = positionAttributeName;
                 geometry.setAttribute(
-                    attributeName,
-                    points
+                    positionAttributeName,
+                    position
                 );
+
+                uv.name = uvAttributeName;
+                geometry.setAttribute(
+                    uvAttributeName,
+                    uv
+                );
+
+                geometry.computeVertexNormals();
+                geometry.computeBoundingBox();
+                geometry.computeBoundingSphere();
+
+                geometry.rotateX(
+                    180
+                );
+
+                geometry.center();
+
+                geometry.attributes.position.needsUpdate = true;
+                geometry.attributes.uv.needsUpdate = true;
 
             },
             // Faces
@@ -290,6 +379,30 @@
                     return;
 
                 }
+
+                // Moving the camera
+                gsap.to(
+                    this,
+                    {
+                        pointsSize: 5,
+                        ease: 'expo.in',
+                        duration: 2,
+                    }
+                );
+
+                gsap.to(
+                    this.$camera.position,
+                    {
+                        z: - 1000,
+                        ease: 'expo.in',
+                        duration: 4,
+                        onComplete: () => this.$camera.updateProjectionMatrix(),
+                    }
+                );
+
+                // Loading
+                this.loading = true;
+                this.$nuxt.$loading.start();
 
                 try {
 
@@ -311,12 +424,34 @@
 
                     await this.$refs.video.play();
 
+                    this.showBackground = true;
+
                     // Start the recognition
                     await this.facemeshInit();
 
+                    await this.findFaces();
+
                     this.isWebcamReady = true;
 
-                    await this.findFaces();
+                    // Moving the camera back
+                    gsap.to(
+                        this.$camera.position,
+                        {
+                            duration: 6,
+                            ease: 'expo.out',
+                            z: - 450,
+                            onComplete: () => this.$camera.updateProjectionMatrix(),
+                        }
+                    );
+
+                    gsap.to(
+                        this,
+                        {
+                            pointsSize: 1250,
+                            ease: 'expo.out',
+                            duration: 3,
+                        }
+                    );
 
                 } catch( e ) {
 
@@ -326,15 +461,18 @@
 
                 }
 
+                // Loading finished
+                this.$nuxt.$loading.finish();
+                this.loading = false;
+
             },
             async facemeshInit() {
-
-                this.$nuxt.$loading.start();
 
                 try {
 
                     // Load the Face library
                     this.$facemesh = await load(
+                        SupportedPackages.mediapipeFacemesh,
                         {
                             maxFaces: 1,
                         }
@@ -348,8 +486,6 @@
 
                 }
 
-                this.$nuxt.$loading.finish();
-
             },
             async findFaces() {
 
@@ -359,76 +495,38 @@
                 try {
 
                     const faces = await this.$facemesh.estimateFaces(
-                        this.$refs.video,
+                        {
+                            input: this.$refs.video,
+                            predictIrises: false,
+                            flipHorizontal: true,
+                        }
                     );
 
                     if( ! faces.length )
                         return;
-
-                    console.info(
-                        'Faces found',
-                        faces
-                    );
 
                     // Each face object contains a `scaledMesh` property,
                     // which is an array of 468 landmarks.
                     faces.forEach(
                         face => {
 
-                            if( ! face.mesh )
-                                return;
-
-                            const {
-                                      mesh: points,
-                                      //   boundingBox,
-                                  } = face
-                                  , position = []
-                            ;
-
-                            points.forEach(
-                                (
-                                    [
-                                        x,
-                                        y,
-                                        z,
-                                    ]
-                                ) => {
-
-                                    const {
-                                        x: xN,
-                                        y: yN,
-                                        z: zN,
-                                    } = new Vector3(
-                                        x,
-                                        y,
-                                        z
-                                    ).normalize();
-
-                                    position.push(
-                                        xN,
-                                        yN,
-                                        zN
-                                    );
-
-                                }
-                            );
+                            const { scaledMesh: points } = face;
 
                             this.$geometry.attributes.position.array = new Float32Array(
-                                position
+                                points.flat()
                             );
 
-                            this.$geometry.attributes.position.needsUpdate = true;
-
+                            this.$geometry.computeVertexNormals();
+                            this.$geometry.computeBoundingBox();
                             this.$geometry.computeBoundingSphere();
 
-                            console.info(
-                                'Face updated',
-                                {
-                                    position,
-                                    geometry: this.$geometry,
-                                    scene: this.$scene,
-                                }
+                            this.$geometry.rotateX(
+                                180
                             );
+
+                            this.$geometry.center();
+
+                            this.$geometry.attributes.position.needsUpdate = true;
 
                         }
                     );
@@ -466,9 +564,9 @@
                           controls,
                       } = await this.createCameraAndControls(
                           {
+                              context,
                               width: window.innerWidth,
                               height: window.innerHeight,
-                              context,
                           }
                       )
                       , {
@@ -491,29 +589,27 @@
                     points
                 );
 
-                this.$geometry = geometry;
                 this.$camera = camera;
-                this.$scene = scene;
-
-                console.info(
-                    'Sketch ready',
-                    {
-                        geometry: this.$geometry,
-                    }
-                );
+                this.$geometry = geometry;
 
                 // Render
                 return {
-                    render(
+                    render: async(
                         {
                             playhead,
                             time,
                         }
-                    ) {
+                    ) => {
+
+                        // FaceRecognition on rAF
+                        this.continuosRafCheck && await this.findFaces();
 
                         // Shaders
                         material.uniforms.playhead.value = playhead;
                         material.uniforms.time.value = time;
+
+                        if( this.pointsSize !== material.uniforms.pointsSize.value )
+                            material.uniforms.pointsSize.value = this.pointsSize;
 
                         // Controls
                         controls.update();

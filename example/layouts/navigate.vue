@@ -61,9 +61,6 @@
 
                 switch( this.$route.path ) {
                 case '/navigate/page-2':
-                    page = 0.5;
-                    break;
-                case '/navigate/page-3':
                     page = 1;
                     break;
                 }
@@ -78,37 +75,30 @@
                 immediate: true,
             },
         },
-        mounted() {
+        async mounted() {
 
-            this.$nextTick(
-                async() => {
+            try {
 
-                    // Suggested way
-                    try {
+                this.sketchManager = await this.$sketch(
+                    {
+                        ... settings,
+                        canvas: this.$refs.canvas,
+                    },
+                    this.sketch,
+                );
 
-                        this.sketchManager = await this.$sketch(
-                            {
-                                ... settings,
-                                canvas: this.$refs.canvas,
-                            },
-                            this.sketch,
-                        );
+                this.$once(
+                    'hook:beforeDestroy',
+                    () => this.sketchManager.unload()
+                );
 
-                    } catch( e ) {
+            } catch( e ) {
 
-                        console.error(
-                            e
-                        );
+                console.error(
+                    e
+                );
 
-                    }
-
-                },
-            );
-
-        },
-        beforeDestroy() {
-
-            this.sketchManager && this.sketchManager.unload();
+            }
 
         },
         methods: {
@@ -224,7 +214,8 @@
                 gsap.to(
                     this.animations,
                     {
-                        duration: 0.63,
+                        duration: 2,
+                        ease: 'sine.inOut',
                         pageValue: this.pageToValue,
                     }
                 );
@@ -243,7 +234,7 @@
 
                 const { OrbitControls } = await orbitControlsImporter()
                       , aspectRatio = width / height
-                      , realPixelRatio = pixelRatio > 3 ? 3 : pixelRatio
+                      , realPixelRatio = pixelRatio
                       // Create a renderer
                       , renderer = new THREE.WebGLRenderer(
                           {
@@ -251,7 +242,7 @@
                           }
                       )
                       , camera = new THREE.PerspectiveCamera(
-                          45,
+                          70,
                           aspectRatio,
                           0.001,
                           1000
@@ -268,7 +259,7 @@
                       , sphereGeometry = new THREE.ParametricBufferGeometry(
                           this.createSphere,
                           100,
-                          100
+                          100,
                       )
                       // Materials
                       , material = new THREE.ShaderMaterial(
@@ -324,7 +315,7 @@
 
                 renderer.setClearColor(
                     new THREE.Color(
-                        '#333'
+                        '#111'
                     ),
                     1
                 );
@@ -340,12 +331,12 @@
 
                 // Camera things
                 camera.position.set(
-                    1,
-                    1,
-                    18
+                    0,
+                    0,
+                    9
                 );
 
-                camera.updateProjectionMatrix();
+                geometry.center();
 
                 // Scene things
                 scene.add(

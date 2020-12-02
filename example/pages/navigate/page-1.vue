@@ -1,7 +1,7 @@
 <template>
     <main class="container">
-        <h2 class="absolute z-index--1 text--center text--red no-pointer-event">
-            Navigate page 1
+        <h2 class="absolute z-index--1">
+            GrayKlein Geometry
         </h2>
     </main>
 </template>
@@ -10,6 +10,6 @@
     // Page
     export default {
         name: 'page-navigate-1',
-        layout: 'navigate',
+        layout: 'navigate', // -> The sketch is in the layout
     };
 </script>

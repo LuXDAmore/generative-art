@@ -131,21 +131,17 @@
                 linksNavigate: [
                     {
                         url: '/navigate/page-1',
-                        text: 'Navigate 1',
+                        text: 'GrayKlein Geometry',
                     },
                     {
                         url: '/navigate/page-2',
-                        text: 'Navigate 2',
-                    },
-                    {
-                        url: '/navigate/page-3',
-                        text: 'Navigate 3',
+                        text: 'Sphere Geometry',
                     },
                 ],
                 linksExperiments: [
                     {
-                        url: '/experiments/facemesh-with-machine-learning',
-                        text: 'Facemesh with Machine Learning',
+                        url: '/experiments/tensorflow-facemesh',
+                        text: 'Tensorflow Facemesh',
                     },
                 ],
             }

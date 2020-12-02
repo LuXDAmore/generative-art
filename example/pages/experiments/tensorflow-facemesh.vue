@@ -27,11 +27,11 @@
             >
 
                 <template v-if="isWebcamReady">
-                    Click to update the face points geometry
+                    Click to update face points geometry
                 </template>
                 <template v-else-if="loading">
                     <strong>Loading...</strong><br>
-                    <small><em>Please wait</em></small>
+                    <small><em>Please wait (sometimes it takes a while)..</em></small>
                 </template>
                 <template v-else>
                     <strong>Click to start FaceRecognition</strong><br>
@@ -53,7 +53,7 @@
                         type="checkbox"
                     >
 
-                    Let FaceRecognition going during onRequestAnimationFrame()
+                    Let FaceRecognition execute on the <strong>requestAnimationFrame</strong>
 
                 </label>
 
@@ -68,7 +68,7 @@
                         type="checkbox"
                     >
 
-                    Show the webcam background?
+                    Keep the webcam background?
 
                 </label>
 

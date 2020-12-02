@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/experiments/facemesh-with-machine-learning", {data:[{}],fetch:[],mutations:void 0});

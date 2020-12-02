@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/LuXDAmore/generative-art/compare/v1.7.0...v1.8.0) (2020-12-02)
+
+
+### Features
+
+* facemesh ([354ceed](https://github.com/LuXDAmore/generative-art/commit/354ceed9d29dec49614005d763bcf1cf988b13a7))
+
+
+### Bug Fixes
+
+* eslint warning ([0042326](https://github.com/LuXDAmore/generative-art/commit/0042326e7e275ec4f02500013b97ce428aab02f4))
+* face found ([db6e3e1](https://github.com/LuXDAmore/generative-art/commit/db6e3e12108af15ee88966ad4df1f0128eb96320))
+* navigation example ([9ae030c](https://github.com/LuXDAmore/generative-art/commit/9ae030cb6a70e87bfd4e2e90aeaafeec4e67a0ec))
+* nuxt settings ([5cc94a9](https://github.com/LuXDAmore/generative-art/commit/5cc94a9319baddfb454ad0b4ca677013c4f6ff79))
+* timing ([97dc96f](https://github.com/LuXDAmore/generative-art/commit/97dc96f95ccd75b846c7926b929e04cc6bc3b27e))
+* typo error ([059cf82](https://github.com/LuXDAmore/generative-art/commit/059cf82e3c7cef820d9ff671b5c6c27ff948c9a9))
+* updated tensorflow example ([875ed61](https://github.com/LuXDAmore/generative-art/commit/875ed6161e9713c14dad157e813255de4e653566))
+
 ## [1.6.0](https://github.com/LuXDAmore/generative-art/compare/v1.5.3...v1.6.0) (2020-10-28)
 
 

@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/single/audio-video", {data:[{}],fetch:[],mutations:void 0});

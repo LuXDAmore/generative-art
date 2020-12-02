@@ -386,7 +386,7 @@
                     {
                         pointsSize: 5,
                         ease: 'expo.in',
-                        duration: 2,
+                        duration: 1.5,
                     }
                 );
 
@@ -437,9 +437,9 @@
                     gsap.to(
                         this.$camera.position,
                         {
-                            duration: 6,
+                            duration: 5,
                             ease: 'expo.out',
-                            z: - 450,
+                            z: - 500,
                             onComplete: () => this.$camera.updateProjectionMatrix(),
                         }
                     );

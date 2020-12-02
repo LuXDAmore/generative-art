@@ -3567,7 +3567,7 @@ canvas-sketch-util@^1.10.0:
     simplex-noise "^2.4.0"
     svg-path-contours "^2.0.0"
 
-canvas-sketch@^0.7.3:
+canvas-sketch@^0.7.4:
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/canvas-sketch/-/canvas-sketch-0.7.4.tgz#358e4efc8b011e9f13abfb0fcb2ffc8eed1fe255"
   integrity sha512-CSmzohS6PXFctDnPmNU0r4Mj9AGXsaOZciZv5Bh1Cb0lhIDaaAXsTkQKFrY1HzhUfNWwqoXUcjwcXAIWKdCxTA==

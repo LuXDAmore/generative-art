@@ -254,26 +254,6 @@ export default {
         postcss: {
             parser: 'postcss-scss',
             syntax: 'postcss-scss',
-            plugins: {
-                'postcss-import': {},
-                'postcss-url': {},
-                'postcss-scoped': {},
-                'postcss-preset-env': ( this ? ( this.preset || {} ) : {} ),
-                'postcss-combine-duplicated-selectors': {
-                    removeDuplicatedValues: true,
-                    removeDuplicatedProperties: true,
-                },
-                cssnano: {
-                    preset: 'default',
-                },
-            },
-            preset: {
-                stage: 2,
-                autoprefixer: {
-                    cascade: false,
-                    grid: true,
-                },
-            },
         },
         /*
          ** Minifier

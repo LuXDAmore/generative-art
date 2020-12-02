@@ -4,68 +4,62 @@
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![Circle CI][circle-ci-src]][circle-ci-href]
 [![Dependencies][dependencies-src]][dependencies-href]
-[![License][license-src]][license-href]
 [![Donate][donate-src]][donate-href]
+[![Code Quality][quality-src]][quality-href]
 
-[npm-version-src]: https://img.shields.io/npm/v/@luxdamore/nuxt-canvas-sketch/latest.svg?style=flat-square
+[npm-version-src]: https://img.shields.io/npm/v/@luxdamore/nuxt-canvas-sketch/latest.svg?style=flat
 [npm-version-href]: https://npmjs.com/package/@luxdamore/nuxt-canvas-sketch
 
-[npm-downloads-src]: https://img.shields.io/npm/dt/@luxdamore/nuxt-canvas-sketch.svg?style=flat-square
+[npm-downloads-src]: https://img.shields.io/npm/dt/@luxdamore/nuxt-canvas-sketch.svg?style=flat
 [npm-downloads-href]: https://npmjs.com/package/@luxdamore/nuxt-canvas-sketch
 
-[circle-ci-src]: https://img.shields.io/circleci/project/github/LuXDAmore/generative-art.svg?style=flat-square
+[circle-ci-src]: https://img.shields.io/circleci/project/github/LuXDAmore/generative-art.svg?style=flat
 [circle-ci-href]: https://circleci.com/gh/LuXDAmore/generative-art
 
-[dependencies-src]: https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg?style=flat-square
+[dependencies-src]: https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg?style=flat
 [dependencies-href]: https://npmjs.com/package/@luxdamore/nuxt-canvas-sketch
 
-[license-src]: https://img.shields.io/npm/l/@luxdamore/nuxt-canvas-sketch.svg?style=flat-square
-[license-href]: https://npmjs.com/package/@luxdamore/nuxt-canvas-sketch
-
-[donate-src]: https://img.shields.io/badge/paypal-donate-black.svg?style=flat-square
+[donate-src]: https://img.shields.io/badge/paypal-donate-black.svg?style=flat
 [donate-href]: https://www.paypal.com/paypalme2/luxdamore
 
-> Generative Art is the idea realized as genetic code of artificial events, as construction of dynamic complex systems able to generate endless variations. And to make it easy to do, this is also a nuxt-module (nuxt-canvas-sketch) - (threejs is not included).
+[quality-src]: https://img.shields.io/badge/code%20quality-A-informational?style=flat
+[quality-href]: https://luxdamore.github.io/generative-art/
+
+> Generative Art is the idea realized as genetic code of artificial events, as construction of dynamic complex systems able to generate endless variations. This is also a nuxt-module (@luxdamore/nuxt-canvas-sketch) - [threejs and tensorflow are not included].
 
 ## 💘 Motivation
 
-I'm introducing myself to the **generative-art** world, so, why not doing this with my favorite libraries and framework?
+I'm introducing myself into the **Generative art**, **3D art**, **Visual design** and **Creative coding** worlds.
 
-So, this is also a module for Nuxt, it simply inject the [canvas-sketch](https://github.com/mattdesl/canvas-sketch) library (there are more packages you can use installing this, for example `canvas-sketch-utils`).
+So, why i can't do this with my favorite libraries and framework?
+Infact, this is also a module for [**NuxtJS**](https://nuxtjs.org/), it inject the [canvas-sketch](https://github.com/mattdesl/canvas-sketch) library with [`canvas-sketch-utils`](https://github.com/mattdesl/canvas-sketch-util) and [`load-asset`](https://github.com/mattdesl/load-asset) from the creative coder [Matt DesLauriers](https://www.mattdesl.com/).
 
-After installing this, you have access in Nuxt (client-side) at two things, `$canvasSketch` (the main module, used internally) and at the method `$draw` (it start the sketch).
+After installation, you have access in NuxtJS (on the [client-side](https://nuxtjs.org/docs/2.x/directory-structure/plugins#client-or-server-side-only)) at two things, `$canvasSketch` (the main module, used internally) and at the method `$sketch` (it starts the sketch).
 
-Check the [example/](./example/pages) folder and take a look at `page-*.vue` for some examples.
-Every page correspond to an example in the [main website](https://luxdamore.github.io/generative-art).
+Check out the [example/pages](./example/pages) folder for some demos.
+_Every page correspond to an example in the [main website](https://luxdamore.github.io/generative-art)_.
 
 ## Setup
 
 1. Add `@luxdamore/nuxt-canvas-sketch` dependency to your project;
-2. Add `@luxdamore/nuxt-canvas-sketch` in the `modules` section of your `nuxt.config.js`;
+2. Add `@luxdamore/nuxt-canvas-sketch` as a `modules` in your `nuxt.config.js`.
 
 ```bash
 
+    # cmd
     yarn add @luxdamore/nuxt-canvas-sketch # or npm install --save @luxdamore/nuxt-canvas-sketch
 
 ```
-
-## Configuration
-
-**_N.B. : the config is only shallow merged, not deep merged._**
-
-- [canvas-sketch documentation](https://github.com/mattdesl/canvas-sketch/blob/master/docs/README.md);
-- [canvas-sketch api](https://github.com/mattdesl/canvas-sketch/blob/master/docs/api.md);
-- [canvas-sketch examples](https://github.com/mattdesl/canvas-sketch/tree/master/examples).
 
 ```js
 
     // nuxt.config.js
     export default {
 
-        // Module installation
+        // Module injection
         modules: [ '@luxdamore/nuxt-canvas-sketch' ],
 
-        // Module config
+        // Module configuration
         canvasSketch: {
             hideErrorsInConsole: false,
             hideGenericMessagesInConsole: false, // Disabled in production
@@ -88,6 +82,7 @@ Every page correspond to an example in the [main website](https://luxdamore.gith
     </template>
 
     <script>
+        // Page, component or layout
         export default {
             data: () => (
                 {
@@ -96,20 +91,24 @@ Every page correspond to an example in the [main website](https://luxdamore.gith
             ),
             async mounted() {
 
-                // Suggested way
                 try {
 
                     this.sketchManager = await this.$sketch(
                         // Settings of the sketch
                         {
-                            animate: true,
-                            hotkeys: false,  // <-- the only default value passed
-                            // <canvas ref="canvas" />
-                            // or you can pass a DOMCanvas element document.querySelector( 'canvas' )
+                            maxPixelRatio: 3,
+                            hotkeys: false,
+                            // or you can pass a DOMElement document.querySelector( 'canvas' )
                             canvas: this.$refs.canvas,
                         },
                         // Method for the rendering
                         this.sketch,
+                    );
+
+                    // Ensure every listener is discarded on-component-destoy
+                    this.$once(
+                        'hook:beforeDestroy',
+                        () => this.sketchManager.unload()
                     );
 
                 } catch( e ) {
@@ -121,11 +120,6 @@ Every page correspond to an example in the [main website](https://luxdamore.gith
                 }
 
             },
-            beforeDestroy() {
-
-                this.sketchManager && this.sketchManager.unload();
-
-            },
             methods: {
                 sketch({ context }) {
 
@@ -133,7 +127,7 @@ Every page correspond to an example in the [main website](https://luxdamore.gith
 
                     return ({ context }) => {
 
-                        // Here you can return an animation
+                        // Here you can return some animated stuff
 
                     };
 
@@ -145,9 +139,13 @@ Every page correspond to an example in the [main website](https://luxdamore.gith
     <style scoped>
         canvas {
 
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
             display: block;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             margin: 0;
             padding: 0;
 
@@ -156,17 +154,56 @@ Every page correspond to an example in the [main website](https://luxdamore.gith
 
 ```
 
-> N.B. : You don't really need the [sketchManager](https://github.com/mattdesl/canvas-sketch/blob/master/docs/api.md#sketchmanager), but i think with Vue it's a better way to remove and clean handlers onBeforeDestroy..
+> N.B. : It doesn't really need the [sketchManager](https://github.com/mattdesl/canvas-sketch/blob/master/docs/api.md#sketchmanager), but i think with Vue it's the better way to remove and clean handlers during the destroy phase.
+
+___
+
+## Related things
 
 ### ThreeJS
 
-There are lots of examples using `threejs`, but it's not included, add it with:
+There are lots of examples using `threejs`, but it's not included, You can follow the examples and add it with:
+
+```bash
+
+    # cmd
+    yarn add three # or npm install --save three
+
+```
+
+There si also a [ThreeJS starter template](https://luxdamore.github.io/generative-art/single/three-js-starter) for the plugin.
+
+### Tensorflow - Machine Learning and face recognition with Facemesh
+
+[Facemesh by **Tensorflow**](https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection) is not included, but you can follow the installation process [here](https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection#installation).
 
 ```bash
 
     yarn add three # or npm install --save three
 
 ```
+
+### Extra Resources
+
+**CanvaSketch**:
+
+- [Documentation](https://github.com/mattdesl/canvas-sketch/blob/master/docs/README.md);
+- [Api](https://github.com/mattdesl/canvas-sketch/blob/master/docs/api.md);
+- [Examples](https://github.com/mattdesl/canvas-sketch/tree/master/examples).
+
+**ThreeJS and Shaders**:
+
+- [The Book of Shaders](https://thebookofshaders.com/);
+- [Three.js Fundamentals](https://thebookofshaders.com/).
+
+**Videos about creative coding and 3D art**:
+
+- [Matt DesLauriers](https://github.com/mattdesl).
+- [Yuri Artyukh](https://www.youtube.com/channel/UCDo7RTzizoOdPjY8A-xDR7g);
+- [The Art of Code](https://www.youtube.com/channel/UCcAlTqd9zID6aNX3TzwxJXg);
+- [Tim Rodenbröker](https://www.youtube.com/channel/UCPwg5nDMQWzkAfb56_GvGpA);
+- [SimonDev](https://www.youtube.com/channel/UCEwhtpXrg5MmwlH04ANpL8A);
+- [Interactive Developer](https://www.youtube.com/channel/UCdeWxKJuvtUG2xyN6pOJEvA).
 
 ___
 
@@ -186,7 +223,7 @@ Please make sure to read the [Contributing Guide](./.github/ISSUE_TEMPLATE/featu
 
 ## 📖 Changelog
 
-Details changes for each release are documented in the [**release notes**](./CHANGELOG.md).
+Details changes for each release are documented in the [**release notes**](./CHANGELOG.md) file.
 
 ### 📃 License
 
@@ -197,7 +234,7 @@ Details changes for each release are documented in the [**release notes**](./CHA
 Do you want to share a beer? We can be good friends..
 __[Paypal](https://www.paypal.me/luxdamore) // [Patreon](https://www.patreon.com/luxdamore)__
 
-> _It's always a good day to be magnanimous - cit_
+> _It's always a good day to be magnanimous_ - cit
 
 #### 💼 Hire me
 
@@ -207,4 +244,4 @@ __[Paypal](https://www.paypal.me/luxdamore) // [Patreon](https://www.patreon.com
 
 #### 💘 Inspired by
 
-> **All my thanks goes to Matt DesLauriers for these beautiful and easy to use libraries**.
+> **All my thanks goes to Matt DesLauriers for those useful libraries**.

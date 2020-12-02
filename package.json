@@ -1,7 +1,7 @@
 {
     "name": "@luxdamore/nuxt-canvas-sketch",
     "version": "1.7.0",
-    "description": "Generative Art is the idea realized as genetic code of artificial events, as construction of dynamic complex systems able to generate endless variations. And to make it easy to do, this is also a nuxt-module (nuxt-canvas-sketch) - (threejs is not included).",
+    "description": "Generative Art is the idea realized as genetic code of artificial events, as construction of dynamic complex systems able to generate endless variations. This is also a nuxt-module (@luxdamore/nuxt-canvas-sketch) - [threejs and tensorflow are not included].",
     "author": "Luca Iaconelli <lucabelli@msn.com> (https://lucaiaconelli.it)",
     "license": "MIT",
     "homepage": "https://luxdamore.github.io/generative-art",
@@ -16,6 +16,10 @@
         "three-js",
         "threejs",
         "canvas-sketch",
+        "tensorflow",
+        "tensorflow-tutorials",
+        "tensorflow-examples",
+        "facemesh",
         "generative-art"
     ],
     "contributors": [
@@ -56,7 +60,7 @@
         "lib"
     ],
     "dependencies": {
-        "canvas-sketch": "^0.7.3",
+        "canvas-sketch": "^0.7.4",
         "canvas-sketch-util": "^1.10.0",
         "consola": "^2.15.0",
         "glslify-loader": "^2.0.0",

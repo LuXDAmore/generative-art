@@ -33,12 +33,14 @@
         "source.fixAll.stylelint": true
     },
     "cSpell.words": [
+        "artyukh",
         "biquad",
         "compat",
         "glslify",
         "gsap",
         "jsdelivr",
         "jsonld",
+        "ker",
         "keypressed",
         "lauriers",
         "mousedragged",
@@ -51,6 +53,8 @@
         "orbitcontrols",
         "playhead",
         "raycaster",
+        "rodenbr",
+        "rodenbröker",
         "tfjs",
         "uint",
         "webgl",

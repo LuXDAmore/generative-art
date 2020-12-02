@@ -32,3 +32,17 @@
     max-width: none;
 
 }
+
+.readme .markdown-body > section > p:nth-child(2) {
+
+    min-height: 30px;
+    font-size: 0;
+
+}
+
+.readme .markdown-body > section > p:nth-child(2) > a {
+
+    display: inline-block;
+    margin: 2px 1px;
+
+}

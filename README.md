@@ -1,7 +1,7 @@
 # 🎉 Generative Art || ThreeJs - Nuxt Canvas Sketch
 
-[![npm version][npm-version-src]][npm-version-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![npm Version][npm-version-src]][npm-version-href]
+[![npm Downloads][npm-downloads-src]][npm-downloads-href]
 [![Circle CI][circle-ci-src]][circle-ci-href]
 [![Dependencies][dependencies-src]][dependencies-href]
 [![Donate][donate-src]][donate-href]
@@ -20,7 +20,7 @@
 [dependencies-href]: https://npmjs.com/package/@luxdamore/nuxt-canvas-sketch
 
 [donate-src]: https://img.shields.io/badge/paypal-donate-black.svg?style=flat
-[donate-href]: https://www.paypal.com/paypalme2/luxdamore
+[donate-href]: https://www.paypal.com/paypalme/luxdamore
 
 [quality-src]: https://img.shields.io/badge/code%20quality-A-informational?style=flat
 [quality-href]: https://luxdamore.github.io/generative-art/
@@ -237,7 +237,7 @@ ___
 
 If You want to share a beer, we can be really good friends 😻
 
-__[Paypal](https://www.paypal.me/luxdamore) // [Patreon](https://www.patreon.com/luxdamore)__
+__[Paypal](https://www.paypal.com/paypalme/luxdamore) // [Patreon](https://www.patreon.com/luxdamore)__
 
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/luxdamore)
 

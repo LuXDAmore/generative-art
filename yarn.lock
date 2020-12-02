@@ -1706,10 +1706,10 @@
   resolved "https://registry.yarnpkg.com/@tensorflow-models/blazeface/-/blazeface-0.0.5.tgz#6261fcc5de61a283ea409b69f6a851f44a809826"
   integrity sha512-bIMJDV2CD8rr7v9OrIDdDZVh9sbk0EhlZdHaDFpgWUw3Lp21wUN7GSifOJVE5hV2ngmpzM+J12OH8bG1GZoDag==
 
-"@tensorflow-models/face-landmarks-detection@0.0.1":
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/@tensorflow-models/face-landmarks-detection/-/face-landmarks-detection-0.0.1.tgz#70b9d87bed11ecbd166dc6880a2a7b4a3d71a353"
-  integrity sha512-81x+xC/oG3n4cgJhCVFYoPxUcCfkqgdq95z1h0mUa8QrEC5iASAUJt10mRzjTTtN8l71r+S03U/TBG/8ut2PDA==
+"@tensorflow-models/face-landmarks-detection@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@tensorflow-models/face-landmarks-detection/-/face-landmarks-detection-0.0.2.tgz#faa34414d3ae2dc363366ec4da8f9ba27f93ab5e"
+  integrity sha512-dgniPMSchWwj2DBqqlvDA2NBMY5oDaQF1vUjz9IQQCXO4qtA0Q0z0ntjO7K+sJuNwSP3qoDeespxuEhBgpQgGg==
   dependencies:
     "@tensorflow-models/blazeface" "0.0.5"
     rimraf "^3.0.2"
@@ -1734,10 +1734,10 @@
     "@types/webgl2" "0.0.5"
     seedrandom "2.4.3"
 
-"@tensorflow/tfjs-converter@2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-converter/-/tfjs-converter-2.4.0.tgz#1093a35366d9395985bd66f01609d4c77b112077"
-  integrity sha512-H16ydhoN/Ah7jd1NO4VUs8UGYbVs77yzUrTIGzras1ios2vsBMwFDC7+boIEekF+O/BcOgu26LtiU8n5hB4lrw==
+"@tensorflow/tfjs-converter@^2.7.0":
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/@tensorflow/tfjs-converter/-/tfjs-converter-2.7.0.tgz#24acdd8964b264ba4839f7a3466f8bacafb98c13"
+  integrity sha512-SBpKYn/MkN8US7DeTcnvqHpvp/WKcwzpdgkQF+eHMHEbS1lXSlt4BHhOFgRdLPzy1gEC9+6P0VdTE8NQ737t/Q==
 
 "@tensorflow/tfjs-core@^2.7.0":
   version "2.7.0"

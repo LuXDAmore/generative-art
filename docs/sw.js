@@ -1,4 +1,4 @@
-const options = {"workboxURL":"https://cdn.jsdelivr.net/npm/workbox-cdn@5.1.4/workbox/workbox-sw.js","importScripts":[],"config":{"debug":false},"clientsClaim":true,"skipWaiting":true,"cleanupOutdatedCaches":true,"offlineAnalytics":false,"preCaching":["/generative-art/?standalone=true","/generative-art/?standalone=true"],"runtimeCaching":[{"urlPattern":"/generative-art/_nuxt/","handler":"CacheFirst","method":"GET","strategyPlugins":[]},{"urlPattern":"/generative-art/","handler":"NetworkFirst","method":"GET","strategyPlugins":[]},{"urlPattern":"/generative-art/_nuxt/","handler":"CacheFirst","method":"GET","strategyPlugins":[]},{"urlPattern":"/generative-art/","handler":"NetworkFirst","method":"GET","strategyPlugins":[]}],"offlinePage":null,"pagesURLPattern":"/generative-art/","offlineStrategy":"NetworkFirst"}
+const options = {"workboxURL":"https://cdn.jsdelivr.net/npm/workbox-cdn@5.1.4/workbox/workbox-sw.js","importScripts":[],"config":{"debug":false},"cacheOptions":{"cacheId":"@luxdamore/nuxt-canvas-sketch-prod","directoryIndex":"/","revision":"9t72ji09u5bn"},"clientsClaim":true,"skipWaiting":true,"cleanupOutdatedCaches":true,"offlineAnalytics":false,"preCaching":[{"revision":"9t72ji09u5bn","url":"/generative-art/?standalone=true"},{"revision":"9t72ji09u5bn","url":"/generative-art/?standalone=true"}],"runtimeCaching":[{"urlPattern":"/generative-art/_nuxt/","handler":"CacheFirst","method":"GET","strategyPlugins":[]},{"urlPattern":"/generative-art/","handler":"NetworkFirst","method":"GET","strategyPlugins":[]},{"urlPattern":"/generative-art/_nuxt/","handler":"CacheFirst","method":"GET","strategyPlugins":[]},{"urlPattern":"/generative-art/","handler":"NetworkFirst","method":"GET","strategyPlugins":[]}],"offlinePage":null,"pagesURLPattern":"/generative-art/","offlineStrategy":"NetworkFirst"}
 
 importScripts(...[options.workboxURL, ...options.importScripts])
 
@@ -49,6 +49,7 @@ function precacheAssets(workbox, options) {
     workbox.precaching.precacheAndRoute(options.preCaching, options.cacheOptions)
   }
 }
+
 
 function runtimeCaching(workbox, options) {
   for (const entry of options.runtimeCaching) {

@@ -1,11 +1,11 @@
 # 🎉 Generative Art || ThreeJs - Nuxt Canvas Sketch
 
 [![npm Version][npm-version-src]][npm-version-href]
+[![Code Quality][quality-src]][quality-href]
 [![npm Downloads][npm-downloads-src]][npm-downloads-href]
 [![Circle CI][circle-ci-src]][circle-ci-href]
 [![Dependencies][dependencies-src]][dependencies-href]
 [![Donate][donate-src]][donate-href]
-[![Code Quality][quality-src]][quality-href]
 
 [npm-version-src]: https://img.shields.io/npm/v/@luxdamore/nuxt-canvas-sketch/latest.svg?style=flat
 [npm-version-href]: https://npmjs.com/package/@luxdamore/nuxt-canvas-sketch

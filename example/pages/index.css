@@ -41,6 +41,12 @@
 
 }
 
+.readme .markdown-body ::v-deep > section > p:nth-child(2) > br {
+
+    display: none;
+
+}
+
 .readme .markdown-body ::v-deep > section > p:nth-child(2) > a {
 
     display: inline-block;

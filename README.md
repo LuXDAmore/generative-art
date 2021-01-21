@@ -1,29 +1,29 @@
 # 🎉 Generative Art || ThreeJs - Nuxt Canvas Sketch
 
-[![npm Version][npm-version-src]][npm-version-href]
 [![Code Quality][quality-src]][quality-href]
-[![npm Downloads][npm-downloads-src]][npm-downloads-href]
-[![Circle CI][circle-ci-src]][circle-ci-href]
 [![Dependencies][dependencies-src]][dependencies-href]
-[![Donate][donate-src]][donate-href]
-
-[npm-version-src]: https://img.shields.io/npm/v/@luxdamore/nuxt-canvas-sketch/latest.svg?style=flat
-[npm-version-href]: https://npmjs.com/package/@luxdamore/nuxt-canvas-sketch
-
-[npm-downloads-src]: https://img.shields.io/npm/dt/@luxdamore/nuxt-canvas-sketch.svg?style=flat
-[npm-downloads-href]: https://npmjs.com/package/@luxdamore/nuxt-canvas-sketch
-
-[circle-ci-src]: https://img.shields.io/circleci/project/github/LuXDAmore/generative-art.svg?style=flat
-[circle-ci-href]: https://circleci.com/gh/LuXDAmore/generative-art
-
-[dependencies-src]: https://img.shields.io/badge/dependencies-up%20to%20date-brightgreen.svg?style=flat
-[dependencies-href]: https://npmjs.com/package/@luxdamore/nuxt-canvas-sketch
-
-[donate-src]: https://img.shields.io/badge/paypal-donate-black.svg?style=flat
-[donate-href]: https://www.paypal.com/paypalme/luxdamore
+[![Circle CI][circle-ci-src]][circle-ci-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![npm version][npm-version-src]][npm-version-href]
+[![Donate][paypal-donate-src]][paypal-donate-href]
 
 [quality-src]: https://img.shields.io/badge/code%20quality-A-informational?style=flat
-[quality-href]: https://luxdamore.github.io/generative-art/
+[quality-href]: https://luxdamore.github.io/nuxt-canvas-sketch/
+
+[dependencies-src]: https://img.shields.io/badge/dependencies-up%20to%20date-darkgreen.svg?style=flat
+[dependencies-href]: https://npmjs.com/package/@luxdamore/nuxt-canvas-sketch
+
+[circle-ci-src]: https://img.shields.io/circleci/project/github/LuXDAmore/nuxt-canvas-sketch.svg?style=flat&color=darkgreen
+[circle-ci-href]: https://circleci.com/gh/LuXDAmore/nuxt-canvas-sketch
+
+[npm-downloads-src]: https://img.shields.io/npm/dt/@luxdamore/nuxt-canvas-sketch.svg?style=flat&color=orange
+[npm-downloads-href]: https://npmjs.com/package/@luxdamore/nuxt-canvas-sketch
+
+[npm-version-src]: https://img.shields.io/npm/v/@luxdamore/nuxt-canvas-sketch/latest.svg?style=flat&color=orange
+[npm-version-href]: https://npmjs.com/package/@luxdamore/nuxt-canvas-sketch
+
+[paypal-donate-src]: https://img.shields.io/badge/paypal-donate-black.svg?style=flat
+[paypal-donate-href]: https://www.paypal.me/luxdamore
 
 > Generative Art is the idea realized as genetic code of artificial events, as construction of dynamic complex systems able to generate endless variations. This is also a nuxt-module (@luxdamore/nuxt-canvas-sketch) - [threejs and tensorflow are not included].
 
@@ -231,22 +231,20 @@ Details changes for each release are documented in the [**release notes**](./CHA
 
 [MIT License](./LICENSE) // Copyright (©) 2020-present [Luca Iaconelli](https://lucaiaconelli.it)
 
-___
-
-#### 💸 Are you feeling generous today?  :)
-
-If You want to share a beer, we can be really good friends 😻
-
-__[Paypal](https://www.paypal.com/paypalme/luxdamore) // [Patreon](https://www.patreon.com/luxdamore)__
-
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/luxdamore)
-
-> _It's always a good day to be magnanimous_ - cit
-
-#### 💼 Hire me
-
-[![Hire me](https://img.shields.io/badge/Contact%20Me-Let's%20Talk-informational?style=social&logo=minutemailer)](https://lucaiaconelli.it)
-
 #### 💘 Inspired by
 
 > **All my thanks goes to _Matt DesLauriers_ and _Yuri Artyukh_ for those useful libraries and tutorials**.
+
+___
+
+#### 💼 Hire me
+
+[![Contacts](https://img.shields.io/badge/Contact%20Me-Let's%20Talk-informational?style=social&logo=minutemailer)](https://lucaiaconelli.it)
+
+#### 💸 Are you feeling generous today?
+
+If You want to share a beer, we can be really good friends
+
+__[Paypal][paypal-donate-href] // [Patreon](https://www.patreon.com/luxdamore) // [Ko-fi](https://ko-fi.com/luxdamore)__
+
+> ☀ _It's always a good day to be magnanimous_ - cit.

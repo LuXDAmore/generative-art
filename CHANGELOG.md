@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.2](https://github.com/LuXDAmore/generative-art/compare/v1.8.1...v1.8.2) (2021-01-21)
+
+
+### Bug Fixes
+
+* broken layout on mobile ([f4cd232](https://github.com/LuXDAmore/generative-art/commit/f4cd2327fed4b3281f51494aa6c1439d042920de))
+* images in two lines ([7f8683e](https://github.com/LuXDAmore/generative-art/commit/7f8683ea83a7a6387744ad8e94666812ac38945a))
+
 ## [1.8.0](https://github.com/LuXDAmore/generative-art/compare/v1.7.0...v1.8.0) (2020-12-02)
 
 

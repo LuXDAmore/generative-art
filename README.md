@@ -8,13 +8,13 @@
 [![Donate][paypal-donate-src]][paypal-donate-href]
 
 [quality-src]: https://img.shields.io/badge/code%20quality-A-informational?style=flat
-[quality-href]: https://luxdamore.github.io/nuxt-canvas-sketch/
+[quality-href]: https://luxdamore.github.io/generative-art/
 
 [dependencies-src]: https://img.shields.io/badge/dependencies-up%20to%20date-darkgreen.svg?style=flat
 [dependencies-href]: https://npmjs.com/package/@luxdamore/nuxt-canvas-sketch
 
-[circle-ci-src]: https://img.shields.io/circleci/project/github/LuXDAmore/nuxt-canvas-sketch.svg?style=flat&color=darkgreen
-[circle-ci-href]: https://circleci.com/gh/LuXDAmore/nuxt-canvas-sketch
+[circle-ci-src]: https://img.shields.io/circleci/project/github/LuXDAmore/generative-art.svg?style=flat&color=darkgreen
+[circle-ci-href]: https://circleci.com/gh/LuXDAmore/generative-art
 
 [npm-downloads-src]: https://img.shields.io/npm/dt/@luxdamore/nuxt-canvas-sketch.svg?style=flat&color=orange
 [npm-downloads-href]: https://npmjs.com/package/@luxdamore/nuxt-canvas-sketch

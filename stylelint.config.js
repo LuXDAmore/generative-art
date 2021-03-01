@@ -13,8 +13,11 @@ const tailwindIgnored = [
 
 module.exports = {
     root: true,
+    parser: 'postcss-scss',
+    syntax: 'postcss-scss',
     extends: [
         'stylelint-config-standard',
+        'stylelint-config-prettier',
         'stylelint-config-sass-guidelines',
         'stylelint-config-rational-order',
     ],
@@ -117,10 +120,12 @@ module.exports = {
         'block-closing-brace-empty-line-before': [ 'always-multi-line' ],
         'string-quotes': 'double',
         'media-feature-parentheses-space-inside': 'always',
-        'function-parentheses-space-inside': 'always',
+        'block-opening-brace-newline-after': 'always-multi-line',
+        'function-parentheses-space-inside': 'always-single-line',
         'block-no-empty': null,
         'function-url-quotes': 'always',
         'max-empty-lines': [ 2 ],
+        'selector-max-id': 1,
         'selector-max-compound-selectors': [ 9 ],
         'max-nesting-depth': [ 9 ],
         'at-rule-no-unknown': null,
@@ -150,7 +155,10 @@ module.exports = {
         'selector-no-qualifying-type': [
             true,
             {
-                ignore: [ 'class' ],
+                ignore: [
+                    'attribute',
+                    'class',
+                ],
             },
         ],
         'at-rule-empty-line-before': [
@@ -161,10 +169,7 @@ module.exports = {
                     'blockless-after-same-name-blockless',
                     'blockless-after-blockless',
                 ],
-                ignore: [
-                    'after-comment',
-                    'first-nested',
-                ],
+                ignore: [ 'after-comment' ],
             },
         ],
         'number-leading-zero': 'never',
@@ -175,7 +180,6 @@ module.exports = {
                     'after-comment',
                     'after-declaration',
                 ],
-                ignore: [ 'after-declaration' ],
             },
         ],
         'block-opening-brace-space-before': 'always',

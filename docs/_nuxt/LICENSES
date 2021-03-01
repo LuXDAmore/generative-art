@@ -4,18 +4,6 @@
 	@license MIT
 	*/
 
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-
-/*!
-  * vue-router v3.4.9
-  * (c) 2020 Evan You
-  * @license MIT
-  */
-
 /*!
  * CSSPlugin 3.6.0
  * https://greensock.com
@@ -44,12 +32,6 @@ object-assign
  */
 
 /*!
- * Vue.js v2.6.12
- * (c) 2014-2020 Evan You
- * Released under the MIT License.
- */
-
-/*!
  * vue-client-only v2.0.0
  * (c) 2019-present egoist <0x142857@gmail.com>
  * Released under the MIT License.
@@ -65,9 +47,10 @@ object-assign
 
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
+
 /**
     * @license
-    * Copyright 2020 Google LLC. All Rights Reserved.
+    * Copyright 2021 Google LLC. All Rights Reserved.
     * Licensed under the Apache License, Version 2.0 (the "License");
     * you may not use this file except in compliance with the License.
     * You may obtain a copy of the License at
@@ -219,4 +202,48 @@ object-assign
  * =============================================================================
  */
 
+/**
+ * @license
+ * Copyright 2021 Google LLC. All Rights Reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * =============================================================================
+ */
+
 /** @license See the LICENSE file. */
+
+
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+
+/*!
+  * vue-router v3.5.1
+  * (c) 2021 Evan You
+  * @license MIT
+  */
+
+/*!
+ * Vue.js v2.6.12
+ * (c) 2014-2020 Evan You
+ * Released under the MIT License.
+ */
+
+
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/

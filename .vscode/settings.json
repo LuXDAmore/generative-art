@@ -1,4 +1,13 @@
 {
+    // CSS
+    "css.validate": false,
+    "less.validate": false,
+    "scss.validate": false,
+    "html.validate.styles": false,
+    // Markdown
+    "markdownlint.ignore": [
+        "CHANGELOG.md"
+    ],
     // ESLint
     "eslint.alwaysShowStatus": true,
     "eslint.options": {
@@ -7,10 +16,32 @@
             ".vue"
         ]
     },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+        "source.fixAll.stylelint": true
+    },
+    "stylelint.enable": true,
+    "stylelint.snippet": [
+        "css",
+        "less",
+        "postcss",
+        "sass",
+        "scss",
+        "stylus"
+    ],
+    // Vue
+    "vetur.format.styleInitialIndent": true,
+    "vetur.validation.template": false,
+    "vetur.format.defaultFormatter.css": "prettier",
+    "vetur.format.defaultFormatter.scss": "prettier",
+    "vetur.format.defaultFormatter.js": "prettier-eslint",
+    "vetur.format.defaultFormatter.ts": "prettier-tslint",
+    "vetur.format.options.tabSize": 4,
+    "prettier.vueIndentScriptAndStyle": true,
+    "vetur.experimental.templateInterpolationService": true,
     // Colors
     "workbench.colorCustomizations": {
         "activityBar.background": "#65c89b",
-        "activityBar.activeBackground": "#65c89b",
         "activityBar.activeBorder": "#945bc4",
         "activityBar.foreground": "#15202b",
         "activityBar.inactiveForeground": "#15202b99",
@@ -22,46 +53,33 @@
         "titleBar.inactiveForeground": "#15202b99",
         "statusBar.background": "#42b883",
         "statusBarItem.hoverBackground": "#359268",
-        "statusBar.foreground": "#15202b"
+        "statusBar.foreground": "#15202b",
+        "activityBar.activeBackground": "#65c89b"
     },
     "peacock.color": "#42b883",
-    "markdownlint.ignore": [
-        "CHANGELOG.md"
+    // Dictionary
+    "cSpell.language": "en,it",
+    "cSpell.allowCompoundWords": true,
+    "cSpell.ignorePaths": [
+        ".vscode",
+        ".git",
+        ".nuxt",
+        "coverage",
+        "dist",
+        "ssr",
+        "node_modules",
+        "bower_components"
     ],
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true,
-        "source.fixAll.stylelint": true
-    },
     "cSpell.words": [
-        "artyukh",
-        "biquad",
-        "compat",
         "glslify",
-        "gsap",
-        "jsdelivr",
-        "jsonld",
         "ker",
-        "keypressed",
-        "lauriers",
-        "mousedragged",
-        "mousemove",
-        "mousemoved",
-        "nyquist",
-        "onaudioprocess",
-        "oncanplaythrough",
-        "onclick",
-        "orbitcontrols",
-        "playhead",
-        "raycaster",
+        "pbody",
+        "phead",
         "rodenbr",
-        "rodenbröker",
-        "tfjs",
-        "uint",
-        "webgl",
-        "wireframe"
+        "rodenbröker"
     ],
     "cSpell.ignoreWords": [
-        "nwedck",
-        "pmouse"
+        "khtml",
+        "nyquist"
     ]
 }

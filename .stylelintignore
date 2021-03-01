@@ -1,7 +1,15 @@
-docs/
-coverage/
+# Common
+node_modules
+bower_components
+dist
+.nuxt
+coverage
 
-bower_components/
-node_modules/
-.vscode/
-.nuxt/
+docs
+ssr
+coverage
+.circleci
+.vscode
+.github
+
+*.min.*

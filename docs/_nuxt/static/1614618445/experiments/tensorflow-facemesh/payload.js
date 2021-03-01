@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/experiments/tensorflow-facemesh", {data:[{}],fetch:{},mutations:void 0});

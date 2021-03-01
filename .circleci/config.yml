@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
@@ -30,9 +30,12 @@ jobs:
       # Tests
       - run:
           name: Tests
-          command: yarn jest
+          command: yarn test
 
       # Coverage
       - run:
           name: Coverage
           command: yarn codecov
+
+      - store_test_results:
+          path: test-results

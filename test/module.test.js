@@ -1,59 +1,63 @@
-// Test utils
-import {
-    setup,
-    get,
-} from '@nuxtjs/module-test-utils';
+/*
+*   * Test utils
+*/
+import { setupTest, get } from '@nuxt/test-utils';
 
-// Nuxt config
-import config from '../example/nuxt.config';
+/*
+*   * Package data
+*/
+import * as PACKAGE from '../package.json';
 
-const BASE_URL = '/';
+/*
+*   * Utils
+*/
+const BASE_URL = PACKAGE.homepage.replace(
+    'https://luxdamore.github.io/',
+    '/'
+);
 
-config.dev = false;
-config.router.base = BASE_URL;
-
-// Tests
+/*
+*   * Module testing suite
+*/
 describe(
     'module',
     () => {
 
-        let nuxt;
-
-        beforeAll(
-            async() => {
-
-                (
-                    { nuxt } = (
-                        await setup(
-                            config
-                        )
-                    )
-                );
-
-            },
-            90000
-        );
-
-        afterAll(
-            async() => {
-
-                await nuxt.close();
-
+        /*
+        *   * Nuxt setup
+        */
+        setupTest(
+            {
+                server: true,
+                setupTimeout: 90000,
+                testDir: __dirname,
+                fixture: '../src',
+                config: {
+                    dev: false,
+                },
             }
         );
 
-        test(
+        /*
+        *   * Tests
+        */
+        describe(
             'render',
-            async() => {
+            () => {
 
-                const html = await get(
-                    BASE_URL
-                );
+                test(
+                    'run',
+                    async() => {
 
-                expect(
-                    html
-                ).toContain(
-                    'Generative Art'
+                        const { body } = await get(
+                            BASE_URL
+                        );
+
+                        expect( body ).toContain(
+                            'Generative'
+                        );
+
+                    },
                 );
 
             }

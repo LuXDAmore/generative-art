@@ -1,17 +1,10 @@
 module.exports = {
-    testEnvironment: 'node',
+    preset: '@nuxt/test-utils',
+    setupFilesAfterEnv: [ './jest.setup.js' ],
     collectCoverage: true,
     collectCoverageFrom: [
         'lib/**/*.js',
-        '!lib/plugin.js',
+        '!lib/config.**',
+        '!lib/logger.js',
     ],
-    moduleNameMapper: {
-        '^~/(.*)$': '<rootDir>/lib/$1',
-        '^~~$': '<rootDir>',
-        '^@@$': '<rootDir>',
-        '^@/(.*)$': '<rootDir>/lib/$1',
-    },
-    transform: {
-        '^.+\\.js$': 'babel-jest',
-    },
 };

@@ -1,9 +1,16 @@
 # Common
 node_modules
+bower_components
 dist
 .nuxt
-docs
 coverage
 
-sw.js
 docs
+ssr
+coverage
+.circleci
+.vscode
+.github
+
+sw.js
+*.min.*

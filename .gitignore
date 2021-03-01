@@ -10,7 +10,7 @@ coverage
 dist
 
 # Generated
-src/.env
+.env
 src/**/**/sw.js
 src/**/**/humans.txt
 src/**/**/browserconfig.xml

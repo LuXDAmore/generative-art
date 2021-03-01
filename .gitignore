@@ -10,9 +10,10 @@ coverage
 dist
 
 # Generated
-src/**/sw.js
-src/**/humans.txt
-src/**/browserconfig.xml
+src/.env
+src/**/**/sw.js
+src/**/**/humans.txt
+src/**/**/browserconfig.xml
 
 # Log files
 npm-debug.log*

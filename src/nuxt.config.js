@@ -12,7 +12,8 @@ import { colors } from './theme';
 /*
 *   * Vars
 */
-const isProduction = process.env.NODE_ENV !== 'development'
+const isTesting = process.env.NODE_ENV === 'test'
+    , isProduction = process.env.NODE_ENV !== 'development' && ! isTesting
     // Theme
     , { primary, error } = colors
     // Title and description
@@ -30,7 +31,7 @@ const isProduction = process.env.NODE_ENV !== 'development'
     // Url
     , base = (
         isProduction && hostpath
-        ? hostpath
+        ? `${ hostpath }/`
         : '/'
     )
     // Meta and Links
@@ -65,7 +66,7 @@ const isProduction = process.env.NODE_ENV !== 'development'
             rel: 'shortcut icon',
             hid: 'favicon',
             type: 'image/x-icon',
-            href: `${ base }favicon.ico`,
+            href: 'favicon.ico',
         },
     ]
     , script = []
@@ -94,12 +95,38 @@ const isProduction = process.env.NODE_ENV !== 'development'
 ;
 
 // FIXME: there's a problem during tests
-process.env.NODE_ENV !== 'test' && buildModules.push(
+! isTesting && buildModules.push(
     '@luxdamore/nuxt-humans-txt'
 );
 
 // Module installation
 modules.push( module );
+
+/* Analytics */
+if( isProduction && process.env.GOOGLE_ANALYTICS_ID ) {
+
+    link.push(
+        {
+            once: true,
+            hid: 'preconnect-google-analytics',
+            rel: 'preconnect',
+            href: 'https://www.google-analytics.com',
+            crossorigin: true,
+        },
+        {
+            once: true,
+            hid: 'prefetch-google-analytics',
+            rel: 'dns-prefetch',
+            href: 'https://www.google-analytics.com',
+            crossorigin: true,
+        },
+    );
+
+    buildModules.push(
+        '@nuxtjs/google-analytics'
+    );
+
+}
 
 /*
 *   * Nuxt config
@@ -195,6 +222,17 @@ export default {
         icon: {
             fileName: 'icon.png',
             plugin: false,
+        },
+    },
+    googleAnalytics: {
+        id: process.env.GOOGLE_ANALYTICS_ID,
+    },
+    /*
+    *   * Runtime Config
+    */
+    publicRuntimeConfig: {
+        googleAnalytics: {
+            id: process.env.GOOGLE_ANALYTICS_ID,
         },
     },
     /*

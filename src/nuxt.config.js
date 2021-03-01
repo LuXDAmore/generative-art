@@ -17,7 +17,7 @@ const isTesting = process.env.NODE_ENV === 'test'
     // Theme
     , { primary, error } = colors
     // Title and description
-    , title = PACKAGE.name
+    , title = `${ process.env.TITLE } - ${ PACKAGE.name }`
     , description = PACKAGE.description
     , hostname = PACKAGE.homepage
     , keywords = PACKAGE.keywords.join(

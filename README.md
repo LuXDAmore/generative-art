@@ -1,4 +1,4 @@
-# 🌈🎨 Generative Art || Nuxt Canvas Sketch (three-js, tensorflow-js and gsap)
+# 🌈🎨 Generative Art || Nuxt Canvas Sketch (three.js, tensorflow.js and gsap)
 
 [![Code Quality][quality-src]][quality-href]
 [![Downloads][npm-downloads-src]][npm-downloads-href]

@@ -73,7 +73,7 @@
                 links: [
                     {
                         url: '/',
-                        text: 'HOMEPAGE',
+                        text: 'HOMEPAGE, README',
                     },
                     {
                         url: '/single/three-js-starter',

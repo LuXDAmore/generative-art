@@ -139,6 +139,12 @@ export default {
         store: false,
         transition: false,
         validate: false,
+        asyncData: true,
+        fetch: false,
+        clientOnline: false,
+        clientPrefetch: false,
+        componentAliases: false,
+        componentClientOnly: false,
     },
     vueMeta: {
         refreshOnceOnNavigation: true,

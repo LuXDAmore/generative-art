@@ -228,13 +228,6 @@ ___
 
 ___
 
-#### 💡 Lighthouse
-
-![Lighthouse Audit before](./src/static/lighthouse/before.jpg)
-![Lighthouse Audit after](./src/static/lighthouse/after.jpg)
-
-___
-
 ## 👩🏻‍💻👨🏻‍💻 Development
 
 1. **Clone** the repository:

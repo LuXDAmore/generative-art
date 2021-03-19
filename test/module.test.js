@@ -16,7 +16,7 @@ describe(
         setupTest(
             {
                 server: true,
-                setupTimeout: 210000,
+                setupTimeout: 230000,
                 testDir: __dirname,
                 fixture: '../src',
                 config: {

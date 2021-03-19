@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/single/infinite-animation", {data:[{}],fetch:{},mutations:void 0});

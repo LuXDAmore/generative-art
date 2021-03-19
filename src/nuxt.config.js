@@ -211,7 +211,6 @@ export default {
         gzip: true,
     },
     pwa: {
-        workbox: false,
         meta: {
             author,
             name: title,

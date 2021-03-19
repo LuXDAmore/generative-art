@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.6](https://github.com/LuXDAmore/generative-art/compare/v1.8.5...v1.8.6) (2021-03-19)
+
+
+### Bug Fixes
+
+* removed env ([d94d371](https://github.com/LuXDAmore/generative-art/commit/d94d3712332c1e8a9c1bf3ee0760de90022c8041))
+* tests ([0b4526d](https://github.com/LuXDAmore/generative-art/commit/0b4526d06a254db44d9a7fab6dd6dda3853ff5b5))
+* tests ([7790026](https://github.com/LuXDAmore/generative-art/commit/77900260e67e99695a5722960b73bfad2df42458))
+* title ([b99120f](https://github.com/LuXDAmore/generative-art/commit/b99120f825dcbd46ae011069abc35b28da647f10))
+* title and description ([2c1d035](https://github.com/LuXDAmore/generative-art/commit/2c1d035edeff55e216d9d0ae0cc38cd2cbd75eb8))
+* updated tests timimgs ([6e8e843](https://github.com/LuXDAmore/generative-art/commit/6e8e843887eb11f01752058308d7606fd0fe88de))
+* updated tests timings ([2c7d915](https://github.com/LuXDAmore/generative-art/commit/2c7d9155e216fe3f5dfccf86ba554ebb4a8bab5a))
+
 ### [1.8.4](https://github.com/LuXDAmore/generative-art/compare/v1.8.3...v1.8.4) (2021-01-21)
 
 ### [1.8.2](https://github.com/LuXDAmore/generative-art/compare/v1.8.1...v1.8.2) (2021-01-21)

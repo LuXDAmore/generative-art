@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/navigate/page-2", (function(a){return {data:[{}],fetch:a,mutations:a}}(void 0)));

@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/single/generative-art-1", (function(a){return {data:[{}],fetch:a,mutations:a}}(void 0)));

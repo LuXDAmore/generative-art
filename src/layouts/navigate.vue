@@ -6,11 +6,13 @@
         <nav-menu />
 
         <div class="main-title">
-            <h1>Navigate</h1>
+
+            <h1>Navigate through pages</h1>
 
             <h2>
-                <em>a shared layout for different pages</em>
+                <em>enhance your creative 3D / UX / Visual art while browsing</em>
             </h2>
+
         </div>
 
         <nuxt />
@@ -431,15 +433,10 @@
 
 <style
     scoped
-    src="./style.css"
+    src="./shared.css"
 ></style>
 
-<style scoped>
-    .main-title {
-
-        position: absolute;
-        top: 76%;
-        left: 2%;
-
-    }
-</style>
+<style
+    scoped
+    src="./navigate.css"
+></style>

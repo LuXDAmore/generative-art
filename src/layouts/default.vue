@@ -21,5 +21,5 @@
 
 <style
     scoped
-    src="./style.css"
+    src="./shared.css"
 ></style>

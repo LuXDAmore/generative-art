@@ -187,6 +187,7 @@
                 itemListElement: [
                     ... this.links,
                     ... this.linksNavigate,
+                    ... this.linksExperiments,
                 ].map(
                     (
                         item,

@@ -213,6 +213,7 @@ export default {
     pwa: {
         meta: {
             author,
+            name: title,
             short_name: 'ART',
             description,
             ogHost: hostname,

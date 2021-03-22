@@ -277,7 +277,7 @@
 
                           try {
 
-                              const stream = navigator // eslint-disable-line compat/compat
+                              const stream = await navigator // eslint-disable-line compat/compat
                                   .mediaDevices
                                   .getUserMedia(
                                       {

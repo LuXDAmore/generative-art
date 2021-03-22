@@ -178,33 +178,46 @@
         ),
         jsonld() {
 
-            if( ! this.links.length && ! this.linksNavigate.length )
-                return null;
-
-            return {
-                '@context': 'http://schema.org',
-                '@type': 'BreadcrumbList',
-                itemListElement: [
-                    ... this.links,
-                    ... this.linksNavigate,
-                    ... this.linksExperiments,
-                ].map(
-                    (
-                        item,
-                        index,
-                    ) => (
-                        {
-                            '@type': 'ListItem',
-                            position: index + 1,
-                            item: {
-                                '@id': item.url,
-                                url: item.url,
-                                name: item.text || item.title,
-                            },
-                        }
+            return [
+                {
+                    '@context': 'https://schema.org/',
+                    '@type': 'SoftwareSourceCode',
+                    programmingLanguage: 'Javascript',
+                    targetProduct: 'NuxtJs, VueJs',
+                    name: process.env.title,
+                    description: process.env.description,
+                    about: process.env.description,
+                    author: process.env.author,
+                    url: process.env.hostname,
+                    codeSampleType: process.env.hostname,
+                    workExample: process.env.hostname,
+                    codeRepository: process.env.hostname,
+                },
+                {
+                    '@context': 'http://schema.org',
+                    '@type': 'BreadcrumbList',
+                    itemListElement: [
+                        ... this.links,
+                        ... this.linksNavigate,
+                        ... this.linksExperiments,
+                    ].map(
+                        (
+                            item,
+                            index,
+                        ) => (
+                            {
+                                '@type': 'ListItem',
+                                position: index + 1,
+                                item: {
+                                    '@id': item.url,
+                                    url: item.url,
+                                    name: item.text || item.title,
+                                },
+                            }
+                        ),
                     ),
-                ),
-            };
+                },
+            ];
 
         },
     };

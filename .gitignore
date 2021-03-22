@@ -11,9 +11,10 @@ dist
 
 # Generated
 .env
+src/**/**/google65af3603f409fcc6.html
 src/**/**/sw.js
 src/**/**/humans.txt
-src/**/**/browserconfig.xml
+src/**/**/browserconfig.*
 
 # Log files
 npm-debug.log*

@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/single/microphone-audio-and-video-webcam", (function(a){return {data:[{}],fetch:a,mutations:a}}(void 0)));

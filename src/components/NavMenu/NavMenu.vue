@@ -1,63 +1,91 @@
 <template>
     <header class="nav-menu">
 
-        <details v-if="links.length" class="nav-menu__details">
+        <details class="nav-menu__details father" open>
 
             <summary class="nav-menu__summary">
                 <h2>
-                    Single pages
+                    Show/hide the menu
                 </h2>
             </summary>
 
-            <nav class="nav">
-                <ul>
-                    <li v-for="link in links" :key="link.url">
-                        <nuxt-link :to="link.url" :title="link.text">
-                            {{ link.text }}
-                        </nuxt-link>
-                    </li>
-                </ul>
-            </nav>
+            <details v-if="links.length" class="nav-menu__details">
 
-        </details>
+                <summary class="nav-menu__summary">
+                    <h2>
+                        Single pages
+                    </h2>
+                </summary>
 
-        <details v-if="linksNavigate.length" class="nav-menu__details">
+                <nav class="nav">
+                    <ul>
+                        <li
+                            v-for="link in links"
+                            :key="link.url"
+                            :class="link.class"
+                        >
+                            <nuxt-link
+                                :to="link.url"
+                                :title="link.text"
+                                v-text="link.text"
+                            />
+                        </li>
+                    </ul>
+                </nav>
 
-            <summary class="nav-menu__summary">
-                <h2>
-                    Layouts
-                </h2>
-            </summary>
+            </details>
 
-            <nav class="nav">
-                <ul>
-                    <li v-for="link in linksNavigate" :key="link.url">
-                        <nuxt-link :to="link.url" :title="link.text">
-                            {{ link.text }}
-                        </nuxt-link>
-                    </li>
-                </ul>
-            </nav>
+            <details v-if="linksNavigate.length" class="nav-menu__details">
 
-        </details>
+                <summary class="nav-menu__summary">
+                    <h2>
+                        Layouts
+                    </h2>
+                </summary>
 
-        <details v-if="linksExperiments.length" class="nav-menu__details">
+                <nav class="nav">
+                    <ul>
+                        <li
+                            v-for="link in linksNavigate"
+                            :key="link.url"
+                            :class="link.class"
+                        >
+                            <nuxt-link
+                                :to="link.url"
+                                :title="link.text"
+                                v-text="link.text"
+                            />
+                        </li>
+                    </ul>
+                </nav>
 
-            <summary class="nav-menu__summary">
-                <h2>
-                    Experiments
-                </h2>
-            </summary>
+            </details>
 
-            <nav class="nav">
-                <ul>
-                    <li v-for="link in linksExperiments" :key="link.url">
-                        <nuxt-link :to="link.url" :title="link.text">
-                            {{ link.text }}
-                        </nuxt-link>
-                    </li>
-                </ul>
-            </nav>
+            <details v-if="linksExperiments.length" class="nav-menu__details">
+
+                <summary class="nav-menu__summary">
+                    <h2>
+                        Experiments
+                    </h2>
+                </summary>
+
+                <nav class="nav">
+                    <ul>
+                        <li
+                            v-for="link in linksExperiments"
+                            :key="link.url"
+                            :class="link.class"
+                        >
+                            <nuxt-link
+                                :to="link.url"
+                                :title="link.text"
+                                v-text="link.text"
+                            />
+                        </li>
+                    </ul>
+                </nav>
+
+            </details>
 
         </details>
 
@@ -70,10 +98,12 @@
         inheritAttrs: false,
         data: () => (
             {
+                hideMenu: false,
                 links: [
                     {
                         url: '/',
                         text: 'HOMEPAGE, README',
+                        class: [ 'font-bold' ],
                     },
                     {
                         url: '/single/three-js-starter',

@@ -1,21 +1,26 @@
 .readme .markdown-body {
 
     width: 100%;
-    max-width: 100%;
-    padding: 36px;
+    max-width: 1200px;
+    padding: 16px;
     overflow-x: hidden;
     line-height: 1.5;
     background-color: #fff;
 
 }
 
-/* Better UI for the generated for the Readme */
+.readme .markdown-body ::v-deep h1 {
+
+    text-align: center;
+
+}
+
 .readme .markdown-body ::v-deep > section > p:nth-child(2) {
 
     display: flex;
     flex: 1 1 100%;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: center;
     min-height: 36px;
     padding: 6px 12px;
@@ -23,6 +28,12 @@
     font-size: 0;
     background-color: rgba( 220, 230, 240, .63 );
     border-radius: 5px;
+
+}
+
+.readme .markdown-body ::v-deep > section > p >br {
+
+    display: none;
 
 }
 

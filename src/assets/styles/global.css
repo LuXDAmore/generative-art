@@ -15,6 +15,7 @@ body {
 
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 
 }
 
@@ -40,6 +41,14 @@ body {
 
 }
 
+img {
+
+    width: auto;
+    max-width: 100%;
+    height: auto;
+
+}
+
 main {
 
     min-height: 100vh;
@@ -57,6 +66,14 @@ video {
     display: block;
     margin: 0;
     padding: 0;
+
+}
+
+label {
+
+    display: block;
+    width: 100%;
+    cursor: pointer;
 
 }
 
@@ -115,6 +132,12 @@ button:focus {
 .absolute {
 
     position: absolute;
+
+}
+
+.font-bold {
+
+    font-weight: bold;
 
 }
 
@@ -183,6 +206,17 @@ a {
 
 .pin-b {
 
-    bottom: 16px;
+    bottom: 100px;
+
+}
+
+@media and screen ( min-width: 600px ) {
+
+
+    .pin-b {
+
+        bottom: 16px;
+
+    }
 
 }

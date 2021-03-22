@@ -240,13 +240,18 @@ export default {
             id: process.env.GOOGLE_ANALYTICS_ID,
         },
     },
+    privateRuntimeConfig: {
+        googleAnalytics: {
+            id: process.env.GOOGLE_ANALYTICS_ID,
+        },
+    },
     /*
     *   * Progress bar
     */
     loading: {
         color: primary,
         failedColor: error,
-        height: '23px',
+        height: '8px',
     },
     /*
     *   * Render

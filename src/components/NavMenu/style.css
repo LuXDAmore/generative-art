@@ -1,26 +1,26 @@
 .nav-menu {
 
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
     display: flex;
     flex: 1 1 100%;
     flex-direction: column;
-    align-items: flex-start;
     justify-items: center;
     width: 100%;
-    min-height: 45px;
-    font-size: 1rem;
-    text-align: center;
+    max-width: 100%;
+    font-size: 1.1rem;
+    text-align: left;
 
 }
 
-@media ( min-width: 800px ) {
+@media screen and ( min-width: 600px ) {
 
     .nav-menu {
 
-        flex-direction: row;
+        right: 8px;
+        bottom: 8px;
+        max-width: 381px;
 
     }
 
@@ -30,8 +30,7 @@
 
     display: inline-block;
     margin: 0;
-    font-size: 1rem;
-    vertical-align: middle;
+    font-size: 1.2rem;
 
 }
 
@@ -39,26 +38,27 @@
 
     width: 100%;
     padding: 8px;
-    overflow: hidden;
     background-color: #333;
     border: 1px dotted #fff;
     cursor: pointer;
 
 }
 
-.nav-menu .nav {
+.nav-menu .nav-menu__details.father {
 
-    padding: 16px;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity .2s linear .1s;
+    padding: 8px;
 
 }
 
-.nav-menu .nav-menu__details[open] .nav {
+.nav-menu .nav-menu__details.father > summary {
 
-    visibility: visible;
-    opacity: 1;
+    padding: 0 0 4px;
+
+}
+
+.nav-menu .nav {
+
+    padding: 8px 16px;
 
 }
 
@@ -76,12 +76,13 @@
     color: #fff;
     font-weight: lighter;
     white-space: nowrap;
+    text-decoration: none;
 
 }
 
 .nav-menu .nav a.nuxt-link-exact-active {
 
     font-weight: bolder;
-    text-decoration: none;
+    text-decoration: line-through;
 
 }

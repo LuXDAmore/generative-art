@@ -459,6 +459,10 @@
                         error
                     );
 
+                    window.alert(
+                        'You must allow access to your webcam'
+                    );
+
                 }
 
                 // Loading finished

@@ -38,7 +38,6 @@
     "vetur.format.defaultFormatter.ts": "prettier-tslint",
     "vetur.format.options.tabSize": 4,
     "prettier.vueIndentScriptAndStyle": true,
-    "vetur.experimental.templateInterpolationService": true,
     // Colors
     "workbench.colorCustomizations": {
         "activityBar.background": "#65c89b",

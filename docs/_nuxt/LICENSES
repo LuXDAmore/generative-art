@@ -1,10 +1,3 @@
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-
-
 /**
     * @license
     * Copyright 2021 Google LLC. All Rights Reserved.
@@ -180,26 +173,6 @@ object-assign
 
 
 /*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-
-
-/*!
-  * vue-router v3.5.1
-  * (c) 2021 Evan You
-  * @license MIT
-  */
-
-/*!
- * Vue.js v2.6.12
- * (c) 2014-2020 Evan You
- * Released under the MIT License.
- */
-
-
-/*
 	object-assign
 	(c) Sindre Sorhus
 	@license MIT
@@ -241,3 +214,30 @@ object-assign
 /*! https://mths.be/punycode v1.4.1 by @mathias */
 
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
+
+
+/*!
+  * vue-router v3.5.1
+  * (c) 2021 Evan You
+  * @license MIT
+  */
+
+/*!
+ * Vue.js v2.6.12
+ * (c) 2014-2020 Evan You
+ * Released under the MIT License.
+ */
+
+
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/

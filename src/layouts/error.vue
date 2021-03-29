@@ -58,3 +58,8 @@
         },
     };
 </script>
+
+<style
+    scoped
+    src="./error.css"
+></style>

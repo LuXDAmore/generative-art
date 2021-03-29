@@ -1,0 +1,17 @@
+.layout-readme ::v-deep .nav-menu {
+
+    position: sticky;
+
+}
+
+@media screen and ( min-width: 600px ) {
+
+    .layout-readme ::v-deep .nav-menu {
+
+        top: 0;
+        left: 0;
+        max-width: 100%;
+
+    }
+
+}

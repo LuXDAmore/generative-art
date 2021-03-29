@@ -252,7 +252,7 @@ export default {
     loading: {
         color: primary,
         failedColor: error,
-        height: '8px',
+        height: '16px',
     },
     /*
     *   * Render

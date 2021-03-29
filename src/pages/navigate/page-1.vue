@@ -1,7 +1,7 @@
 <template>
     <main class="container">
         <h2 class="absolute z-index--1">
-            <nuxt-link to="/navigate/page-2">
+            <nuxt-link to="/navigate/page-2" title="go to page Sphere Geometry">
                 <em>go to page <strong>Sphere Geometry</strong></em>
             </nuxt-link>
         </h2>

@@ -1,7 +1,7 @@
 .nav-menu {
 
     position: fixed;
-    bottom: 0;
+    top: 0;
     z-index: 100;
     display: flex;
     flex: 1 1 100%;
@@ -18,8 +18,8 @@
 
     .nav-menu {
 
-        right: 8px;
-        bottom: 8px;
+        top: 8px;
+        left: 8px;
         max-width: 381px;
 
     }
@@ -34,10 +34,16 @@
 
 }
 
+.nav-menu .nav-menu__summary small {
+
+    font-weight: lighter;
+
+}
+
 .nav-menu .nav-menu__details {
 
     width: 100%;
-    padding: 8px;
+    padding: 2px 8px;
     background-color: #333;
     border: 1px dotted #fff;
     cursor: pointer;
@@ -46,7 +52,7 @@
 
 .nav-menu .nav-menu__details.father {
 
-    padding: 8px;
+    padding: 4px;
 
 }
 
@@ -58,7 +64,7 @@
 
 .nav-menu .nav {
 
-    padding: 8px 16px;
+    padding: 4px 16px;
 
 }
 

@@ -3,7 +3,7 @@
 
         <canvas ref="canvas" class="absolute z-index--minus-1" />
 
-        <nav-menu />
+        <nav-menu :key="$route.fullPath" />
 
         <div class="main-title">
 

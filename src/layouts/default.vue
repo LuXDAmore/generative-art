@@ -1,7 +1,7 @@
 <template>
     <div class="layout">
 
-        <nav-menu />
+        <nav-menu :key="`menu-${ $route.fullPath }`" />
 
         <nuxt :key="$route.fullPath" />
 

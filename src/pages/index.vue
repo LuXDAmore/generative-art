@@ -41,6 +41,7 @@
     // Page
     export default {
         name: 'homepage',
+        layout: 'readme',
         computed: {
             readme: () => markdown,
         },

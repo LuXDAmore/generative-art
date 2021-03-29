@@ -14,24 +14,8 @@
 
 .layout {
 
+    position: relative;
     min-height: 100vh;
     color: #fff;
 
 }
-
-.layout-readme .container {
-
-    padding-top: 135px;
-
-}
-
-@media ( min-width: 800px ) {
-
-    .layout-readme .container {
-
-        padding-top: 45px;
-
-    }
-
-}
-

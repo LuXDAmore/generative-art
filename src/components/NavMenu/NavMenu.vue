@@ -4,9 +4,9 @@
         <details class="nav-menu__details father" open>
 
             <summary class="nav-menu__summary">
-                <h2>
-                    Show/hide the menu
-                </h2>
+                <small>
+                    Menu
+                </small>
             </summary>
 
             <details v-if="links.length" class="nav-menu__details">

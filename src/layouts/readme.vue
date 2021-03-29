@@ -23,3 +23,8 @@
     scoped
     src="./shared.css"
 ></style>
+
+<style
+    scoped
+    src="./readme.css"
+></style>

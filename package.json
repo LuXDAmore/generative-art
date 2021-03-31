@@ -131,7 +131,7 @@
         "markdownlint": "^0.23.0",
         "modern-normalize": "^1.0.0",
         "nuxt": "^2.15.0",
-        "nuxt-compress": "^4.1.1",
+        "nuxt-compress": "^5.0.0",
         "nuxt-jsonld": "^1.5.0",
         "nuxt-start": "^2.15.2",
         "prettier": "^2.2.1",

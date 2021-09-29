@@ -327,6 +327,7 @@ export default {
         keywords,
         hostname,
         author,
+        base,
     },
     /*
     *   * Server

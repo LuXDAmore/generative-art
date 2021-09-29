@@ -13,6 +13,7 @@
     // Code Highlight
     import hljs from 'highlight.js/lib/core';
     import bash from 'highlight.js/lib/languages/bash';
+    import xml from 'highlight.js/lib/languages/xml';
     import javascript from 'highlight.js/lib/languages/javascript';
 
     // Readme
@@ -27,10 +28,21 @@
         )
     ;
 
-    // Highlight config
+    // Highlight configs
+    hljs.configure(
+        {
+            ignoreUnescapedHTML: true,
+        }
+    );
+
     hljs.registerLanguage(
         'bash',
         bash,
+    );
+
+    hljs.registerLanguage(
+        'xml',
+        xml,
     );
 
     hljs.registerLanguage(
@@ -38,7 +50,6 @@
         javascript,
     );
 
-    // Page
     export default {
         name: 'homepage',
         layout: 'readme',
@@ -63,7 +74,7 @@
 
                 for( const block of CODE_BLOCKS ) {
 
-                    hljs.highlightBlock(
+                    hljs.highlightElement(
                         block
                     );
 
